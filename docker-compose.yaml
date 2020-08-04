@@ -2,7 +2,7 @@ version: "3.5"
 services:
   backend:
     build:
-      context: ../api-flask
+      context: ./api-flask
       args:
         username: "nonroot"
     ports:
@@ -11,18 +11,18 @@ services:
       - db
       - db_test
     volumes:
-      - ../api-flask:/server
+      - ./api-flask:/server
     networks:
       - dishes
-    command: pipenv run flask run --host=0.0.0.0
+    command: gunicorn -b localhost:5000 -w 4 wsgi:app
   frontend:
     build:
-      context: ../maratona-solidaria
+      context: ./maratona-solidaria
     ports:
       - "4200:4200"
       - "9876:9876"
     volumes:
-      - ../maratona-solidaria:/maratona-solidaria
+      - ./maratona-solidaria:/maratona-solidaria
     networks:
       - dishes
     command: ng serve --host 0.0.0.0 --port 4200 --poll=2000

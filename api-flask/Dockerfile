@@ -15,5 +15,6 @@ COPY requirements.txt /app
 RUN pip install -r requirements.txt
 
 # Run app.py when the container launches
-COPY app.py /app
-CMD python app.py
+COPY app/ /app
+COPY wsgi.py /app
+
