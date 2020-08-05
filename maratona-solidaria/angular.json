@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "maratona-solidaria": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "maratona-solidaria"
+    }
+  },
+  "defaultProject": "maratona-solidaria",
+  "cli": {
+    "analytics": "682b8686-80b0-485a-8b1e-40029a36f625"
+  }
 }
