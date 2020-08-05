@@ -4,7 +4,7 @@ import logging
 from flask import Blueprint
 
 logger = logging.getLogger(__name__)
-public_pb = Blueprint('public', __name__, url_prefix="api/public")
+public_pb = Blueprint('public', __name__, url_prefix="/public")
 
 
 @public_pb.route('/')

@@ -25,5 +25,5 @@ def register_extensions(app):
 
 def register_bluprints(app):
     """Register Blueprints with contain views."""
-    app.register_bluprint(public_pb)
+    app.register_blueprint(public_pb)
     return None
