@@ -14,7 +14,6 @@ services:
       - ./api-flask:/server
     networks:
       - dishes
-    command: gunicorn -b localhost:5000 -w 4 wsgi:app
   frontend:
     build:
       context: ./maratona-solidaria
