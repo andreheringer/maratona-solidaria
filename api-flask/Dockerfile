@@ -11,10 +11,9 @@ EXPOSE 5000
 WORKDIR /app
 
 # Install any needed packages specified in requirements.txt
-COPY requirements.txt /app
+ADD . /app
 RUN pip install -r requirements.txt
 
-# Run app.py when the container launches
-COPY app/ /app
-COPY wsgi.py /app
+ENV APP_SETTINGS="config.DevelopmentConfig"
 
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "-w", "4", "wsgi:application"]
