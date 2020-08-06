@@ -4,7 +4,7 @@ import { Store } from "@ngxs/store";
 import { UserStateModel } from "./user.state";
 import { ClearUserStore, UpdateUserState } from "./user.actions";
 import { Permission } from "../../enums/permission";
-import { AuthService } from "src/app/core/middleware/auth.service";
+import { AuthService } from "src/app/core/auth.service";
 import { User } from "../../models/user";
 
 @Injectable({
