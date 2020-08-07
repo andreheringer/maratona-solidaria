@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "../../shared/stores/user/user.service";
 import { AuthService } from "src/app/core/auth.service";
+import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-login",
@@ -12,6 +13,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loading = false;
   public returnUrl = "";
   private sub: any;
+  loginForm = new FormGroup({
+    username: new FormControl(),
+    password: new FormControl(),
+  });
 
   constructor(
     private router: Router,
@@ -29,6 +34,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  onSubmit() {}
 
   public ngOnInit() {}
 
