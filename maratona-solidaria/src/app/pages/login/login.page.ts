@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "../../shared/stores/user/user.service";
+import { LoginService } from "../../shared/stores/login/login.service";
 import { AuthService } from "src/app/core/auth.service";
 import { FormGroup, FormControl } from "@angular/forms";
 
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private auth: AuthService
+    private auth: AuthService,
+    private loginService: LoginService
   ) {
     this.checkLogin();
 
@@ -35,7 +37,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.loginService.validatePassword()) {
+      confirm("Password validated");
+    } else {
+      this.loginService.clearPassword(this.loginForm);
+    }
+  }
 
   public ngOnInit() {}
 

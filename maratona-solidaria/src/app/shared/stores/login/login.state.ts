@@ -1,16 +1,19 @@
-import { Injectable } from "@angular/core";
 import { State } from "@ngxs/store";
+import { FormGroup, FormControl } from "@angular/forms";
 
-@State({
+const INITIAL_STATE = {
+  loginForm: new FormGroup({
+    username: new FormControl(),
+    password: new FormControl(),
+  }),
+};
+
+export class LoginStateModel {
+  public loginForm: FormGroup;
+}
+
+@State<LoginStateModel>({
   name: "login",
-  defaults: {
-    newLoginForm: {
-      model: undefined,
-      dirty: false,
-      status: "",
-      errors: {},
-    },
-  },
+  defaults: INITIAL_STATE,
 })
-@Injectable()
 export class LoginState {}
