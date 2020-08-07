@@ -11,7 +11,7 @@ export const TOKEN_FIELDS = {
 export class AuthService {
   //   private AuthUri: string = environment.authUri;
   //   private ClientId: string = environment.clientId;
-  //   private jwt = new JwtHelperService();
+  //   private jwt = new JwtHelperService(); // autenticacao por jwt ?
 
   //   constructor(private http: HttpClient) {}
 
@@ -35,25 +35,7 @@ export class AuthService {
     return true;
   }
 
-  //   public authenticate(iamId: string, password: string): Promise<any> {
-  //     const body =
-  //       "username=" +
-  //       iamId +
-  //       "&password=" +
-  //       encodeURIComponent(password) +
-  //       "&client_id=" +
-  //       this.ClientId +
-  //       "&grant_type=password&scope=" +
-  //       environment.scope;
-
-  //     const headers = new HttpHeaders({ "Content-Type": "application/x-www-form-urlencoded" });
-
-  //     return this.http
-  //       .post(this.AuthUri, body, {
-  //         headers: headers,
-  //       })
-  //       .toPromise();
-  //   }
+  public authenticate(userName: string, password: string) {}
 
   //   public signOut(): Promise<boolean> {
   //     return new Promise<boolean>((resolve, reject) => {
