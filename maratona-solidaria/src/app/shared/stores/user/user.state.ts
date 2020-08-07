@@ -4,11 +4,7 @@ import { ClearUserStore, UpdateUserState } from "./user.actions";
 import { User } from "../../models/user";
 
 const INITIAL_STATE = {
-  user: {
-    iamId: "",
-    email: "",
-    userName: "",
-  },
+  user: {},
   permission: null,
 };
 

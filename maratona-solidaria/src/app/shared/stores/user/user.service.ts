@@ -31,14 +31,16 @@ export class UserService {
   }
 
   /**
-   * Retorna o STATE do User
+   * Retorna o User
    */
-  public getUser(): UserStateModel {
-    return this.getStore();
+  public getUser(): User {
+    return this.getStore().user;
   }
-
+  /**
+   * Retorna a Permissao
+   */
   public getUserPermission(): Permission {
-    return this.getUser().permission;
+    return this.getStore().permission;
   }
 
   public updateUser(user: User) {
