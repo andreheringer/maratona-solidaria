@@ -4,3 +4,10 @@
   font-weight: normal;
   font-style: normal;
 }
+:root {
+  --blood: #700000;
+  --red: #c50101;
+  --bisque: #eed6b8;
+  --charcoal: #353a47;
+  --xanadu: #5f7470;
+}

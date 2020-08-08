@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "../../shared/stores/user/user.service";
 import { AuthService } from "src/app/core/auth.service";
-import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-login",

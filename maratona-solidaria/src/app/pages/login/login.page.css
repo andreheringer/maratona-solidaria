@@ -15,8 +15,9 @@
 .form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background-color: antiquewhite;
+  background-color: var(--bisque);
   height: 200px;
   width: 350px;
 }
@@ -31,4 +32,5 @@
 .form-title {
   font-size: 20px;
   font-weight: bold;
+  color: var(--charcoal);
 }
