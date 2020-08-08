@@ -14,17 +14,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loading = false;
   public returnUrl = "";
   private sub: any;
-  loginForm = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl(),
-  });
-
+  public userName = "";
+  public userPassw = "";
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private auth: AuthService,
-    private loginService: LoginService
+    private auth: AuthService
   ) {
     this.checkLogin();
 
@@ -37,14 +33,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit() {
-    if (this.loginService.validatePassword()) {
-      confirm("Password validated");
-    } else {
-      this.loginService.clearPassword(this.loginForm);
-    }
-  }
-
   public ngOnInit() {}
 
   public ngOnDestroy() {
@@ -52,6 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public async login() {
+    this.userName = this.userPassw;
     this.loading = true;
   }
 

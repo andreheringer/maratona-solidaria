@@ -10,6 +10,7 @@ import { PagesModule } from "./pages/pages.module";
 import { CoreModule } from "./core/core.module";
 import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 import { LoginState } from "./shared/stores/login/login.state";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,8 @@ import { LoginState } from "./shared/stores/login/login.state";
     NgxsDispatchPluginModule,
     PagesModule,
     CoreModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

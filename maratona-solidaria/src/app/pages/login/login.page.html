@@ -1,21 +1,32 @@
-<form
-  [formGroup]="loginForm"
-  ngxsForm="login.loginForm"
-  (ngSubmit)="onSubmit()"
->
-  <div>
-    <label for="username">
-      Username
-    </label>
-    <input id="username" type="text" formControlName="username" />
-  </div>
+<main class="main">
+  <img src="./assets/img/banner.jpeg" />
+  <div class="columns">
+    <section class="column"></section>
+    <section class="column">
+      <section class="form">
+        <span class="form-title">Já é colaborador?</span>
+        <div class="form-field">
+          <input
+            id="username"
+            type="text"
+            [(ngModel)]="userName"
+            placeholder="Username"
+          />
+        </div>
 
-  <div>
-    <label for="password">
-      Password
-    </label>
-    <input id="password" type="password" formControlName="password" />
-  </div>
+        <div class="form-field">
+          <input
+            id="password"
+            type="password"
+            [(ngModel)]="userPassw"
+            placeholder="Password"
+          />
+        </div>
 
-  <button class="button" type="submit">Login</button>
-</form>
+        <button class="form-field" type="submit" (click)="login()">
+          Login
+        </button>
+      </section>
+    </section>
+  </div>
+</main>
