@@ -10,4 +10,11 @@
   --bisque: #eed6b8;
   --charcoal: #353a47;
   --xanadu: #5f7470;
+  --mildpink: #eddcdb;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }

@@ -5,7 +5,7 @@ import { AboutComponent } from "./pages/about/about.page";
 import { AuthGuard } from "./core/middleware/AuthGuard";
 
 const routes: Routes = [
-  { path: "", redirectTo: "about", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "login", component: LoginComponent, canActivate: [AuthGuard] },
   { path: "about", component: AboutComponent },
 ];
