@@ -1,0 +1,19 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.columns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.column {
+  width: 33%;
+}
+.section-title {
+  text-align: center;
+}
+.section-text {
+}

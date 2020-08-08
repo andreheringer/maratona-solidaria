@@ -9,7 +9,6 @@ import { NgxsDispatchPluginModule } from "@ngxs-labs/dispatch-decorator";
 import { PagesModule } from "./pages/pages.module";
 import { CoreModule } from "./core/core.module";
 import { NgxsFormPluginModule } from "@ngxs/form-plugin";
-import { LoginState } from "./shared/stores/login/login.state";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
@@ -17,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([UserState, LoginState]),
+    NgxsModule.forRoot([UserState]),
     NgxsFormPluginModule.forRoot(),
     NgxsDispatchPluginModule,
     PagesModule,
