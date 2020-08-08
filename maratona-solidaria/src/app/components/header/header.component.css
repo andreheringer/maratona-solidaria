@@ -7,3 +7,7 @@
   width: 100%;
   background-color: var(--charcoal);
 }
+.image {
+  width: 80%;
+  height: auto;
+}
