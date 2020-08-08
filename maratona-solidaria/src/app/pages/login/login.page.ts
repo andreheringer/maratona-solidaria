@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "../../shared/stores/user/user.service";
 import { AuthService } from "src/app/core/auth.service";
@@ -7,6 +7,7 @@ import { AuthService } from "src/app/core/auth.service";
   selector: "app-login",
   templateUrl: "./login.page.html",
   styleUrls: ["./login.page.css"],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class LoginComponent implements OnInit, OnDestroy {
   public loading = false;
@@ -14,6 +15,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private sub: any;
   public userName = "";
   public userPassw = "";
+  public aboutInfo =
+    "aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaa";
   constructor(
     private router: Router,
     private route: ActivatedRoute,

@@ -3,28 +3,32 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: var(--mildpink);
 }
 .columns {
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: calc(100% - 80px);
 }
 .column {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 50%;
+  height: 100%;
+  padding: 48px;
 }
 .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--bisque);
+  /* background-color: var(--bisque); */
   height: 200px;
   width: 300px;
-  margin: 32px 0 0 0;
 }
 .label {
   width: 90px;

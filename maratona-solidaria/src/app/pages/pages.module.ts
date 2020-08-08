@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { LoginComponent } from "./login/login.page";
 import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   declarations: [LoginComponent],
@@ -11,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     NgxsFormPluginModule,
     FormsModule,
     ReactiveFormsModule,
+    ComponentsModule,
   ],
 })
 export class PagesModule {}
