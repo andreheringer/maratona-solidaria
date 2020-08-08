@@ -2,9 +2,12 @@ alembic==1.4.2
 appdirs==1.4.4
 attrs==19.3.0
 black==19.10b0
+cffi==1.14.1
 click==7.1.2
+cryptography==3.0
 Flask==1.1.2
 Flask-Migrate==2.5.3
+Flask-Script==2.0.6
 Flask-SQLAlchemy==2.4.4
 gunicorn==20.0.4
 itsdangerous==1.1.0
@@ -12,6 +15,8 @@ Jinja2==2.11.2
 Mako==1.1.3
 MarkupSafe==1.1.1
 pathspec==0.8.0
+pycparser==2.20
+PyMySQL==0.10.0
 python-dateutil==2.8.1
 python-editor==1.0.4
 regex==2020.7.14
