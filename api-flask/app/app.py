@@ -4,6 +4,8 @@ from flask import Flask
 import os
 
 from app.blueprints.public import public_pb
+from app.models import user
+from app.extentions import db, migrate
 
 def create_app():
     """An application factory, as explained here: http://flask.pocoo.org/docs/patterns/appfactories/.
@@ -19,11 +21,13 @@ def create_app():
 
 def register_extensions(app):
     """Register Flask extensions."""
+    db.init_app(app)
+    migrate.init_app(app, db)
     return None
 
 
 
 def register_bluprints(app):
-    """Register Blueprints with contain views."""
+    """Register Blueprints with views."""
     app.register_blueprint(public_pb)
     return None
