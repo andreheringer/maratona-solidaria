@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 """The app module, containing the app factory function."""
 from flask import Flask
+from flask_cors import CORS
 import os
 
 from app.blueprints.public import public_pb
 from app.models import user
-from app.extentions import db, migrate
+from app.extentions import db, migrate, bcrypt
+
 
 def create_app():
     """An application factory, as explained here: http://flask.pocoo.org/docs/patterns/appfactories/.
@@ -14,6 +16,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(os.environ['APP_SETTINGS'])
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    CORS(app)
     register_extensions(app)
     register_bluprints(app)
     return app
@@ -21,10 +24,10 @@ def create_app():
 
 def register_extensions(app):
     """Register Flask extensions."""
+    bcrypt.init_app(app)
     db.init_app(app)
     migrate.init_app(app, db)
     return None
-
 
 
 def register_bluprints(app):
