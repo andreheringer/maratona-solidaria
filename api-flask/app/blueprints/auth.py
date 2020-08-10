@@ -6,7 +6,7 @@ from app.models.user import User
 from app.models.blacklist import BlacklistToken
 
 logger = logging.getLogger(__name__)
-auth_bp = Blueprint("public", __name__, url_prefix="/auth")
+auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 
 @auth_bp.route("/registration", methods=["POST"])

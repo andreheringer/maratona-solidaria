@@ -8,6 +8,10 @@ from app.models.blacklist import BlacklistToken
 
 
 class User(db.Model):
+    """
+    User model stores a normal and admin user
+    """
+
     __tablename__ = "Users"
 
     id = db.Column(db.Integer, primary_key=True)

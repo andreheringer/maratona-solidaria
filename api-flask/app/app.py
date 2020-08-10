@@ -4,7 +4,8 @@ from flask import Flask
 from flask_cors import CORS
 import os
 
-from app.blueprints.public import public_pb
+from app.blueprints.auth import auth_bp
+from app.blueprints.public import public_bp
 from app.models import user
 from app.extentions import db, migrate, bcrypt
 
@@ -32,5 +33,6 @@ def register_extensions(app):
 
 def register_bluprints(app):
     """Register Blueprints with views."""
-    app.register_blueprint(public_pb)
+    app.register_blueprint(public_bp)
+    app.register_blueprint(auth_bp)
     return None
