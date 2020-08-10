@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~9.0.3",
+    "@angular/animations": "^10.0.8",
     "@angular/common": "~9.0.3",
     "@angular/compiler": "~9.0.3",
     "@angular/core": "~9.0.3",
@@ -22,6 +22,7 @@
     "@ngxs-labs/dispatch-decorator": "^2.1.0",
     "@ngxs/form-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
+    "ngx-spinner": "^10.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
