@@ -5,59 +5,40 @@ services:
       context: ./api-flask
       args:
         username: "nonroot"
+    links:
+      - "db"
     ports:
       - "5000:5000"
+    environment:
+      APP_SETTINGS: "config.DevelopmentConfig"
+      DATABASE_URL: "mysql+pymysql://user:password@db:3306/maratona"
     depends_on:
       - db
-      - db_test
+    entrypoint: ./app/entrypoint.sh
     volumes:
       - ./api-flask:/server
     networks:
       - dishes
-  frontend:
-    build:
-      context: ./maratona-solidaria
-    ports:
-      - "4200:4200"
-      - "9876:9876"
-    volumes:
-      - ./maratona-solidaria:/maratona-solidaria
-    networks:
-      - dishes
-    command: ng serve --host 0.0.0.0 --port 4200 --poll=2000
   db:
     image: mysql:5.7
     environment:
-      MYSQL_DATABASE: "dishes_db"
+      MYSQL_DATABASE: "maratona"
       MYSQL_USER: "user"
       MYSQL_PASSWORD: "password"
-      MYSQL_ROOT_PASSWORD: "root_super_password"
+      MYSQL_ROOT_PASSWORD: "admin"
     ports:
       - "3306:3306"
     volumes:
       - dishes_db:/var/lib/mysql
     networks:
       - dishes
-  db_test:
-    image: mysql:5.7
-    environment:
-      MYSQL_DATABASE: "dishes_db_test"
-      MYSQL_USER: "user"
-      MYSQL_PASSWORD: "password"
-      MYSQL_ROOT_PASSWORD: "root_super_password"
-    ports:
-      - "3307:3306"
-    volumes:
-      - dishes_db_test:/var/lib/mysql
-    networks:
-      - dishes
-
 networks:
   dishes:
     name: dishes
     driver: bridge
     ipam:
       driver: default
+    external: true
 
 volumes:
   dishes_db:
