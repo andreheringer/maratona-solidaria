@@ -44,12 +44,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public async login() {
     this.spinner.show();
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
-    this.userName = this.userPassw;
-    this.loading = true;
+    this.auth
+      .authenticate(this.userName, this.userPassw)
+      .subscribe((response) => {
+        this.spinner.hide();
+        this.router.navigateByUrl("/about");
+      });
   }
 
   private checkLogin() {
