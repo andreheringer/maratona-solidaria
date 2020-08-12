@@ -19,6 +19,17 @@ services:
       - ./api-flask:/server
     networks:
       - dishes
+  frontend:
+    build:
+      context: ./maratona-solidaria
+    ports:
+      - "4200:4200"
+      - "9876:9876"
+    volumes:
+      - ./maratona-solidaria:/maratona-solidaria
+    networks:
+      - dishes
+    command: ng serve --host 0.0.0.0 --port 4200 --poll=2000
   db:
     image: mysql:5.7
     environment:
