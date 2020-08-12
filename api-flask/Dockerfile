@@ -13,7 +13,5 @@ WORKDIR /app
 # Install any needed packages specified in requirements.txt
 ADD . /app
 RUN pip install -r requirements.txt
-
-ENV APP_SETTINGS="config.DevelopmentConfig"
-
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "-w", "4", "wsgi:application"]
+RUN chmod u+x ./app/entrypoint.sh
+ENTRYPOINT ["./app/entrypoint.sh"]

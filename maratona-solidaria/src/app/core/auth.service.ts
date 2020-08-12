@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 export const TOKEN_FIELDS = {
   //   TOKEN: "access_token",
@@ -13,7 +14,7 @@ export class AuthService {
   //   private ClientId: string = environment.clientId;
   //   private jwt = new JwtHelperService(); // autenticacao por jwt ?
 
-  //   constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   //   public getToken(): string {
   //     return sessionStorage.getItem(".auth");
@@ -35,7 +36,13 @@ export class AuthService {
     return true;
   }
 
-  public authenticate(userName: string, password: string) {}
+  public authenticate(userName: string, password: string) {
+    let body = JSON.stringify({
+      email: userName,
+      password: password,
+    });
+    return this.http.post(environment.apiUrl, body);
+  }
 
   //   public signOut(): Promise<boolean> {
   //     return new Promise<boolean>((resolve, reject) => {

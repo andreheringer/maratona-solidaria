@@ -10,7 +10,8 @@ import { PagesModule } from "./pages/pages.module";
 import { CoreModule } from "./core/core.module";
 import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ComponentsModule } from './components/components.module';
+import { ComponentsModule } from "./components/components.module";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { ComponentsModule } from './components/components.module';
     FormsModule,
     ReactiveFormsModule,
     ComponentsModule,
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

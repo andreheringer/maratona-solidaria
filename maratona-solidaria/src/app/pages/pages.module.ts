@@ -4,6 +4,9 @@ import { LoginComponent } from "./login/login.page";
 import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ComponentsModule } from "../components/components.module";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AboutComponent } from "./about/about.page";
 
 @NgModule({
@@ -14,6 +17,9 @@ import { AboutComponent } from "./about/about.page";
     FormsModule,
     ReactiveFormsModule,
     ComponentsModule,
+    NgxSpinnerModule,
+    BrowserModule,
+    BrowserAnimationsModule,
   ],
 })
 export class PagesModule {}
