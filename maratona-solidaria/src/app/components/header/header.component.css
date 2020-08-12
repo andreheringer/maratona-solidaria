@@ -4,10 +4,10 @@
   align-items: center;
   justify-content: space-evenly;
   height: 80px;
-  width: 100%;
+  width: 100vw;
   background-color: var(--charcoal);
 }
 .image {
-  width: 80%;
-  height: auto;
+  width: auto;
+  height: 70px;
 }

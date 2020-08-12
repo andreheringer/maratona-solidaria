@@ -1,17 +1,69 @@
 <main class="main">
-  <img src="./assets/img/horizontalBanner.png" />
+  <app-header></app-header>
   <div class="columns">
     <section class="column">
-      <h1 class="section-title">O QUE É</h1>
-      <p class="section-text"></p>
+      <section class="section">
+        <h1 class="section-title">O<br />QUE<br />É</h1>
+        <body class="section-text">
+          <p>
+            A Maratona Solidária do ICEx é um projeto para incentivar a prática
+            da solidariedade entre os alunos do ICEx.
+          </p>
+          <p>
+            As equipes são compostas por alunos da graduação e da pós-graduação,
+            divididas pelos cursos do ICEx.
+          </p>
+          <p>
+            A realização da Maratona Solidária do ICEx é uma parcerias dos
+            Diretórios Acadêmicos do ICEx e da Diretoria do ICEx. Tem início no
+            dia 19 de março de 2020 e termina no dia 15 de abril de 2020 às 20h.
+          </p>
+        </body>
+      </section>
+      <section class="section">
+        <body class="section-text">
+          <p>
+            Todos os alunos do ICEx podem participar da Maratona Solidária. O
+            aluno será incluído, automaticamente, na equipe no momento da doação
+            realizada durante o período da Maratona.
+          </p>
+          <p>
+            Docentes, funcionários e comunidade externa também podem realizar
+            doações. Basta escolher um aluno para representar a doação, a
+            pontuação da doação será da equipe a qual o aluno representante
+            participa.
+          </p>
+        </body>
+        <h1 class="section-title">QUEM<br />PODE<br />PARTICIPAR</h1>
+      </section>
+      <section class="section">
+        <h1 class="section-title">CLASSIFICAÇÃO<br />E<br />PREMIAÇÃO</h1>
+        <body class="section-text" style="white-space: pre-line;">
+          <p>
+            A apuração do resultado final de cada equipe será calculada
+            dividindo a pontuação total pela quantidade de membros no momento.
+          </p>
+          <p>
+            A equipe vencedora receberá um troféu da 1ª Maratona Solidária do
+            ICEx.
+          </p>
+        </body>
+      </section>
     </section>
     <section class="column">
-      <h1 class="section-title">QUEM PODE PARTICIPAR</h1>
-      <p class="section-text"></p>
-    </section>
-    <section class="column">
-      <h1 class="section-title">CLASSIFICAÇÃO E PREMIAÇÃO</h1>
-      <p class="section-text"></p>
+      <button class="login-button" type="submit" (click)="navigateToLogin()">
+        Login
+      </button>
+      <div class="table">
+        <div class="table-header">
+          <span class="table-header-item">Produto</span
+          ><span class="table-header-item">Pontuação</span>
+        </div>
+        <li class="item" *ngFor="let product of products">
+          <span class="item-value">{{product.name}}</span
+          ><span class="item-value">{{product.points}}</span>
+        </li>
+      </div>
     </section>
   </div>
 </main>

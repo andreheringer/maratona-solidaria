@@ -7,9 +7,10 @@ import { ComponentsModule } from "../components/components.module";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AboutComponent } from "./about/about.page";
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, AboutComponent],
   imports: [
     CommonModule,
     NgxsFormPluginModule,
