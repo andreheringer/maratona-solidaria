@@ -41,7 +41,12 @@ export class AuthService {
       email: userName,
       password: password,
     });
-    return this.http.post(environment.apiUrl, body);
+    const header = new HttpHeaders({
+      "Content-Type": "application/json",
+    });
+    return this.http.post(environment.apiUrl + "auth/login", body, {
+      headers: header,
+    });
   }
 
   //   public signOut(): Promise<boolean> {
