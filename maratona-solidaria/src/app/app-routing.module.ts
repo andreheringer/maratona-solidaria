@@ -3,11 +3,13 @@ import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./pages/login/login.page";
 import { AboutComponent } from "./pages/about/about.page";
 import { AuthGuard } from "./core/middleware/AuthGuard";
+import { PDFComponent } from "./pages/pdfs/pdfs.page";
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "login", component: LoginComponent, canActivate: [AuthGuard] },
   { path: "about", component: AboutComponent },
+  { path: "uploads/Regulamento.pdf", component: PDFComponent },
 ];
 
 @NgModule({

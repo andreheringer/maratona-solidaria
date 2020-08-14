@@ -9,6 +9,7 @@
   bottom: 0;
   right: 0;
   background-color: var(--mildpink);
+  overflow: scroll;
 }
 .columns {
   display: flex;
@@ -20,7 +21,7 @@
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin: 18px 18px 88px 0px;
+  margin: 18px 18px 0px 0px;
 }
 .section {
   display: flex;
@@ -32,27 +33,31 @@
 .section-title {
   text-align: center;
   width: 25%;
-  font-size: 22px;
+  font-size: 25px;
   align-self: center;
   color: var(--blood);
 }
 .section-text {
   align-self: center;
   width: 75%;
-  font-size: 18px;
+  font-size: 20px;
 }
-.login-button {
-  width: 88px;
+.button-section {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0px 58px 18px 0px;
+}
+.button {
+  width: 130px;
+  height: 40px;
   align-self: flex-end;
 }
 .table {
   display: flex;
   flex-direction: column;
-  margin: 8px 58px 0px 28px;
+  margin: 0px 58px 0px 28px;
   padding-left: 0 !important;
-  border: var(--charcoal);
-  border-width: 2px;
-  border-style: solid;
+  border: 2px solid var(--charcoal);
   border-radius: 8px;
 }
 .table-header {
@@ -60,7 +65,8 @@
   justify-content: space-between;
   background-color: var(--bisque);
   margin: 0px 0px 2px 0px;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .table-header-item {
   font-weight: bold;
@@ -70,7 +76,7 @@
   display: flex;
   justify-content: space-between;
   background-color: var(--charcoal);
-  margin: 1px 8px 1px 8px;
+  margin: 1px 0px 1px 0px;
 }
 .item-value {
   color: whitesmoke;

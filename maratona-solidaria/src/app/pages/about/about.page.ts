@@ -28,7 +28,13 @@ export class AboutComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  public navigateToLogin() {
+  public onClickLogin() {
     this.router.navigateByUrl("/login");
   }
+
+  public onClickRegulamento() {
+    this.router.navigateByUrl("/uploads/Regulamento.pdf");
+  }
+
+  public onClickClassificacao() {}
 }
