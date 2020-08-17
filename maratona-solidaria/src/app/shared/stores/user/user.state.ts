@@ -4,13 +4,14 @@ import { ClearUserStore, UpdateUserState } from "./user.actions";
 import { User } from "../../models/user";
 
 const INITIAL_STATE = {
-  user: {},
-  permission: null,
+  user: {
+    data: null,
+    permission: null,
+  },
 };
 
 export class UserStateModel {
   public user: User;
-  public permission: Permission;
 }
 
 @State<UserStateModel>({

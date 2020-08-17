@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "../../shared/stores/user/user.service";
-import { AuthService } from "src/app/core/auth.service";
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
@@ -22,7 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private auth: AuthService,
     private spinner: NgxSpinnerService
   ) {
     this.checkLogin();
@@ -44,22 +42,20 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public async login() {
     this.spinner.show();
-    this.auth
+    this.userService
       .authenticate(this.userName, this.userPassw)
       .subscribe((response) => {
+        const b = response["auth_token"];
+        this.userService.syncUser(b);
+
         this.spinner.hide();
         this.router.navigateByUrl("/about");
       });
   }
 
   private checkLogin() {
-    if (this.auth.authenticated) {
-      this.loadStates();
+    if (false) {
       this.router.navigateByUrl(this.returnUrl);
     }
-  }
-
-  private loadStates() {
-    this.userService.syncUser();
   }
 }

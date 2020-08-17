@@ -4,14 +4,17 @@ import { Store } from "@ngxs/store";
 import { UserStateModel } from "./user.state";
 import { ClearUserStore, UpdateUserState } from "./user.actions";
 import { Permission } from "../../enums/permission";
-import { AuthService } from "src/app/core/auth.service";
 import { User } from "../../models/user";
+import { HttpHeaders, HttpHandler, HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
-  constructor(private store: Store, private authService: AuthService) {}
+  private helper = new JwtHelperService();
+  constructor(private store: Store, private http: HttpClient) {}
 
   private getStore() {
     return this.store.snapshot().user as UserStateModel;
@@ -30,6 +33,19 @@ export class UserService {
     return new UpdateUserState(partialUserStateModel);
   }
 
+  public authenticate(userName: string, password: string) {
+    let body = JSON.stringify({
+      email: userName,
+      password: password,
+    });
+    const header = new HttpHeaders({
+      "Content-Type": "application/json",
+    });
+    return this.http.post(environment.apiUrl + "auth/login", body, {
+      headers: header,
+    });
+  }
+
   /**
    * Retorna o User
    */
@@ -40,7 +56,7 @@ export class UserService {
    * Retorna a Permissao
    */
   public getUserPermission(): Permission {
-    return this.getStore().permission;
+    return this.getStore().user.permission;
   }
 
   public updateUser(user: User) {
@@ -50,17 +66,15 @@ export class UserService {
   /**
    * Atualiza no STATE os dados cadastrais do usuário
    */
-  public syncUser() {
-    // this.updateUserState({
-    //   user: {
-    //     email: this.authService.authenticated ? this.authService.tokenData[TOKEN_FIELDS.EMAIL] : "",
-    //     iamId: this.authService.authenticated
-    //       ? this.authService.tokenData[TOKEN_FIELDS.USER_ID]
-    //       : "",
-    //     userName: this.authService.authenticated
-    //       ? this.authService.tokenData[TOKEN_FIELDS.USER_NAME]
-    //       : "",
-    //   },
-    // });
+  public syncUser(token) {
+    const tokenDaata = this.helper.decodeToken(token);
+    this.updateUserState({
+      user: {
+        data: {
+          token: token,
+        },
+        permission: Permission.admin,
+      },
+    });
   }
 }
