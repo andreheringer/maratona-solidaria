@@ -37,4 +37,8 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   public onClickClassificacao() {}
+
+  public isEven(i: number) {
+    return i % 2 === 0 ? true : false;
+  }
 }
