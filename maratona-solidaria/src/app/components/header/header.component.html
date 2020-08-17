@@ -5,11 +5,11 @@
   </section>
   <section class="header-menu" *ngIf="authenticated">
     <button
-      disabled="!opt.active"
       *ngFor="let opt of options"
-      class="header-menu-button"
+      [disabled]="opt.active ? false : true"
       (click)="onClickOption(opt.path)"
       [ngClass]="opt.active ? '' : 'header-menu-button-selected'"
+      class="header-menu-button"
     >
       {{ opt.name }}
     </button>

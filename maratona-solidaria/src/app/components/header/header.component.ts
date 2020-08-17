@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public onClickOption(path) {
+    this.options.find((item) => !item.active).active = true;
     this.router.navigateByUrl(path);
   }
 }

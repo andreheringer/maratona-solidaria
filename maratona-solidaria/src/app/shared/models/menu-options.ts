@@ -7,7 +7,7 @@ export interface Option {
 }
 
 export const MENUOPTIONS: Option[] = [
-  { name: "login", path: "/loign", active: true },
+  { name: "login", path: "/login", active: true },
   { name: "regulamento", path: "/uploads/Regulamento.pdf", active: true },
   { name: "sobre", path: "/about", active: true },
   { name: "doações", path: "/colaborate", active: true },
