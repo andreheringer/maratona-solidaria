@@ -8,10 +8,12 @@ const INITIAL_STATE = {
     data: null,
     permission: null,
   },
+  auth: false,
 };
 
 export class UserStateModel {
   public user: User;
+  public auth: boolean;
 }
 
 @State<UserStateModel>({
@@ -30,5 +32,8 @@ export class UserState {
     { partialUserStateModel }: UpdateUserState
   ) {
     patchState(partialUserStateModel);
+    patchState({
+      auth: true,
+    });
   }
 }

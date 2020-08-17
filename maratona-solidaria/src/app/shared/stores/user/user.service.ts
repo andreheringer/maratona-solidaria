@@ -46,9 +46,10 @@ export class UserService {
     });
   }
 
-  /**
-   * Retorna o User
-   */
+  public getAuth(): boolean {
+    return this.getStore().auth;
+  }
+
   public getUser(): User {
     return this.getStore().user;
   }
