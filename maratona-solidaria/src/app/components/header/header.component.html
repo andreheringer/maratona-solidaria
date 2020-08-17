@@ -1,3 +1,17 @@
-<main class="main">
-  <img src="./assets/img/banner.svg" class="image" />
+<main class="header">
+  <section class="header-banner">
+    <img src="./assets/img/banner.svg" class="image" />
+    <img src="./assets/img/icex.svg" class="image" />
+  </section>
+  <section class="header-menu" *ngIf="authenticated">
+    <button
+      disabled="!opt.active"
+      *ngFor="let opt of options"
+      class="header-menu-button"
+      (click)="onClickOption(opt.path)"
+      [ngClass]="opt.active ? '' : 'header-menu-button-selected'"
+    >
+      {{ opt.name }}
+    </button>
+  </section>
 </main>

@@ -22,18 +22,12 @@ export class AboutComponent implements OnInit, OnDestroy {
     });
   }
 
-  public ngOnInit() {}
+  public ngOnInit() {
+    const a = this.router.url;
+  }
 
   public ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  public onClickLogin() {
-    this.router.navigateByUrl("/login");
-  }
-
-  public onClickRegulamento() {
-    this.router.navigateByUrl("/uploads/Regulamento.pdf");
   }
 
   public onClickClassificacao() {}
