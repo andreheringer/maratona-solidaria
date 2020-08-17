@@ -1,6 +1,17 @@
 # api-maratona-solidaria
 Repositório para aplicações da Maratona Solidária
 
+# Funcionalidades
+Sistema para gerenciar as doações em uma competição entre equipes. 
+
+Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.ufmg.br/wp-content/uploads/2020/03/Regulamento-Maratona-Solid%C3%A1ria.pdf) 
+
+# Tecnologias
+- Banco de dados - Mysql
+- Servidor e backend - Flask
+- Frontend - Angular 9
+- Container - Docker
+
 ## Arquitetura
 ![Arquitetura](https://user-images.githubusercontent.com/23155300/76664704-fd0ee180-6563-11ea-8197-517efe49a226.jpg)
 

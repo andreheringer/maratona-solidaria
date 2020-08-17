@@ -1,3 +1,4 @@
+import { PDFState } from "./shared/stores/pdf/pdf.state";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
@@ -19,7 +20,7 @@ import { environment } from "src/environments/environment";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([UserState], {
+    NgxsModule.forRoot([UserState, PDFState], {
       developmentMode: !environment.production,
     }),
     NgxsLoggerPluginModule.forRoot({ disabled: environment.production }),
