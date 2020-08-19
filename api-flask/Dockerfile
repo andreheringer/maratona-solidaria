@@ -12,6 +12,8 @@ WORKDIR /app
 
 # Install any needed packages specified in requirements.txt
 ADD . /app
+RUN apt-get update
+RUN apt-get install netcat -y
 RUN pip install -r requirements.txt
 RUN chmod u+x ./app/entrypoint.sh
 ENTRYPOINT ["./app/entrypoint.sh"]
