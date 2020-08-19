@@ -9,6 +9,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AboutComponent } from "./about/about.page";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [LoginComponent, AboutComponent, ColaborateComponent],
@@ -21,6 +22,7 @@ import { AboutComponent } from "./about/about.page";
     NgxSpinnerModule,
     BrowserModule,
     BrowserAnimationsModule,
+    NgbModule,
   ],
 })
 export class PagesModule {}

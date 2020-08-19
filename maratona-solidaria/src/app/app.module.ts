@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ComponentsModule } from "./components/components.module";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { environment } from "src/environments/environment";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { environment } from "src/environments/environment";
     ReactiveFormsModule,
     ComponentsModule,
     NgxSpinnerModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
