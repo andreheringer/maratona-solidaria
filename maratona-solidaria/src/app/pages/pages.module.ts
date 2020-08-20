@@ -23,6 +23,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
+    NgxsFormPluginModule.forRoot(),
   ],
 })
 export class PagesModule {}

@@ -14,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ComponentsModule } from "./components/components.module";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { environment } from "src/environments/environment";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ComponentsModule,
     NgxSpinnerModule,
     NgbModule,
+    NgxsFormPluginModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
