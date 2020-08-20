@@ -1,0 +1,46 @@
+<main>
+  <form
+    [formGroup]="addStudentForm"
+    ngxsForm="addStudent.form"
+    (ngSubmit)="onSubmit()"
+    class="form"
+  >
+    <input
+      type="text"
+      placeholder="Doação"
+      formControlName="name"
+      class="form-item"
+    />
+    <input
+      type="text"
+      placeholder="Matrícula"
+      formControlName="registration"
+      class="form-item"
+    />
+    <select formControlName="course" class="form-item">
+      <option disabled selected>Curso</option>
+      <option *ngFor="let prod of products">{{ prod.name }}</option>
+    </select>
+    <input
+      type="text"
+      placeholder="Email"
+      formControlName="email"
+      class="form-item"
+    />
+    <input
+      type="text"
+      placeholder="Telefone"
+      formControlName="phone"
+      class="form-item"
+    />
+    <input
+      type="text"
+      placeholder="Observação"
+      formControlName="obs"
+      class="form-item"
+    />
+    <button class="submit-button">
+      Submit
+    </button>
+  </form>
+</main>

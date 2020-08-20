@@ -3,34 +3,54 @@
     [formGroup]="newSimpleDonationForm"
     ngxsForm="simpleDonation.form"
     (ngSubmit)="onSubmit()"
+    class="form"
   >
-    <input type="text" placeholder="Doação" formControlName="name" />
-    <select formControlName="product">
+    <input
+      type="text"
+      placeholder="Doação"
+      formControlName="name"
+      class="form-item"
+    />
+    <select formControlName="product" class="form-item">
       <option disabled selected>Tipo</option>
       <option *ngFor="let prod of products">{{ prod.name }}</option>
     </select>
-    <input type="number" placeholder="Quantidade" formControlName="quantity" />
-    <select formControlName="student">
+    <input
+      type="number"
+      placeholder="Quantidade"
+      formControlName="quantity"
+      class="form-item"
+    />
+    <select formControlName="student" class="form-item">
       <option disabled selected>Reprensentante(Aluno)</option>
     </select>
-    <div class="input-group">
-      <input
-        class="form-control"
-        placeholder="yyyy-mm-dd"
-        name="dp"
-        ngbDatepicker
-        #d="ngbDatepicker"
-        formControlName="date"
-      />
-      <div class="input-group-append">
-        <button
-          class="datepicker-button"
-          (click)="d.toggle()"
-          type="button"
-        ></button>
+    <div class="form-item">
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="yyyy-mm-dd"
+          name="dp"
+          ngbDatepicker
+          #d="ngbDatepicker"
+          formControlName="date"
+        />
+        <div class="input-group-append">
+          <button
+            class="datepicker-button"
+            (click)="d.toggle()"
+            type="button"
+          ></button>
+        </div>
       </div>
     </div>
-    <input type="text" placeholder="Observação" formControlName="obs" />
-    <button>Submit</button>
+    <input
+      type="text"
+      placeholder="Observação"
+      formControlName="obs"
+      class="form-item"
+    />
+    <button class="submit-button">
+      Submit
+    </button>
   </form>
 </main>
