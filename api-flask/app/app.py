@@ -6,7 +6,7 @@ import os
 
 from app.blueprints.auth import auth_bp
 from app.blueprints.public import public_bp
-from app.models import user
+from app.models import user, doacao
 from app.extentions import db, migrate, bcrypt
 
 
