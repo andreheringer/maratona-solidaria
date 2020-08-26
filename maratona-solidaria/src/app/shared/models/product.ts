@@ -1,4 +1,8 @@
-const products = [
+export interface Product {
+  name: string;
+  points: number;
+}
+export const PRODUCTS: Product[] = [
   {
     name: "Ração para cães ou gatos (a cada 5 kg)",
     points: 100,
@@ -104,5 +108,3 @@ const products = [
     points: 40,
   },
 ];
-
-export default products;

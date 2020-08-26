@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: "colaborate",
     component: ColaborateComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   { path: "uploads/Regulamento.pdf", component: PDFComponent },
 ];

@@ -1,6 +1,6 @@
 import { SimpleDonationService } from "./../../shared/stores/simple-donation/simple-donation.service";
 import { Component, OnInit } from "@angular/core";
-import products from "src/app/shared/models/product";
+import { PRODUCTS } from "src/app/shared/models/product";
 import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
@@ -9,7 +9,8 @@ import { FormGroup, FormControl } from "@angular/forms";
   styleUrls: ["./simple-donation.component.css"],
 })
 export class SimpleDonationComponent implements OnInit {
-  products = products;
+  products = PRODUCTS;
+  donation: boolean = false;
   newSimpleDonationForm = new FormGroup({
     name: new FormControl(),
     product: new FormControl(),
@@ -24,7 +25,9 @@ export class SimpleDonationComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.newSimpleDonationForm.value);
     this.simpleDonationService.clearForm();
+  }
+  onDonationChange(event) {
+    this.donation = true;
   }
 }

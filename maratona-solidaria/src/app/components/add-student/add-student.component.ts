@@ -1,6 +1,5 @@
 import { AddStudentService } from "./../../shared/stores/add-student/add-student.service";
 import { Component, OnInit } from "@angular/core";
-import products from "src/app/shared/models/product";
 import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
@@ -9,7 +8,6 @@ import { FormGroup, FormControl } from "@angular/forms";
   styleUrls: ["./add-student.component.css"],
 })
 export class AddStudentComponent implements OnInit {
-  products = products;
   addStudentForm = new FormGroup({
     name: new FormControl(),
     registration: new FormControl(),

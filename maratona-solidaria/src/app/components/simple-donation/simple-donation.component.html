@@ -11,9 +11,15 @@
       formControlName="name"
       class="form-item"
     />
-    <select formControlName="product" class="form-item">
-      <option disabled selected>Tipo</option>
-      <option *ngFor="let prod of products">{{ prod.name }}</option>
+    <select
+      formControlName="product"
+      class="form-item"
+      (change)="onDonationChange($event)"
+    >
+      <option [disabled]="donation" selected>Tipo</option>
+      <option *ngFor="let prod of products" value="prod.points">{{
+        prod.name
+      }}</option>
     </select>
     <input
       type="number"

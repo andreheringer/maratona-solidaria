@@ -1,6 +1,16 @@
 import { Injectable } from "@angular/core";
-import { State, Action } from "@ngxs/store";
+import { State, Action, StateContext } from "@ngxs/store";
 import { SimpleDonation } from "../../models/simpleDonation";
+import { ClearSimpleDonationStore } from "./simple-donation.actions";
+
+const INITIAL_STATE = {
+  form: {
+    model: new SimpleDonation(),
+    dirty: false,
+    status: "",
+    errors: {},
+  },
+};
 
 export class SimpleDonationStateModel {
   form: {
@@ -13,14 +23,14 @@ export class SimpleDonationStateModel {
 
 @State<SimpleDonationStateModel>({
   name: "simpleDonation",
-  defaults: {
-    form: {
-      model: undefined,
-      dirty: false,
-      status: "",
-      errors: {},
-    },
-  },
+  defaults: INITIAL_STATE,
 })
 @Injectable()
-export class SimpleDonationState {}
+export class SimpleDonationState {
+  @Action(ClearSimpleDonationStore)
+  public clearSimpleDonationStore({
+    setState,
+  }: StateContext<SimpleDonationStateModel>) {
+    setState(INITIAL_STATE);
+  }
+}

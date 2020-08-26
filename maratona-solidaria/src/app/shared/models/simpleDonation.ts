@@ -1,21 +1,17 @@
 export class SimpleDonation {
   name: string;
-  product: string;
+  product: number;
   quantity: number;
   student: string;
   date: Date;
   obs: string;
+
+  constructor() {
+    this.name = "";
+    this.product = null;
+    this.quantity = null;
+    this.student = "";
+    this.date = null;
+    this.obs = "";
+  }
 }
-
-const getEmpty = () => {
-  return {
-    name: null,
-    product: null,
-    quantity: null,
-    student: null,
-    date: null,
-    obs: null,
-  };
-};
-
-export default getEmpty;

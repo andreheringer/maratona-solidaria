@@ -8,6 +8,7 @@ import { User } from "../../models/user";
 import { HttpHeaders, HttpHandler, HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -20,9 +21,6 @@ export class UserService {
     return this.store.snapshot().user as UserStateModel;
   }
 
-  /**
-   * Limpa a pilha de items do User
-   */
   @Dispatch()
   public clearUserStore() {
     return new ClearUserStore();
@@ -33,7 +31,7 @@ export class UserService {
     return new UpdateUserState(partialUserStateModel);
   }
 
-  public authenticate(userName: string, password: string) {
+  public authenticate(userName: string, password: string): Observable<any> {
     let body = JSON.stringify({
       email: userName,
       password: password,
@@ -53,9 +51,7 @@ export class UserService {
   public getUser(): User {
     return this.getStore().user;
   }
-  /**
-   * Retorna a Permissao
-   */
+
   public getUserPermission(): Permission {
     return this.getStore().user.permission;
   }
@@ -64,9 +60,6 @@ export class UserService {
     this.updateUserState({ user });
   }
 
-  /**
-   * Atualiza no STATE os dados cadastrais do usuário
-   */
   public syncUser(token) {
     const tokenDaata = this.helper.decodeToken(token);
     this.updateUserState({

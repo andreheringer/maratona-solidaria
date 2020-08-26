@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import products from "src/app/shared/models/product";
+import { PRODUCTS } from "src/app/shared/models/product";
 
 @Component({
   selector: "app-about",
@@ -10,7 +10,7 @@ import products from "src/app/shared/models/product";
 export class AboutComponent implements OnInit, OnDestroy {
   public returnUrl = "";
   private sub: any;
-  products = products;
+  products = PRODUCTS;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.sub = this.route.queryParams.subscribe((params) => {
