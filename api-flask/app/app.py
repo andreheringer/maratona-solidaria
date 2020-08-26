@@ -15,8 +15,8 @@ def create_app():
     :param config_object: The configuration object to use.
     """
     app = Flask(__name__)
-    app.config.from_object(os.environ['APP_SETTINGS'])
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config.from_object(os.environ["APP_SETTINGS"])
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     CORS(app)
     register_extensions(app)
     register_bluprints(app)
