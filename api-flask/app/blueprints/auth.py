@@ -20,7 +20,7 @@ def register_user():
                 email=post_data.get("email"),
                 team=post_data.get("team"),
                 password=post_data.get("password"),
-                admin=post_data.get("admin")
+                admin=post_data.get("admin"),
             )
             db.session.add(user)
             db.session.commit()
@@ -71,11 +71,11 @@ def login_user():
 
 @auth_bp.route("/logout", methods=["POST"])
 def logout_user():
-    auth_header = request.headers.get('Authorization')
+    auth_header = request.headers.get("Authorization")
     if auth_header:
         auth_token = auth_header.split(" ")[1]
     else:
-        auth_token = ''
+        auth_token = ""
     if auth_token:
         resp = User.decode_auth_token(auth_token)
         if not isinstance(resp, str):
@@ -84,25 +84,16 @@ def logout_user():
                 db.session.add(blacklist_token)
                 db.session.commit()
                 responseObject = {
-                    'status': 'success',
-                    'message': 'Successfully logged out.'
+                    "status": "success",
+                    "message": "Successfully logged out.",
                 }
                 return responseObject, 200
             except Exception as e:
-                responseObject = {
-                    'status': 'fail',
-                    'message': e
-                }
+                responseObject = {"status": "fail", "message": e}
                 return responseObject, 200
         else:
-            responseObject = {
-                'status': 'fail',
-                'message': resp
-            }
+            responseObject = {"status": "fail", "message": resp}
             return responseObject, 401
     else:
-        responseObject = {
-            'status': 'fail',
-            'message': 'Provide a valid auth token.'
-        }
+        responseObject = {"status": "fail", "message": "Provide a valid auth token."}
         return responseObject, 403
