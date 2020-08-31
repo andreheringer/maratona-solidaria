@@ -16,7 +16,7 @@ services:
       - db
     entrypoint: ./app/entrypoint.sh
     volumes:
-      - ./api-flask:/server
+      - ./api-flask:/app
     networks:
       - dishes
   frontend:
@@ -38,7 +38,7 @@ services:
       MYSQL_PASSWORD: "password"
       MYSQL_ROOT_PASSWORD: "admin"
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - dishes_db:/var/lib/mysql
     networks:

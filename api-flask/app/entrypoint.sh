@@ -4,4 +4,4 @@ while ! nc -z db 3306; do
     sleep 1;
 done;
 python manage.py db upgrade
-gunicorn -b 0.0.0.0:5000 -w 4 wsgi:application
+gunicorn --reload -b 0.0.0.0:5000 -w 4 wsgi:application
