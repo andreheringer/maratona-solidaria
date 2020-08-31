@@ -14,15 +14,18 @@ class Doacao(db.Model):
     representante_id = db.Column(db.Integer, db.ForeignKey("Users.id"))
     data = db.Column(db.DateTime, default=datetime.utcnow)
     observacao = db.Column(db.Text)
+    pontuacao = db.Column(db.Integer)
 
     representante = db.relationship("User", foreign_keys=representante_id)
 
-    def __init__(self, doacao, tipo, quantidade, representante_id, data, observacao):
+
+    def __init__(self, doacao, tipo, quantidade, representante_id, data, observacao, pontuacao):
         self.doacao = doacao
         self.tipo = tipo
         self.quantidade = quantidade
         self.representante_id = representante_id
         self.data = data
+        self.pontuacao = pontuacao
         self.observacao = observacao
 
     def __repr__(self):  # representation
