@@ -1,33 +1,31 @@
 import { Store } from "@ngxs/store";
 import { Injectable } from "@angular/core";
 import { Dispatch } from "@ngxs-labs/dispatch-decorator";
-import { UpdateFormValue, UpdateFormDirty } from "@ngxs/form-plugin";
-import getEmpty, { AddStudent } from "../../models/addStudent";
+import { ClearAddStudentStore } from "./add-student.actions";
+import { StudentService } from "../students/students.service";
+import { AddStudentStateModel } from "./add-student.state";
 
 @Injectable({
   providedIn: "root",
 })
 export class AddStudentService {
-  constructor(private store: Store) {}
+  constructor(private store: Store, private studentService: StudentService) {}
 
-  @Dispatch()
-  private clearFormValues() {
-    return new UpdateFormValue({
-      path: "addStudent.form",
-      value: getEmpty(),
-    });
+  private getStore() {
+    return this.store.snapshot().addStudent as AddStudentStateModel;
   }
 
   @Dispatch()
-  private setFormClean() {
-    return new UpdateFormDirty({
-      dirty: false,
-      path: "addStudent.form",
-    });
+  private clearFormStore() {
+    return new ClearAddStudentStore();
   }
 
   public clearForm() {
-    this.clearFormValues();
-    this.setFormClean();
+    this.clearFormStore();
+  }
+
+  public submit() {
+    this.studentService.addStudent(this.getStore().form.model);
+    this.clearFormStore();
   }
 }

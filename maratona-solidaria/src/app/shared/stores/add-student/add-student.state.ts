@@ -1,6 +1,16 @@
 import { Injectable } from "@angular/core";
-import { State, Action } from "@ngxs/store";
+import { State, Action, StateContext } from "@ngxs/store";
 import { AddStudent } from "../../models/addStudent";
+import { ClearAddStudentStore } from "./add-student.actions";
+
+const INITIAL_STATE = {
+  form: {
+    model: new AddStudent(),
+    dirty: false,
+    status: "",
+    errors: {},
+  },
+};
 
 export class AddStudentStateModel {
   form: {
@@ -13,14 +23,14 @@ export class AddStudentStateModel {
 
 @State<AddStudentStateModel>({
   name: "addStudent",
-  defaults: {
-    form: {
-      model: undefined,
-      dirty: false,
-      status: "",
-      errors: {},
-    },
-  },
+  defaults: INITIAL_STATE,
 })
 @Injectable()
-export class AddStudentState {}
+export class AddStudentState {
+  @Action(ClearAddStudentStore)
+  public clearAddStudentStore({
+    setState,
+  }: StateContext<AddStudentStateModel>) {
+    setState(INITIAL_STATE);
+  }
+}

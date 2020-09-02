@@ -13,7 +13,6 @@ export class SimpleDonationComponent implements OnInit {
   products = PRODUCTS;
   donation: boolean = false;
   student: boolean = false;
-  private sub: Subscription;
   newSimpleDonationForm = new FormGroup({
     doacao: new FormControl(),
     tipo: new FormControl(),
@@ -31,7 +30,7 @@ export class SimpleDonationComponent implements OnInit {
   }
 
   public ngOnDestroy() {
-    this.sub.unsubscribe();
+    
   }
 
   onSubmit() {

@@ -8,21 +8,25 @@ import { FormGroup, FormControl } from "@angular/forms";
   styleUrls: ["./add-student.component.css"],
 })
 export class AddStudentComponent implements OnInit {
+  defaultTeamDisabled: boolean = false;
   addStudentForm = new FormGroup({
-    name: new FormControl(),
-    registration: new FormControl(),
-    course: new FormControl(),
+    nome: new FormControl(),
+    matricula: new FormControl(),
+    curso: new FormControl(),
     email: new FormControl(),
-    phone: new FormControl(),
-    obs: new FormControl(),
+    telefone: new FormControl(),
+    observacao: new FormControl(),
   });
 
   constructor(private addStudentService: AddStudentService) {}
 
   ngOnInit(): void {}
 
+  onTeamChange() {
+    this.defaultTeamDisabled = true
+  }
+
   onSubmit() {
-    console.log(this.addStudentForm.value);
-    this.addStudentService.clearForm();
+    this.addStudentService.submit();
   }
 }
