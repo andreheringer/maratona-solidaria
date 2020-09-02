@@ -35,8 +35,7 @@ export class SimpleDonationComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
-    this.simpleDonationService.clearForm();
+    this.simpleDonationService.submit();
   }
   onDonationChange() {
     this.donation = true;

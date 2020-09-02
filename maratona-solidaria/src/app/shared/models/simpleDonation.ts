@@ -1,5 +1,4 @@
 import { Donation } from "./donation";
-import { from } from "rxjs";
 export class SimpleDonation implements Donation {
   public doacao: string;
   public tipo: number;

@@ -2,7 +2,11 @@ import { Injectable } from "@angular/core";
 import { Store, Select } from "@ngxs/store";
 import { DonationStateModel, DonationState } from "./donations.state";
 import { Dispatch } from "@ngxs-labs/dispatch-decorator";
-import { ClearDonationStore, UpdateDonationsState } from "./donations.actions";
+import {
+  ClearDonationStore,
+  UpdateDonationsState,
+  AppendDonationsState,
+} from "./donations.actions";
 import { Observable } from "rxjs";
 import { HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
@@ -32,6 +36,11 @@ export class DonationService {
     return new UpdateDonationsState(partialDonationStateModel);
   }
 
+  @Dispatch()
+  private appendDonationsState(donation: Donation) {
+    return new AppendDonationsState(donation);
+  }
+
   @Select(DonationState.allDonations)
   public allDonations$: Observable<Donation[]>;
 
@@ -48,5 +57,6 @@ export class DonationService {
 
   public donate(donation: SimpleDonation) {
     //post donation
+    this.appendDonationsState(donation);
   }
 }

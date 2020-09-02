@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { DonationState } from "./stores/donations/donations.state";
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [DonationState],
+  imports: [CommonModule],
+  exports: [DonationState],
 })
-export class SharedModule { }
+export class SharedModule {}

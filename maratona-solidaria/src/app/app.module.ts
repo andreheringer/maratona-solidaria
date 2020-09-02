@@ -17,15 +17,19 @@ import { environment } from "src/environments/environment";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 import { SimpleDonationState } from "./shared/stores/simple-donation/simple-donation.state";
+import { DonationState } from "./shared/stores/donations/donations.state";
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([UserState, PDFState, SimpleDonationState], {
-      developmentMode: !environment.production,
-    }),
+    NgxsModule.forRoot(
+      [UserState, PDFState, SimpleDonationState, DonationState],
+      {
+        developmentMode: !environment.production,
+      }
+    ),
     NgxsLoggerPluginModule.forRoot({ disabled: environment.production }),
     NgxsDispatchPluginModule.forRoot(),
     PagesModule,
