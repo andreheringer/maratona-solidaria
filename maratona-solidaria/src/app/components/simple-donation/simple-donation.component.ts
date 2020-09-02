@@ -1,7 +1,8 @@
 import { SimpleDonationService } from "./../../shared/stores/simple-donation/simple-donation.service";
 import { Component, OnInit } from "@angular/core";
-import { PRODUCTS } from "src/app/shared/models/product";
+import { PRODUCTS, Product } from "src/app/shared/models/product";
 import { FormGroup, FormControl } from "@angular/forms";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-simple-donation",
@@ -11,23 +12,48 @@ import { FormGroup, FormControl } from "@angular/forms";
 export class SimpleDonationComponent implements OnInit {
   products = PRODUCTS;
   donation: boolean = false;
+  student: boolean = false;
+  private sub: Subscription;
   newSimpleDonationForm = new FormGroup({
-    name: new FormControl(),
-    product: new FormControl(),
-    quantity: new FormControl(),
-    student: new FormControl(),
-    date: new FormControl(),
-    obs: new FormControl(),
+    doacao: new FormControl(),
+    tipo: new FormControl(),
+    quantidade: new FormControl(),
+    representante_id: new FormControl(),
+    data: new FormControl(),
+    pontuacao: new FormControl(),
+    observacao: new FormControl(),
   });
 
   constructor(private simpleDonationService: SimpleDonationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.donationTypeChangeHandler();
+  }
+
+  public ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
   onSubmit() {
+    debugger;
     this.simpleDonationService.clearForm();
   }
-  onDonationChange(event) {
+  onDonationChange() {
     this.donation = true;
+  }
+
+  private donationTypeChangeHandler() {
+    this.newSimpleDonationForm.get("tipo").valueChanges.subscribe((tipo) => {
+      console.log(tipo);
+      if (tipo) {
+        this.newSimpleDonationForm.controls["pontuacao"].setValue(
+          this.products.find((prod) => prod.id === tipo).points
+        );
+      }
+    });
+  }
+
+  onStudentChange() {
+    this.student = true;
   }
 }

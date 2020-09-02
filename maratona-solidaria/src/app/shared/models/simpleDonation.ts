@@ -1,17 +1,20 @@
-export class SimpleDonation {
-  name: string;
-  product: number;
-  quantity: number;
-  student: string;
-  date: Date;
-  obs: string;
+import { Donation } from "./donation";
+import { from } from "rxjs";
+export class SimpleDonation implements Donation {
+  public doacao: string;
+  public tipo: number;
+  public quantidade: number;
+  public representante_id: string;
+  public data: Date;
+  public pontuacao: number;
+  public observacao: string;
 
   constructor() {
-    this.name = "";
-    this.product = null;
-    this.quantity = null;
-    this.student = "";
-    this.date = null;
-    this.obs = "";
+    this.doacao = "";
+    this.tipo = null;
+    this.quantidade = null;
+    this.representante_id = "";
+    this.data = null;
+    this.observacao = "";
   }
 }

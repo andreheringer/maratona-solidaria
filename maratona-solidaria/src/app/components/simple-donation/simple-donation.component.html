@@ -8,27 +8,31 @@
     <input
       type="text"
       placeholder="Doação"
-      formControlName="name"
+      formControlName="doacao"
       class="form-item"
     />
     <select
-      formControlName="product"
       class="form-item"
-      (change)="onDonationChange($event)"
+      (change)="onDonationChange()"
+      formControlName="tipo"
     >
       <option [disabled]="donation" selected>Tipo</option>
-      <option *ngFor="let prod of products" value="prod.points">{{
-        prod.name
-      }}</option>
+      <option *ngFor="let prod of products" [ngValue]="prod.id">
+        {{ prod.name }}
+      </option>
     </select>
     <input
       type="number"
       placeholder="Quantidade"
-      formControlName="quantity"
+      formControlName="quantidade"
       class="form-item"
     />
-    <select formControlName="student" class="form-item">
-      <option disabled selected>Reprensentante(Aluno)</option>
+    <select
+      formControlName="representante_id"
+      class="form-item"
+      (change)="onStudentChange()"
+    >
+      <option [disabled]="student" selected>Reprensentante(Aluno)</option>
     </select>
     <div class="form-item">
       <div class="input-group">
@@ -38,7 +42,7 @@
           name="dp"
           ngbDatepicker
           #d="ngbDatepicker"
-          formControlName="date"
+          formControlName="data"
         />
         <div class="input-group-append">
           <button
@@ -52,11 +56,9 @@
     <input
       type="text"
       placeholder="Observação"
-      formControlName="obs"
+      formControlName="observacao"
       class="form-item"
     />
-    <button class="submit-button">
-      Submit
-    </button>
+    <button class="submit-button">Submit</button>
   </form>
 </main>

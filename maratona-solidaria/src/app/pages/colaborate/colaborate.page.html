@@ -26,19 +26,5 @@
         </ng-template>
       </ngb-panel>
     </ngb-accordion>
-    <div class="table">
-      <div class="table-header">
-        <span class="table-header-item">Produto</span>
-        <span class="table-header-item">Pontuação</span>
-      </div>
-      <li
-        class="item"
-        [ngClass]=" isEven(i) ? 'item-even' : 'item-odd'"
-        *ngFor="let product of products; let i = index"
-      >
-        <span class="item-value">{{product.name}}</span>
-        <span class="item-value">{{product.points}}</span>
-      </li>
-    </div>
   </div>
 </main>

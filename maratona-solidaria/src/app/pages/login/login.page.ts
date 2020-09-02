@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "../../shared/stores/user/user.service";
 import { NgxSpinnerService } from "ngx-spinner";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-login",
@@ -12,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class LoginComponent implements OnInit, OnDestroy {
   public loading = false;
   public returnUrl = "";
-  private sub: any;
+  private sub: Subscription;
   public userName = "";
   public userPassw = "";
   public aboutInfo =

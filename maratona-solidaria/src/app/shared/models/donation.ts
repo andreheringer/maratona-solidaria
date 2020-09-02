@@ -1,6 +1,6 @@
 export interface Donation {
   doacao: string;
-  tipo: string;
+  tipo: number;
   quantidade: number;
   representante_id: string;
   data: Date;
