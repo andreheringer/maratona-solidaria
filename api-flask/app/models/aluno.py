@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from sqlalchemy.orm import backref
+
 from app.extentions import db
 from app.models.equipe import Equipe
 
@@ -11,16 +13,15 @@ class Aluno(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(120))
     matricula = db.Column(db.Integer)
-    equipe_id = db.Column(db.Integer, db.ForeignKey("Equipes.id"))
+    equipe_id = db.Column(db.Integer, db.ForeignKey("equipe.id"))
+    colaborador_id = db.Column(db.Integer, db.ForeignKey("colaborador.id"))
     email = db.Column(db.Text)
 
-    representante = db.relationship("Equipe", foreign_keys=equipe_id)
-
-
-    def __init__(self, nome, matricula, equipe_id, email):
+    def __init__(self, nome, matricula, equipe_id, colaborador_id, email):
         self.nome = nome
         self.matricula = matricula
         self.equipe_id = equipe_id
+        self.colaborador_id = colaborador_id
         self.email = email
 
     def __repr__(self):  # representation

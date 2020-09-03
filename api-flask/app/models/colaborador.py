@@ -2,6 +2,7 @@ import jwt
 import datetime
 
 from flask import current_app as app
+from sqlalchemy.orm import backref
 
 from app.extentions import db, bcrypt
 from app.models.blacklist import BlacklistToken
@@ -22,7 +23,6 @@ class Colaborador(db.Model):
     admin = db.Column(db.Boolean, nullable=False, default=False)
     registered_on = db.Column(db.DateTime, nullable=False)
 
-    doacoes = db.relationship()
 
     def __init__(self, name, email, team, password, admin):
         self.name = name
