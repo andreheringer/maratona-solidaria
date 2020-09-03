@@ -7,20 +7,22 @@ from app.extentions import db, bcrypt
 from app.models.blacklist import BlacklistToken
 
 
-class User(db.Model):
+class Colaborador(db.Model):
     """
     User model stores a normal and admin user
     """
 
-    __tablename__ = "Users"
+    __tablename__ = "Colaboradores"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
-    team = db.Column(db.String(128))
+    team = db.Column(db.Integer, db.ForeignKey("equipe.id"))
     password = db.Column(db.String(255), nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=False)
     registered_on = db.Column(db.DateTime, nullable=False)
+
+    doacoes = db.relationship()
 
     def __init__(self, name, email, team, password, admin):
         self.name = name

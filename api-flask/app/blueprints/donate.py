@@ -3,11 +3,12 @@ from flask import Blueprint, request
 
 from app.extentions import db
 from app.models.doacao import Doacao
-from app.models.user import User
+from app.models.colaborador import Colaborador
 
 logger = logging.getLogger(__name__)
 donate_bp = Blueprint("donate", __name__, url_prefix="/donate")
 
+#TODO: Adicionar endipoint com retorno da doação pelo ID
 
 @donate_bp.route("/add/{rep_id}", methods=["POST"])
 def add_donation(rep_id):
@@ -29,15 +30,15 @@ def add_donation(rep_id):
             'message': 'Provide a valid auth token.'
         }
         return responseObject, 401
-    resp = User.decode_auth_token(auth_token)
+    resp = Colaborador.decode_auth_token(auth_token)
     if isinstance(resp, str):
         responseObject = {
             'status': 'fail',
             'message': resp
         }
         return responseObject, 401
-    user = User.query.filter_by(id=resp).first()
-    if not user.admin or user.id != rep_id:
+    user = Colaborador.query.filter_by(id=resp).first()
+    if user.id != rep_id:
         responseObject = {
             'status': 'fail',
             'message': 'You don\'t have the rights to execute this donation.'
@@ -51,11 +52,13 @@ def add_donation(rep_id):
             quantidade=post_data.get("quantidade"),
             representante_id=post_data.get(rep_id),
             data=post_data.get("data"),
+            aluno_id=post_data.get("aluno_id"),
             observacao=post_data.get("observacao"),
             pontuacao=post_data.get("pontuacao")
         )
         db.session.add(donate)
         db.session.commit()
+        # TODO: Aqui precisa fazer o update da pontuação da equipe
         responseObject = {
             "status": "success",
             "message": "Successfully registered donation.",
