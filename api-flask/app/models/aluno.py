@@ -1,28 +1,24 @@
-from datetime import datetime
-
-from sqlalchemy.orm import backref
-
+from dataclasses import dataclass
 from app.extentions import db
-from app.models.equipe import Equipe
 
-
+@dataclass
 class Aluno(db.Model):
+    id: int
+    nome: str
+    matricula: int
+    equipe_id: int
+    colaborador_id: int
+    email: str
 
     __tablename__ = "Alunos"
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(120))
     matricula = db.Column(db.Integer)
-    equipe_id = db.Column(db.Integer, db.ForeignKey("equipe.id"))
-    colaborador_id = db.Column(db.Integer, db.ForeignKey("colaborador.id"))
+    equipe_id = db.Column(db.Integer, db.ForeignKey("Equipes.id"))
+    colaborador_id = db.Column(db.Integer, db.ForeignKey("Colaboradores.id"))
     email = db.Column(db.Text)
 
-    def __init__(self, nome, matricula, equipe_id, colaborador_id, email):
-        self.nome = nome
-        self.matricula = matricula
-        self.equipe_id = equipe_id
-        self.colaborador_id = colaborador_id
-        self.email = email
+    equipe = db.relationship("Equipe", backref=db.backref('alunos', lazy=False))
+    colaborador = db.relationship("Colaborador", backref=db.backref('alunos', lazy=True))
 
-    def __repr__(self):  # representation
-        return "<Nome %r>" % self.nome

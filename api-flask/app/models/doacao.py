@@ -1,11 +1,19 @@
+from dataclasses import dataclass
 from datetime import datetime
-
-from sqlalchemy.orm import backref
-
 from app.extentions import db
 
 
+@dataclass
 class Doacao(db.Model):
+    id: int
+    doacao: str
+    tipo: str
+    quantidade: int
+    colaborador_id: int
+    aluno_id: int
+    data: datetime
+    observacao: str
+    pontuacao: int
 
     __tablename__ = "Doacoes"
 
@@ -13,22 +21,15 @@ class Doacao(db.Model):
     doacao = db.Column(db.String(120))
     tipo = db.Column(db.String(120))
     quantidade = db.Column(db.Integer)
-    representante_id = db.Column(db.Integer, db.ForeignKey("colaborador.id"), nullable=False)
-    aluno_id = db.Column(db.Integer, db.ForeignKey("aluno.id"), nullable=False)
+    colaborador_id = db.Column(
+        db.Integer, db.ForeignKey("Colaboradores.id"), nullable=False
+    )
+    aluno_id = db.Column(db.Integer, db.ForeignKey("Alunos.id"), nullable=False)
     data = db.Column(db.DateTime, default=datetime.utcnow)
     observacao = db.Column(db.Text)
     pontuacao = db.Column(db.Integer)
-   
 
-    def __init__(self, doacao, tipo, quantidade, representante_id, data, aluno_id, observacao, pontuacao):
-        self.doacao = doacao
-        self.tipo = tipo
-        self.quantidade = quantidade
-        self.representante_id = representante_id
-        self.data = data
-        self.aluno_id = aluno_id
-        self.pontuacao = pontuacao
-        self.observacao = observacao
-
-    def __repr__(self):  # representation
-        return "<Nome %r>" % self.doacao
+    aluno = db.relationship("Aluno", backref=db.backref("doacoes", lazy=True))
+    representante = db.relationship(
+        "Colaborador", backref=db.backref("doacoes", lazy=True)
+    )

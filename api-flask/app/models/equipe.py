@@ -1,11 +1,13 @@
 from datetime import datetime
 
-from sqlalchemy.orm import backref
-
+from dataclasses import dataclass
 from app.extentions import db
 
-
+@dataclass
 class Equipe(db.Model):
+    id: int
+    nome: str
+    pontuacao: int
 
     __tablename__ = "Equipes"
 
@@ -13,10 +15,3 @@ class Equipe(db.Model):
     nome = db.Column(db.String(120))
     pontuacao = db.Column(db.Integer)
 
-
-    def __init__(self, nome, pontuacao):
-        self.nome = nome
-        self.pontuacao = pontuacao
-
-    def __repr__(self):  # representation
-        return "<Nome %r>" % self.nome
