@@ -6,7 +6,8 @@ import os
 
 from app.blueprints.auth import auth_bp
 from app.blueprints.public import public_bp
-from app.blueprints.donate import donate_bp
+from app.blueprints.doacao import doacao_bp
+from app.blueprints.aluno import aluno_bp
 from app.models import colaborador, doacao, equipe, aluno
 from app.extentions import db, migrate, bcrypt
 
@@ -36,5 +37,6 @@ def register_bluprints(app):
     """Register Blueprints with views."""
     app.register_blueprint(public_bp)
     app.register_blueprint(auth_bp)
-    app.register_blueprint(donate_bp)
+    app.register_blueprint(doacao_bp)
+    app.register_blueprint(aluno_bp)
     return None
