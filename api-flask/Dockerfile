@@ -1,5 +1,5 @@
 # Use an official Python runtime as an image
-FROM python:3.6
+FROM python:3.8
 
 # The EXPOSE instruction indicates the ports on which a container # # will listen for connections
 # Since Flask apps listen to port 5000  by default, we expose it
