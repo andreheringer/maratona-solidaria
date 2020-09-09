@@ -6,9 +6,10 @@ import { SimpleDonationComponent } from "./simple-donation/simple-donation.compo
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 import { ReactiveFormsModule } from "@angular/forms";
+import { DonationItemComponent } from './donation-item/donation-item.component';
 
 @NgModule({
-  declarations: [HeaderComponent, SimpleDonationComponent, AddStudentComponent],
+  declarations: [HeaderComponent, SimpleDonationComponent, AddStudentComponent, DonationItemComponent],
   imports: [
     CommonModule,
     NgbModule,
