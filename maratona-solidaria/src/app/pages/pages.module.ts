@@ -10,9 +10,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AboutComponent } from "./about/about.page";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { LeaderboardComponent } from './leaderboard/leaderboard.page';
 
 @NgModule({
-  declarations: [LoginComponent, AboutComponent, ColaborateComponent],
+  declarations: [LoginComponent, AboutComponent, ColaborateComponent, LeaderboardComponent],
   imports: [
     CommonModule,
     NgxsFormPluginModule,

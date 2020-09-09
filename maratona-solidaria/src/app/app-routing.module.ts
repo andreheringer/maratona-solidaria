@@ -5,6 +5,7 @@ import { LoginComponent } from "./pages/login/login.page";
 import { AboutComponent } from "./pages/about/about.page";
 import { AuthGuard } from "./core/middleware/AuthGuard";
 import { PDFComponent } from "./pages/pdfs/pdfs.page";
+import { LeaderboardComponent } from './pages/leaderboard/leaderboard.page';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -16,6 +17,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: "uploads/Regulamento.pdf", component: PDFComponent },
+  { path: "leaderboard", component: LeaderboardComponent },
 ];
 
 @NgModule({

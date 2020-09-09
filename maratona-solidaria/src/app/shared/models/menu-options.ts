@@ -11,4 +11,5 @@ export const MENUOPTIONS: Option[] = [
   { name: "regulamento", path: "/uploads/Regulamento.pdf", active: true },
   { name: "sobre", path: "/about", active: true },
   { name: "doações", path: "/colaborate", active: true },
+  { name: "leaderboard", path: "/leaderboard", active: true },
 ];
