@@ -35,6 +35,9 @@
       ngModel="Representante(Aluno)"
     >
       <option [disabled]="student" selected value="Representante(Aluno)">Reprensentante(Aluno)</option>
+      <option *ngFor="let student of students">
+        {{ student.nome }}
+      </option>
     </select>
     <div class="form-item">
       <div class="input-group">

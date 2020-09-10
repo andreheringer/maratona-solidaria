@@ -1,3 +1,5 @@
+import { StudentService } from './../../shared/stores/students/students.service';
+import { Student } from './../../shared/models/student';
 import { SimpleDonationService } from "./../../shared/stores/simple-donation/simple-donation.service";
 import { Component, OnInit } from "@angular/core";
 import { PRODUCTS, Product } from "src/app/shared/models/product";
@@ -10,6 +12,8 @@ import { Subscription } from "rxjs";
   styleUrls: ["./simple-donation.component.css"],
 })
 export class SimpleDonationComponent implements OnInit {
+  private sub : Subscription;
+  students: Student[];
   products = PRODUCTS;
   donation: boolean = false;
   student: boolean = false;
@@ -23,14 +27,17 @@ export class SimpleDonationComponent implements OnInit {
     observacao: new FormControl(),
   });
 
-  constructor(private simpleDonationService: SimpleDonationService) {}
+  constructor(private simpleDonationService: SimpleDonationService, private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.donationTypeChangeHandler();
+    this.sub = this.studentService.teamStudents$.subscribe((students) => {
+      this.students = students;
+    });
   }
 
   public ngOnDestroy() {
-    
+    this.sub.unsubscribe();
   }
 
   onSubmit() {

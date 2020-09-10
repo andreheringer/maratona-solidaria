@@ -8,7 +8,7 @@ import {
   AppendStudentsState,
 } from "./students.actions";
 import { Observable } from "rxjs";
-import { HttpHeaders } from "@angular/common/http";
+import { HttpHeaders, HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Student } from "../../models/student";
 import { Permission } from "../../enums/permission";
@@ -18,7 +18,7 @@ import { AddStudent } from "../../models/addStudent";
   providedIn: "root",
 })
 export class StudentService {
-  constructor(private store: Store) {}
+  constructor(private store: Store, private http: HttpClient) {}
 
   private getStore() {
     return this.store.snapshot().students as StudentStateModel;
@@ -57,7 +57,6 @@ export class StudentService {
 
   public addStudent(student: AddStudent) {
     //post student
-    debugger;
     this.appendStudentsState(student);
   }
 }
