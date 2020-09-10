@@ -1,0 +1,10 @@
+.donation-item {
+  height: 24px;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.donation-name {
+  width: 20%;
+}
