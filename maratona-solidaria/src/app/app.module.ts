@@ -1,3 +1,4 @@
+import { TeamState } from './shared/stores/teams/teams.state';
 import { StudentState } from './shared/stores/students/students.state';
 import { AddStudentState } from './shared/stores/add-student/add-student.state';
 import { PDFState } from "./shared/stores/pdf/pdf.state";
@@ -27,7 +28,7 @@ import { DonationState } from "./shared/stores/donations/donations.state";
     BrowserModule,
     AppRoutingModule,
     NgxsModule.forRoot(
-      [UserState, PDFState, SimpleDonationState, DonationState, AddStudentState, StudentState],
+      [UserState, PDFState, SimpleDonationState, DonationState, AddStudentState, StudentState, TeamState],
       {
         developmentMode: !environment.production,
       }

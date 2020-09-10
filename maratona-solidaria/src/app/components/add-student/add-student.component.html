@@ -19,7 +19,7 @@
     />
     <select formControlName="curso" class="form-item" (change)="onTeamChange()" ngModel="Curso">
       <option [disabled]="defaultTeamDisabled" selected value="Curso">Curso</option>
-      <!-- <option *ngFor="let prod of products">{{ prod.name }}</option> -->
+      <option *ngFor="let team of teams">{{ team.name }}</option>
     </select>
     <input
       type="text"
