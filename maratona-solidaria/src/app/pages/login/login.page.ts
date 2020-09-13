@@ -1,23 +1,22 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { UserService } from "../../shared/stores/user/user.service";
-import { NgxSpinnerService } from "ngx-spinner";
-import { Subscription } from "rxjs";
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../../shared/stores/user/user.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.page.html",
-  styleUrls: ["./login.page.css"],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.css'],
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class LoginComponent implements OnInit, OnDestroy {
   public loading = false;
-  public returnUrl = "";
+  public returnUrl = '';
   private sub: Subscription;
-  public userName = "";
-  public userPassw = "";
-  public aboutInfo =
-    "aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaa";
+  public userName = '';
+  public userPassw = '';
+  public aboutInfo = '';
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       if (params.returnUrl) {
         this.returnUrl = params.returnUrl;
       } else {
-        this.returnUrl = "";
+        this.returnUrl = '';
       }
     });
   }
@@ -46,11 +45,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.userService
       .authenticate(this.userName, this.userPassw)
       .subscribe((response) => {
-        const b = response["auth_token"];
-        this.userService.syncUser(b);
+        // const b = response["auth_token"];
+        this.userService.syncByUser(response);
 
         this.spinner.hide();
-        this.router.navigateByUrl("/about");
+        this.router.navigateByUrl('/about');
       });
   }
 
