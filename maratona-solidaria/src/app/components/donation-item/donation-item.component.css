@@ -4,7 +4,19 @@
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
+  box-shadow: 1px 1px 2px black;
+  background-color: var(--cyan);
+  padding: 0 8px;
 }
 .donation-name {
+  padding: 0 8px;
   width: 20%;
+  border-right: solid 1px black;
+}
+.donation-team {
+  width: 10%;
+  border-right: solid 1px black;
+  padding: 0 8px;
+  font-weight: bold;
+  text-transform: uppercase;
 }

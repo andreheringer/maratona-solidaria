@@ -1,14 +1,15 @@
-import { Action, State, StateContext, Selector } from "@ngxs/store";
-import { Donation } from "../../models/donation";
+import { Action, State, StateContext, Selector } from '@ngxs/store';
+import { Donation } from '../../models/donation';
 import {
   ClearDonationStore,
   AppendDonationsState,
   UpdateDonationsState,
-} from "./donations.actions";
+} from './donations.actions';
+import { SimpleDonation } from '../../models/simpleDonation';
 
 const INITIAL_STATE = {
-  allDonations: [],
-  teamDonations: [],
+  allDonations: [SimpleDonation.getMockItem(), SimpleDonation.getMockItem()],
+  teamDonations: [SimpleDonation.getMockItem(), SimpleDonation.getMockItem()],
 };
 
 export class DonationStateModel {
@@ -17,7 +18,7 @@ export class DonationStateModel {
 }
 
 @State<DonationStateModel>({
-  name: "donations",
+  name: 'donations',
   defaults: INITIAL_STATE,
 })
 export class DonationState {

@@ -6,37 +6,37 @@ export interface Team {
 export const TEAMS: Team[] = [
   {
     id: 0,
-    name: "Ciência da Computação",
+    name: 'Ciência da Computação',
     points: 100,
   },
   {
     id: 1,
-    name: "Sistemas de Informação",
+    name: 'Sistemas de Informação',
     points: 60,
   },
   {
     id: 2,
-    name: "Matemática Computacional",
+    name: 'Matemática Computacional',
     points: 50,
   },
   {
     id: 3,
-    name: "Física",
+    name: 'Física',
     points: 150,
   },
   {
     id: 4,
-    name: "Estatística",
+    name: 'Estatística',
     points: 50,
   },
   {
     id: 5,
-    name: "Química",
+    name: 'Química',
     points: 80,
   },
   {
     id: 7,
-    name: "Ciências Atuariais",
+    name: 'Ciências Atuariais',
     points: 15,
-  }
+  },
 ];

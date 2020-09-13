@@ -3,7 +3,9 @@
   <div class="content">
     <ngb-accordion class="accordion" [closeOthers]="true" activeIds="static-1">
       <ngb-panel id="static-1" title="Doação">
-        <ng-template ngbPanelContent> </ng-template>
+        <ng-template ngbPanelContent>
+          <app-donation-item [donation]="allDonations[0]"></app-donation-item>
+        </ng-template>
       </ngb-panel>
       <ngb-panel id="static-2" title="Adicionar Aluno">
         <ng-template ngbPanelContent> </ng-template>
