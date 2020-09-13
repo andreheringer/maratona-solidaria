@@ -1,24 +1,25 @@
-import { Injectable } from "@angular/core";
-import { Store, Select } from "@ngxs/store";
-import { DonationStateModel, DonationState } from "./donations.state";
-import { Dispatch } from "@ngxs-labs/dispatch-decorator";
+import { Injectable } from '@angular/core';
+import { Store, Select } from '@ngxs/store';
+import { DonationStateModel, DonationState } from './donations.state';
+import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
   ClearDonationStore,
   UpdateDonationsState,
   AppendDonationsState,
-} from "./donations.actions";
-import { Observable } from "rxjs";
-import { HttpHeaders } from "@angular/common/http";
-import { environment } from "src/environments/environment";
-import { Donation } from "../../models/donation";
-import { Permission } from "../../enums/permission";
-import { SimpleDonation } from "../../models/simpleDonation";
+} from './donations.actions';
+import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Donation } from '../../models/donation';
+import { Permission } from '../../enums/permission';
+import { SimpleDonation } from '../../models/simpleDonation';
+import { TeamService } from '../teams/teams.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class DonationService {
-  constructor(private store: Store) {}
+  constructor(private store: Store, private teamService: TeamService) {}
 
   private getStore() {
     return this.store.snapshot().user as DonationStateModel;
@@ -58,5 +59,10 @@ export class DonationService {
   public donate(donation: SimpleDonation) {
     //post donation
     this.appendDonationsState(donation);
+    debugger;
+    this.teamService.addTeamScore(
+      donation.representante.curso.id,
+      donation.quantidade * donation.pontuacao
+    );
   }
 }

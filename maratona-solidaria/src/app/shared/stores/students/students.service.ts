@@ -1,21 +1,21 @@
-import { Injectable } from "@angular/core";
-import { Store, Select } from "@ngxs/store";
-import { StudentStateModel, StudentState } from "./students.state";
-import { Dispatch } from "@ngxs-labs/dispatch-decorator";
+import { Injectable } from '@angular/core';
+import { Store, Select } from '@ngxs/store';
+import { StudentStateModel, StudentState } from './students.state';
+import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import {
   ClearStudentStore,
   UpdateStudentsState,
   AppendStudentsState,
-} from "./students.actions";
-import { Observable } from "rxjs";
-import { HttpHeaders, HttpClient } from "@angular/common/http";
-import { environment } from "src/environments/environment";
-import { Student } from "../../models/student";
-import { Permission } from "../../enums/permission";
-import { AddStudent } from "../../models/addStudent";
+} from './students.actions';
+import { Observable } from 'rxjs';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Student } from '../../models/student';
+import { Permission } from '../../enums/permission';
+import { AddStudent } from '../../models/addStudent';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class StudentService {
   constructor(private store: Store, private http: HttpClient) {}

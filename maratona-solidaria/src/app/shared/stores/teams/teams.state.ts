@@ -1,10 +1,11 @@
-import { Action, State, StateContext, Selector } from "@ngxs/store";
-import { Team, TEAMS } from "../../models/team";
+import { Action, State, StateContext, Selector } from '@ngxs/store';
+import { Team, TEAMS } from '../../models/team';
 import {
   ClearTeamStore,
   AppendTeamsState,
   UpdateTeamsState,
-} from "./teams.actions";
+  IncreaseTeamSocre,
+} from './teams.actions';
 
 const INITIAL_STATE = {
   allTeams: TEAMS,
@@ -15,7 +16,7 @@ export class TeamStateModel {
 }
 
 @State<TeamStateModel>({
-  name: "teams",
+  name: 'teams',
   defaults: INITIAL_STATE,
 })
 export class TeamState {
@@ -40,6 +41,18 @@ export class TeamState {
     const state = ctx.getState();
     ctx.patchState({
       allTeams: [...state.allTeams, action.newTeam],
+    });
+  }
+  @Action(IncreaseTeamSocre)
+  public increaseTeamScore(
+    ctx: StateContext<TeamStateModel>,
+    action: IncreaseTeamSocre
+  ) {
+    const state = ctx.getState();
+    state.allTeams.find((team) => team.id === action.teamId).points +=
+      action.score;
+    ctx.patchState({
+      allTeams: [...state.allTeams],
     });
   }
 
