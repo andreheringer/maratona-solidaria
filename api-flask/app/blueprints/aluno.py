@@ -13,6 +13,8 @@ aluno_bp = Blueprint("aluno", __name__, url_prefix="/aluno")
 @aluno_bp.route("/<aluno_id>")
 def get_aluno(aluno_id):
     """
+    Parameters: o id do aluno desejado (number)
+    Returns: o aluno do id pesquisado 
     """
     aluno = Aluno.query.filter_by(id=aluno_id).first()
     responseObject = {
@@ -25,7 +27,10 @@ def get_aluno(aluno_id):
 
 @aluno_bp.route("/list")
 def list_aluno():
+    get_aluno(aluno_id):
     """
+    Parameters: none
+    Returns: uma lista dos alunos cadastrados
     """
     auth_header = request.headers.get('Authorization')
     token_or_error, status = Colaborador.parse_token(auth_header)
@@ -42,7 +47,10 @@ def list_aluno():
 
 @aluno_bp.route("/create")
 def create_aluno():
+    get_aluno(aluno_id):
     """
+    Parameters: nome do aluno a ser cadastrado
+    Returns: o aluno do id pesquisado 
     """
     auth_header = request.headers.get('Authorization')
     token_or_error, status = Colaborador.parse_token(auth_header)
