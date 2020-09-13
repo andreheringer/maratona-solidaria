@@ -59,7 +59,6 @@ export class DonationService {
   public donate(donation: SimpleDonation) {
     //post donation
     this.appendDonationsState(donation);
-    debugger;
     this.teamService.addTeamScore(
       donation.representante.curso.id,
       donation.quantidade * donation.pontuacao
