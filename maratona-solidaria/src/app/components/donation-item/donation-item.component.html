@@ -1,17 +1,14 @@
 <main class="donation-item">
   <section class="donation-team">
-    {{ donation.representante.curso.name }}
+    {{ donation.representante.curso.acronime }}
   </section>
   <section class="donation-name">
     {{ donation.doacao }}
   </section>
   <section class="donation-name">
-    {{ donation.doacao }}
+    {{ donation.representante.nome }}
   </section>
-  <section class="donation-name">
-    {{ donation.doacao }}
-  </section>
-  <section class="donation-name">
-    {{ donation.doacao }}
+  <section class="donation-pts">
+    {{ pointTotal + ' - Pts.' }}
   </section>
 </main>

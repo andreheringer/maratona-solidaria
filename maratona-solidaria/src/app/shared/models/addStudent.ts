@@ -16,4 +16,15 @@ export class AddStudent implements Student {
     this.telefone = '';
     this.observacao = '';
   }
+
+  public static getMockStudent(): AddStudent {
+    let mock = new AddStudent();
+    mock.nome = 'Name LastName';
+    mock.matricula = null;
+    mock.email = '';
+    mock.curso = TEAMS[0];
+    mock.telefone = '';
+    mock.observacao = '';
+    return mock;
+  }
 }

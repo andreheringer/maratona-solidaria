@@ -34,7 +34,7 @@ export class SimpleDonation implements Donation {
     mock.pontuacao = 100;
     mock.data = new Date();
     mock.observacao = 'lalalalalalalalalalalala';
-    mock.representante = new AddStudent();
+    mock.representante = AddStudent.getMockStudent();
     return mock;
   }
 }

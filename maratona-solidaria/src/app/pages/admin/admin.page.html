@@ -2,26 +2,22 @@
   <app-header></app-header>
   <div class="content">
     <ngb-accordion class="accordion" [closeOthers]="true" activeIds="static-1">
-      <ngb-panel id="static-1" title="Doação">
+      <ngb-panel id="static-1" title="Doações">
         <ng-template ngbPanelContent>
-          <app-donation-item [donation]="allDonations[0]"></app-donation-item>
+          <div class="doantion-header">
+            <section class="don-item item-ten">Time</section>
+            <section class="don-item item-twenty">Doação</section>
+            <section class="don-item item-twenty">Aluno</section>
+            <section class="don-item item-twenty">Pontuação</section>
+          </div>
+          <app-donation-item
+            *ngFor="let donation of allDonations"
+            [donation]="donation"
+          ></app-donation-item>
         </ng-template>
       </ngb-panel>
-      <ngb-panel id="static-2" title="Adicionar Aluno">
+      <ngb-panel id="static-2" title="Alunos" [disabled]="true">
         <ng-template ngbPanelContent> </ng-template>
-      </ngb-panel>
-      <ngb-panel id="static-3" title="Disabled" [disabled]="true">
-        <ng-template ngbPanelContent>
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-          terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
-          skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-          Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-          single-origin coffee nulla assumenda shoreditch et. Nihil anim
-          keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-          sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-          occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
-          you probably haven't heard of them accusamus labore sustainable VHS.
-        </ng-template>
       </ngb-panel>
     </ngb-accordion>
   </div>
