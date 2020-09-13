@@ -27,7 +27,6 @@ def get_aluno(aluno_id):
 
 @aluno_bp.route("/list")
 def list_aluno():
-    get_aluno(aluno_id):
     """
     Parameters: none
     Returns: uma lista dos alunos cadastrados
@@ -47,7 +46,6 @@ def list_aluno():
 
 @aluno_bp.route("/create")
 def create_aluno():
-    get_aluno(aluno_id):
     """
     Parameters: nome do aluno a ser cadastrado
     Returns: o aluno do id pesquisado 

@@ -13,6 +13,8 @@ doacao_bp = Blueprint("donation", __name__, url_prefix="/donation")
 @doacao_bp.route("/<donation_id>", methods=["GET"])
 def get_donation(donation_id):
     """
+    Parameters: o id da donation desejado (number)
+    Returns: objeto com a donation
     """
     donation = Doacao.query.filter_by(id=donation_id).first()
     responseObject = {
@@ -26,6 +28,8 @@ def get_donation(donation_id):
 @doacao_bp.route("/list", methods=["GET"])
 def list_donation():
     """
+    Parameters: none
+    Returns: lista de todas as doações realizadas
     """
     auth_header = request.headers.get('Authorization')
     token_or_error, status = Colaborador.parse_token(auth_header)
@@ -44,6 +48,8 @@ def list_donation():
 @doacao_bp.route("/create", methods=["POST"])
 def create_donation():
     """
+    Parameters: objeto do tipo doação
+    Returns: doação criada e status da criação
     """
     auth_header = request.headers.get('Authorization')
     token_or_error, status = Colaborador.parse_token(auth_header)
