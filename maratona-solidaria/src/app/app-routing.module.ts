@@ -9,16 +9,21 @@ import { LeaderboardComponent } from './pages/leaderboard/leaderboard.page';
 import { AdminComponent } from './pages/admin/admin.page';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'about', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent },
   {
     path: 'colaborate',
     component: ColaborateComponent,
+    canActivate: [AuthGuard],
   },
   { path: 'uploads/Regulamento.pdf', component: PDFComponent },
-  { path: 'leaderboard', component: LeaderboardComponent },
-  { path: 'admin', component: AdminComponent },
+  {
+    path: 'leaderboard',
+    component: LeaderboardComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

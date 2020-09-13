@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.userService.syncByUser(response);
 
         this.spinner.hide();
-        this.router.navigateByUrl('/about');
+        this.router.navigateByUrl('/leaderboard');
       });
   }
 

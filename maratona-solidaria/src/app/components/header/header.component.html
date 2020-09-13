@@ -3,15 +3,17 @@
     <img src="./assets/img/banner.svg" class="image" />
     <img src="./assets/img/icex.svg" class="image" />
   </section>
-  <section class="header-menu" *ngIf="authenticated">
-    <button
-      *ngFor="let opt of options"
-      [disabled]="opt.active ? false : true"
-      (click)="onClickOption(opt.path)"
-      [ngClass]="opt.active ? '' : 'header-menu-button-selected'"
-      class="header-menu-button"
-    >
-      {{ opt.name }}
-    </button>
+  <section class="header-menu">
+    <div *ngFor="let opt of options; let i = index">
+      <button
+        *ngIf="opt.minPerm <= userPerm.valueOf()"
+        [disabled]="i === current"
+        (click)="onClickOption(opt.path)"
+        [ngClass]="i === current ? 'header-menu-button-selected' : ''"
+        class="header-menu-button"
+      >
+        {{ opt.name }}
+      </button>
+    </div>
   </section>
 </main>
