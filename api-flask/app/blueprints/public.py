@@ -10,7 +10,7 @@ public_bp = Blueprint("public", __name__, url_prefix="/public")
 
 @public_bp.route("/")
 def index():
-    return "It works."
+    return "It works.sss"
 
 
 @public_bp.route("/equipes", methods=["GET"])
@@ -18,6 +18,17 @@ def list_donation():
     """
     """    
     equipes = Equipe.query.all()
+    responseObject = {
+        "status": "success",
+        "equipes": jsonify(equipes),
+    }
+    return responseObject, 200
+
+@public_bp.route("/classificacao", methods=['GET'])
+def list_classification():
+    """
+    """    
+    equipes = Equipe.query.order_by(Equipe.pontuacao.desc()).all()
     responseObject = {
         "status": "success",
         "equipes": jsonify(equipes),
