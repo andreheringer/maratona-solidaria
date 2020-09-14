@@ -18,15 +18,15 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
 ## Sprint Planning
 
 - Eu como visitante, colaborador ou admin gostaria de acessar a página inicial
-  - [ ] Criar uma página inicial (Herinque)
-  - [ ] Criar modelo do admin (Ingrid)
+  - [X] Criar uma página inicial (Herinque)
+  - [X] Criar modelo do admin (Ingrid)
   - [ ] Adicionar admin (Ingrid)
-  - [ ] Criar tela inicial para usuários autenticados (Henrique)
+  - [X] Criar tela inicial para usuários autenticados (Henrique)
  
  
 - Eu como visitante, colaborador ou admin gostaria de acessar a página sobre
-  - [ ] Criar a página Sobre (Herinque)
-  - [ ] Design da tela (Lucas)
+  - [X] Criar a página Sobre (Herinque)
+  - [X] Design da tela (Lucas)
 
 - Eu como visitante, colaborador ou admin gostaria de ver a classificação
   - [ ] Criar leaderboard (frontend) (Lucas)
@@ -35,12 +35,12 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
   - [ ] Criar tabela das equipes (Yasmin)
  
 - Eu como colaborador gostaria de fazer uma doação
-  - [ ] Criar tela de fazer doação (Lucas)
+  - [X] Criar tela de fazer doação (Lucas)
   - [X] Criar infraestrutura básica do Angular (Yasmin)
   - [X] Criar infraestrutura básica do Mysql (Ingrid)
   - [X] Criar infraestrutura básica do Flask (Yasmin)
-  - [ ] Criar tabela de doação e de aluno (Henrique)
-  - [ ] Desenvolver lógica de inserção de doações e de alunos (Henrique)
+  - [X] Criar tabela de doação e de aluno (Henrique)
+  - [x] Desenvolver lógica de inserção de doações e de alunos (Henrique)
 
 - Eu como colaborador gostaria de logar
   - [X] Desenvolver a autenticação no back-end (André)
@@ -53,6 +53,6 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
   - [ ] Design da tela (Lucas)
   
 - Eu como colaborador gostaria de ter acesso a gerenciação da minha equipe e doações
-  - [ ] Desenvolver a restrição no back-end (André)
-  - [ ] Desenvolver a restrição no front-end (Henrique)
-  - [ ] Design da tela (Henrique)
+  - [X] Desenvolver a restrição no back-end (André)
+  - [X] Desenvolver a restrição no front-end (Henrique)
+  - [X] Design da tela (Henrique)
