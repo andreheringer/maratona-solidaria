@@ -18,7 +18,7 @@ def register_user():
             user = Colaborador(
                 name=post_data.get("name"),
                 email=post_data.get("email"),
-                team=post_data.get("team"),
+                equipe_id=post_data.get("equipe_id"),
                 password=post_data.get("password"),
                 admin=post_data.get("admin"),
             )

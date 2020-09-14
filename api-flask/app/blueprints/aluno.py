@@ -17,12 +17,7 @@ def get_aluno(aluno_id):
     Returns: o aluno do id pesquisado 
     """
     aluno = Aluno.query.filter_by(id=aluno_id).first()
-    responseObject = {
-        "status": "success",
-        "message": "Successfully queried aluno",
-        "aluno": jsonify(aluno),
-    }
-    return responseObject, 200
+    return jsonify(aluno), 200
 
 
 @aluno_bp.route("/list")
@@ -37,11 +32,7 @@ def list_aluno():
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
     alunos = Aluno.query.filter_by(colaborador_id=resp)
-    responseObject = {
-        "status": "success",
-        "alunos": jsonify(alunos),
-    }
-    return responseObject, 200
+    return jsonify(alunos), 200
 
 
 @aluno_bp.route("/create")

@@ -17,12 +17,7 @@ def get_donation(donation_id):
     Returns: objeto com a donation
     """
     donation = Doacao.query.filter_by(id=donation_id).first()
-    responseObject = {
-        "status": "success",
-        "message": "Successfully queried donation",
-        "donation": jsonify(donation),
-    }
-    return responseObject, 200
+    return jsonify(donation), 200
 
 
 @doacao_bp.route("/list", methods=["GET"])
@@ -37,12 +32,7 @@ def list_donation():
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
     doacoes = Doacao.query.filter_by(colaborador_id=resp)
-    responseObject = {
-        "status": "success",
-        "message": "Successfully queried all donations",
-        "donations": jsonify(doacoes),
-    }
-    return responseObject, 200
+    return jsonify(doacoes), 200
 
 
 @doacao_bp.route("/create", methods=["POST"])
