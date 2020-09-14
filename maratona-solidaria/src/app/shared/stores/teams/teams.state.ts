@@ -49,10 +49,23 @@ export class TeamState {
     action: IncreaseTeamSocre
   ) {
     const state = ctx.getState();
-    state.allTeams.find((team) => team.id === action.teamId).points +=
-      action.score;
+    let allTeams: Team[] = [];
+    state.allTeams.forEach((team) => {
+      const newTeam = {
+        acronime: '',
+        id: 0,
+        name: '',
+        points: 0,
+      } as Team;
+      newTeam.id = team.id;
+      newTeam.acronime = team.acronime;
+      newTeam.name = team.name;
+      newTeam.points =
+        team.id === action.teamId ? team.points + action.score : team.points;
+      allTeams.push(newTeam);
+    });
     ctx.patchState({
-      allTeams: [...state.allTeams],
+      allTeams: [...allTeams],
     });
   }
 

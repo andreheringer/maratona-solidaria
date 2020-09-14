@@ -17,9 +17,18 @@
       formControlName="matricula"
       class="form-item"
     />
-    <select formControlName="curso" class="form-item" (change)="onTeamChange()" ngModel="Curso">
-      <option [disabled]="defaultTeamDisabled" selected value="Curso">Curso</option>
-      <option *ngFor="let team of teams">{{ team.name }}</option>
+    <select
+      formControlName="curso"
+      class="form-item"
+      (change)="onTeamChange()"
+      ngModel="Curso"
+    >
+      <option [disabled]="defaultTeamDisabled" selected value="Curso">
+        Curso
+      </option>
+      <option *ngFor="let team of teams" [ngValue]="team">
+        {{ team.name }}
+      </option>
     </select>
     <input
       type="text"
@@ -39,8 +48,6 @@
       formControlName="observacao"
       class="form-item"
     />
-    <button class="submit-button">
-      Submit
-    </button>
+    <button class="submit-button">Submit</button>
   </form>
 </main>

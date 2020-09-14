@@ -15,7 +15,6 @@
       class="form-item"
       (change)="onDonationChange()"
       formControlName="tipo"
-      ngModel="Tipo"
     >
       <option [disabled]="donation" selected value="Tipo">Tipo</option>
       <option *ngFor="let prod of products" [ngValue]="prod.id">
@@ -29,13 +28,15 @@
       class="form-item"
     />
     <select
-      formControlName="representante_id"
+      formControlName="representante"
       class="form-item"
       (change)="onStudentChange()"
       ngModel="Representante(Aluno)"
     >
-      <option [disabled]="student" selected value="Representante(Aluno)">Reprensentante(Aluno)</option>
-      <option *ngFor="let student of students">
+      <option [disabled]="student" selected value="Representante(Aluno)">
+        Reprensentante(Aluno)
+      </option>
+      <option *ngFor="let student of students" [ngValue]="student">
         {{ student.nome }}
       </option>
     </select>
