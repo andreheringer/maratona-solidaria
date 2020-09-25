@@ -31,11 +31,11 @@ def list_aluno():
     if status != 200:
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
-    alunos = Aluno.query.filter_by(colaborador_id=resp)
+    alunos = Aluno.query.filter_by(colaborador_id=resp).all()
     return jsonify(alunos), 200
 
 
-@aluno_bp.route("/create")
+@aluno_bp.route("/create", methods=["POST"])
 def create_aluno():
     """
     Parameters: nome do aluno a ser cadastrado
@@ -49,12 +49,13 @@ def create_aluno():
     post_data = request.get_json()
     try:
         aluno = Aluno(
-            nome=post_data("nome"),
+            nome=post_data.get("nome"),
             colaborador_id=resp,
             matricula=post_data.get("matricula"),
             email=post_data.get("email"),
             equipe_id=post_data.get("equipe_id")
         )
+
         db.session.add(aluno)
         db.session.commit()
         responseObject = {
