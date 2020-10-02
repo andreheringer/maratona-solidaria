@@ -31,7 +31,8 @@ def list_donation():
     if status != 200:
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
-    doacoes = Doacao.query.filter_by(colaborador_id=resp)
+    colaborador = Colaborador.query.filter_by(id=resp).first()
+    doacoes = Doacao.query.filter_by(equipe_id=colaborador.equipe_id)
     return jsonify(doacoes), 200
 
 
@@ -55,6 +56,7 @@ def create_donation():
             tipo=post_data.get("tipo"),
             quantidade=post_data.get("quantidade"),
             colaborador_id=colaborador.id,
+            equipe_id=colaborador.equipe_id,
             data=post_data.get("data"),
             aluno_id=post_data.get("aluno_id"),
             observacao=post_data.get("observacao"),
