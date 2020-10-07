@@ -1,3 +1,4 @@
+import { EquipesRepository } from './../../../core/repositories/equipes.repository';
 import { Injectable } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { TeamStateModel, TeamState } from './teams.state';
@@ -18,7 +19,11 @@ import { Permission } from '../../enums/permission';
   providedIn: 'root',
 })
 export class TeamService {
-  constructor(private store: Store, private http: HttpClient) {}
+  constructor(
+    private store: Store,
+    private http: HttpClient,
+    private equipesRepo: EquipesRepository
+  ) {}
 
   private getStore() {
     return this.store.snapshot().teams as TeamStateModel;
@@ -45,6 +50,13 @@ export class TeamService {
 
   @Select(TeamState.allTeams)
   public allTeams$: Observable<Team[]>;
+
+  public syncTeams() {
+    const equipesObs = this.equipesRepo.getEquipes();
+    equipesObs.subscribe((equipes) => {
+      // this.updateAllTeams()
+    });
+  }
 
   public updateAllTeams(teams: Team[]) {
     this.updateTeamsState({ allTeams: teams });

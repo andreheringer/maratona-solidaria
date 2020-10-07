@@ -1,44 +1,48 @@
 .header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  height: 110px;
   width: 100vw;
-  background-color: var(--bluetwo);
+  padding: 0px 0px 0px 40px;
+  background-color: var(--lightpink);
 }
-.header-banner {
-  height: 64px;
+.buttons {
   display: flex;
-  align-items: center;
+  flex-grow: 2;
+  justify-content: flex-end;
 }
-.header-menu {
-  height: 24px;
-  width: 100%;
+.images {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
 }
 .header-menu-button {
   border: none;
-  height: 20px;
-  border-radius: 8px;
-  margin: 0px !important;
-  padding: 0px 8px !important;
-  background-color: var(--bluetwo);
+  height: 110px;
+  width: auto;
+  padding: 48px 32px;
   color: #000000;
-  font-weight: bold;
+  background-color: var(--lightpink);
+  font-weight: 600;
   cursor: pointer;
-  text-transform: uppercase;
+  justify-self: flex-end;
 }
 .header-menu-button:hover {
-  background-color: var(--blueone);
+  background-color: var(--darkpink);
 }
 .header-menu-button-selected {
   cursor: default;
-  background-color: var(--blueone);
+  background-color: var(--darkpink);
 }
-.image {
-  width: auto;
-  height: 50px;
+.logo {
+  height: 46px;
+  width: 148px;
   margin: 0 8px;
+  justify-self: flex-start;
+  /* align-self: flex-start; */
+}
+.help {
+  height: 46px;
+  width: 83px;
+  justify-self: flex-start;
+  /* align-self: flex-start; */
 }

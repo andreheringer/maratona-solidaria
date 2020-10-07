@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 * {
-  font-family: "PrologueRegular";
+  font-family: 'PrologueRegular';
   font-weight: normal;
   font-style: normal;
 }
@@ -11,6 +11,12 @@
   --charcoal: #353a47;
   --blueone: #9ed8db;
   --bluetwo: #467599;
+  --lightpink: #ffdcd9;
+  --darkpink: #ffaea5;
+  --creamwhite: rgba(255, 216, 190, 0.3);
+  --darkorange: #ffc8a2;
+  --lightorange: #ffd8be;
+  --redpink: #ff968a;
 }
 
 html,

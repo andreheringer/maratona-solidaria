@@ -9,30 +9,30 @@ export interface Option {
 }
 
 export const MENUOPTIONS: Option[] = [
-  { name: 'login', path: '/login', active: true, minPerm: Permission.visitor },
-  { name: 'sobre', path: '/about', active: true, minPerm: Permission.visitor },
+  { name: 'Sobre', path: '/about', active: true, minPerm: Permission.visitor },
   {
-    name: 'leaderboard',
+    name: 'Leaderboard',
     path: '/leaderboard',
     active: true,
     minPerm: Permission.user,
   },
   {
-    name: 'doações',
+    name: 'Doações',
     path: '/colaborate',
     active: true,
     minPerm: Permission.user,
   },
   {
-    name: 'admin',
+    name: 'Admin',
     path: '/admin',
     active: true,
     minPerm: Permission.admin,
   },
   {
-    name: 'regulamento',
+    name: 'Regulamento',
     path: '/uploads/Regulamento.pdf',
     active: true,
     minPerm: Permission.visitor,
   },
+  { name: 'Login', path: '/login', active: true, minPerm: Permission.visitor },
 ];

@@ -1,9 +1,9 @@
 <main class="header">
-  <section class="header-banner">
-    <img src="./assets/img/banner.svg" class="image" />
-    <img src="./assets/img/icex.svg" class="image" />
+  <section class="images">
+    <img src="./assets/img/main.svg" class="logo" />
+    <img src="./assets/img/icex.svg" class="help" />
   </section>
-  <section class="header-menu">
+  <section class="buttons">
     <div *ngFor="let opt of options; let i = index">
       <button
         *ngIf="opt.minPerm <= userPerm.valueOf()"
