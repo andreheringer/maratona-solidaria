@@ -11,6 +11,7 @@ class Doacao(db.Model):
     quantidade: int
     colaborador_id: int
     aluno_id: int
+    equipe_id: int
     data: datetime
     observacao: str
     pontuacao: int
@@ -25,6 +26,7 @@ class Doacao(db.Model):
         db.Integer, db.ForeignKey("Colaboradores.id"), nullable=False
     )
     aluno_id = db.Column(db.Integer, db.ForeignKey("Alunos.id"), nullable=False)
+    equipe_id = db.Column(db.Integer, db.ForeignKey("Equipes.id"), nullable=False)
     data = db.Column(db.DateTime, default=datetime.utcnow)
     observacao = db.Column(db.Text)
     pontuacao = db.Column(db.Integer)

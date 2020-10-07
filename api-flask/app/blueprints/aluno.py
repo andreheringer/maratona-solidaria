@@ -31,7 +31,8 @@ def list_aluno():
     if status != 200:
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
-    alunos = Aluno.query.filter_by(colaborador_id=resp).all()
+    colaborador = Colaborador.query.filter_by(id=resp).first()
+    alunos = Aluno.query.filter_by(equipe_id=colaborador.equipe_id).all()
     return jsonify(alunos), 200
 
 

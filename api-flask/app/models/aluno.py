@@ -9,6 +9,8 @@ class Aluno(db.Model):
     equipe_id: int
     colaborador_id: int
     email: str
+    telefone: str
+    observacao: str
 
     __tablename__ = "Alunos"
 
@@ -18,6 +20,8 @@ class Aluno(db.Model):
     equipe_id = db.Column(db.Integer, db.ForeignKey("Equipes.id"))
     colaborador_id = db.Column(db.Integer, db.ForeignKey("Colaboradores.id"))
     email = db.Column(db.Text)
+    telefone = db.Column(db.Text, default=None)
+    observacao = db.Column(db.Text, default=None)
 
     equipe = db.relationship("Equipe", backref=db.backref('alunos', lazy=False))
     colaborador = db.relationship("Colaborador", backref=db.backref('alunos', lazy=True))

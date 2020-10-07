@@ -59,6 +59,7 @@ def login_user():
                     "status": "success",
                     "message": "Successfully logged in.",
                     "auth_token": auth_token.decode(),
+                    "equipe_id": user.equipe_id,
                 }
                 return responseObject, 200
         else:
