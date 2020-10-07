@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../shared/stores/user/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public userName = '';
   public userPassw = '';
   public aboutInfo = '';
+  private helper = new JwtHelperService();
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -45,8 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.userService
       .authenticate(this.userName, this.userPassw)
       .subscribe((response) => {
-        // const b = response["auth_token"];
-        this.userService.syncByUser(response);
+        localStorage.setItem('token', response.auth_token);
 
         this.spinner.hide();
         this.router.navigateByUrl('/leaderboard');
@@ -54,7 +55,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private checkLogin() {
-    if (false) {
+    let token = localStorage.getItem('token');
+    if (token && !this.helper.isTokenExpired(token)) {
+      this.userService.syncUser(token);
       this.router.navigateByUrl(this.returnUrl);
     }
   }

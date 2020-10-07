@@ -9,13 +9,18 @@ import { HttpHeaders, HttpHandler, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { AuthRepository } from 'src/app/core/repositories/auth.repository';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private helper = new JwtHelperService();
-  constructor(private store: Store, private http: HttpClient) {}
+  constructor(
+    private store: Store,
+    private http: HttpClient,
+    private authRepo: AuthRepository
+  ) {}
 
   private getStore() {
     return this.store.snapshot().user as UserStateModel;
@@ -31,26 +36,12 @@ export class UserService {
     return new UpdateUserState(partialUserStateModel);
   }
 
-  public authenticate(userName: string, password: string): Observable<any> {
-    //   let body = JSON.stringify({
-    //     email: userName,
-    //     password: password,
-    //   });
-    //   const header = new HttpHeaders({
-    //     "Content-Type": "application/json",
-    //   });
-    //   return this.http.post(environment.apiUrl + "auth/login", body, {
-    //     headers: header,
-    //   });
-    const perfil = new User();
-    if (userName === 'admin@gmail.com') {
-      perfil.permission = Permission.admin;
-    } else {
-      perfil.permission = Permission.user;
-    }
-    return new Observable((sub) => {
-      sub.next(perfil);
+  public authenticate(email: string, password: string): Observable<any> {
+    const obs = this.authRepo.login(email, password);
+    obs.subscribe((user) => {
+      this.syncUser(user.auth_token);
     });
+    return obs;
   }
 
   public getAuth(): boolean {
@@ -73,13 +64,12 @@ export class UserService {
     const tokenDaata = this.helper.decodeToken(token);
     this.updateUserState({
       user: {
-        data: {
-          token: token,
-        },
+        data: tokenDaata,
         permission: Permission.admin,
       },
     });
   }
+
   public syncByUser(user: User) {
     this.updateUserState({
       user: user,
