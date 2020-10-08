@@ -8,6 +8,7 @@ from app.blueprints.auth import auth_bp
 from app.blueprints.public import public_bp
 from app.blueprints.doacao import doacao_bp
 from app.blueprints.aluno import aluno_bp
+from app.blueprints.equipe import equipe_bp
 from app.models import colaborador, doacao, equipe, aluno
 from app.extentions import db, migrate, bcrypt
 
@@ -39,4 +40,5 @@ def register_bluprints(app):
     app.register_blueprint(auth_bp)
     app.register_blueprint(doacao_bp)
     app.register_blueprint(aluno_bp)
+    app.register_blueprint(equipe_bp)
     return None
