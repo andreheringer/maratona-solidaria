@@ -1,12 +1,20 @@
 <main class="main">
   <app-header></app-header>
-  <li
-    class="list"
-    *ngFor="let team of teams;"
-  >
-    <span class="item">
-      <span class="name">{{team.name}}</span>
-      <ngb-progressbar class="progressbar" [value]="team.points" [max]="leaderPoints" type="warning">{{team.points}}</ngb-progressbar>
-    </span>
-  </li>
+  <section class="box">
+    <div class="title-container">
+      <span class="title">LEADERBOARD</span>
+    </div>
+    <div class="divider"></div>
+    <div class="list-container">
+      <li
+        class="list"
+        *ngFor="let team of teams;"
+      >
+        <div class="item">
+          <span class="name">{{team.name}}</span>
+          <ngb-progressbar class="progressbar" [value]="team.points" [max]="leaderPoints" type="warning">{{team.points}}</ngb-progressbar>
+        </div>
+      </li>
+    </div>
+  </section>
 </main>
