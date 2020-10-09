@@ -4,16 +4,34 @@
     <ngb-accordion class="accordion" [closeOthers]="true" activeIds="static-1">
       <ngb-panel id="static-1" title="Doações">
         <ng-template ngbPanelContent>
-          <div class="doantion-header">
-            <section class="don-item item-ten">Time</section>
-            <section class="don-item item-twenty">Doação</section>
-            <section class="don-item item-twenty">Aluno</section>
-            <section class="don-item item-twenty">Pontuação</section>
+          <div class="table-body">
+            <div class="table-header">
+              <div >
+                <span class="table-header-item">Produto</span>
+              </div>
+              <div >
+                <span class="table-header-item">Pontuação</span>
+              </div>
+            </div>
+            <li
+              class="item-row"
+              [ngClass]=" isEven(i) ? 'item-even' : 'item-odd'"
+              *ngFor="let donation of allDonations ; let i = index"
+            >
+              <div >
+                <span class="item-value">{{donation.representante.curso.acronime}}</span>
+              </div>
+              <div >
+                <span class="item-value">{{donation.doacao}}</span>
+              </div>
+              <div >
+                <span class="item-value">{{donation.representante.nome}}</span>
+              </div>
+              <div >
+                <span class="item-value">{{donation.pontuacao}}</span>
+              </div>
+            </li>
           </div>
-          <app-donation-item
-            *ngFor="let donation of allDonations"
-            [donation]="donation"
-          ></app-donation-item>
         </ng-template>
       </ngb-panel>
       <ngb-panel id="static-2" title="Alunos" [disabled]="true">

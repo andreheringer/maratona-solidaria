@@ -14,22 +14,9 @@
   width: 80% !important;
   max-width: 800px;
 }
-.doantion-header {
-  height: 24px;
+
+.item-row {
   display: flex;
-  width: 100%;
-  align-items: center;
-  box-shadow: 1px 1px 2px black;
-  padding: 0 8px;
-}
-.item-ten {
-  width: 10%;
-}
-.item-twenty {
-  width: 20%;
-}
-.don-item {
-  padding: 0 8px;
-  font-weight: bold;
-  text-align: center;
+  justify-content: space-between;
+  font-size: 15px;
 }
