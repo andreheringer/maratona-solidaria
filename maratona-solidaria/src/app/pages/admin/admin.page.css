@@ -1,5 +1,5 @@
 .main {
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .content {
@@ -17,6 +17,69 @@
 
 .item-row {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   font-size: 15px;
+}
+.table-body {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0px;
+  padding-left: 0 !important;
+  align-self: center;
+  border: 1px solid var(--redpink);
+  border-radius: 8px;
+  width: 100%;
+}
+.table-header {
+  display: flex;
+  /* justify-content: space-between; */
+  color: black;
+  background-color: var(--darkorange);
+  border-bottom: 1px solid var(--redpink);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.table-header-item {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 2px 10px;
+}
+
+.item-odd {
+  background-color: var(--creamwhite);
+}
+.item-even {
+  background-color: var(--lightorange);
+}
+.item-value {
+  color: #000000;
+  margin: 2px 8px 2px 8px;
+}
+.item1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  border-right: 1px solid var(--redpink);
+}
+.item2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  border-right: 1px solid var(--redpink);
+}
+.item3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  border-right: 1px solid var(--redpink);
+}
+.item4 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 20%;
+  text-align: center;
 }

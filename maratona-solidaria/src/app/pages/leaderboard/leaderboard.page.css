@@ -9,7 +9,7 @@
   bottom: 0;
   right: 0;
   background-color: #ffffff;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .list {
