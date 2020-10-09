@@ -4,6 +4,7 @@ import { UserService } from '../../shared/stores/user/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { StartupService } from 'src/app/core/startup.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private startupService: StartupService
   ) {
     this.checkLogin();
 
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .authenticate(this.userName, this.userPassw)
       .subscribe((response) => {
         localStorage.setItem('token', response.auth_token);
-
+        this.startupService.preloadStores()
         this.spinner.hide();
         this.router.navigateByUrl('/leaderboard');
       });
