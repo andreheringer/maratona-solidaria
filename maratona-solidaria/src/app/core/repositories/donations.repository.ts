@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Donation } from 'src/app/shared/models/donation';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class DonationsRepository {
   constructor(private http: HttpClient) {}
 
-  public getDonations(): any {
+  public getDonations(): Observable<any> {
     const token = localStorage.getItem('token');
     const header = new HttpHeaders({
       'Authorization': 'Bearer: ' + token,

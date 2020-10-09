@@ -1,5 +1,5 @@
 import { Action, State, StateContext, Selector } from '@ngxs/store';
-import { Team, TEAMS } from '../../models/team';
+import { Team } from '../../models/team';
 import {
   ClearTeamStore,
   AppendTeamsState,
@@ -8,7 +8,7 @@ import {
 } from './teams.actions';
 
 const INITIAL_STATE = {
-  allTeams: TEAMS,
+  allTeams: [],
 };
 
 export class TeamStateModel {

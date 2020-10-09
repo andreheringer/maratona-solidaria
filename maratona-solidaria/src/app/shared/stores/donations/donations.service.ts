@@ -70,4 +70,10 @@ export class DonationService {
       donation.quantidade * donation.pontuacao
     );
   }
+
+  public synchDonations(){
+    this.donationsRepo.getDonations().subscribe((donations) => {
+      debugger
+    })
+  }
 }
