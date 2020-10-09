@@ -34,6 +34,9 @@ export class SimpleDonationComponent implements OnInit {
 
   ngOnInit(): void {
     this.donationTypeChangeHandler();
+
+    this.studentService.syncStudents();
+
     const newSub = this.studentService.teamStudents$.subscribe((students) => {
       this.students = students;
     });
@@ -57,7 +60,6 @@ export class SimpleDonationComponent implements OnInit {
     const newSub = this.newSimpleDonationForm.controls[
       'tipo'
     ].valueChanges.subscribe((tipo) => {
-      console.log(tipo);
       if (tipo != null) {
         const pts = this.products.find((prod) => prod.id === tipo).points;
         this.newSimpleDonationForm.controls['pontuacao'].setValue(pts);

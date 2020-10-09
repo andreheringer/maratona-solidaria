@@ -26,6 +26,7 @@ export class AddStudentComponent implements OnInit {
   constructor(private addStudentService: AddStudentService, private teamService: TeamService) {}
 
   ngOnInit(): void {
+    this.teamService.syncTeams();
     this.sub = this.teamService.allTeams$.subscribe((teams) => {
       this.teams = teams;
     });

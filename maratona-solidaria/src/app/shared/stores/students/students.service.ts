@@ -1,3 +1,5 @@
+import { TeamService } from './../teams/teams.service';
+import { StudentsRepository } from './../../../core/repositories/students.repository';
 import { Injectable } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { StudentStateModel, StudentState } from './students.state';
@@ -18,7 +20,7 @@ import { AddStudent } from '../../models/addStudent';
   providedIn: 'root',
 })
 export class StudentService {
-  constructor(private store: Store, private http: HttpClient) {}
+  constructor(private store: Store, private http: HttpClient, private studentsRepo: StudentsRepository, private teamService: TeamService) {}
 
   private getStore() {
     return this.store.snapshot().students as StudentStateModel;
@@ -55,8 +57,32 @@ export class StudentService {
     this.updateStudentsState({ teamStudents: students });
   }
 
+  public syncStudents() {
+    const studentsObs = this.studentsRepo.getStudents();
+    studentsObs.subscribe((students) => {
+      let currentTeams = [];
+      this.teamService.allTeams$.subscribe((teams) => currentTeams = teams);
+
+      this.updateTeamStudents(students.map(student => {
+        return {
+          id: student.id,
+          nome: student.nome,
+          matricula: student.matricula,
+          curso: currentTeams.find(team => team.id === student.equipe_id),
+          email: student.email,
+          telefone: student.telefone,
+          observacao: student.observacao,
+        }
+      }));
+    });
+  }
+
   public addStudent(student: AddStudent) {
     //post student
-    this.appendStudentsState(student);
+    const studentObs = this.studentsRepo.createStudent(student);
+    studentObs.subscribe((response) => {
+      student.id = response.id;
+      this.appendStudentsState(student);
+    });
   }
 }

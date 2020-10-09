@@ -2,6 +2,7 @@ import { AddStudent } from './addStudent';
 import { Donation } from './donation';
 import { Student } from './student';
 export class SimpleDonation implements Donation {
+  public id: number;
   public doacao: string;
   public tipo: number;
   public quantidade: number;
@@ -11,10 +12,12 @@ export class SimpleDonation implements Donation {
   public observacao: string;
 
   constructor() {
+    this.id = null;
     this.doacao = '';
     this.tipo = null;
     this.quantidade = null;
     this.representante = {
+      id: null,
       nome: '',
       matricula: null,
       curso: null,

@@ -1,41 +1,45 @@
 import { Student } from './../../shared/models/student';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Team } from 'src/app/shared/models/team';
+import { Donation } from 'src/app/shared/models/donation';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class StudentsRepository {
+export class DonationsRepository {
   constructor(private http: HttpClient) {}
 
-  public getStudents(): any {
+  public getDonations(): any {
     const token = localStorage.getItem('token');
     const header = new HttpHeaders({
       'Authorization': 'Bearer: ' + token,
     });
     
-    return this.http.get(environment.apiUrl + 'aluno/list', {
+    return this.http.get(environment.apiUrl + 'donation/list', {
       headers: header
     });
   }
 
-  public createStudent(student: Student): any {
+  public createDonation(donation: Donation): any {
     let body = JSON.stringify({
-      nome: student.nome,
-      matricula: student.matricula,
-      email: student.email,
-      equipe_id: student.curso.id,
+      doacao: donation.doacao,
+      tipo: donation.tipo,
+      quantidade: donation.quantidade,
+      data: donation.data,
+      aluno_id: donation.representante.id,
+      pontuacao: donation.pontuacao,
+      observacao: donation.observacao,
     });
+    console.log(body);
 
     const token = localStorage.getItem('token');
     const header = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': "Bearer: " + token,
+      'Authorization': 'Bearer: ' + token,
     });
 
-    return this.http.post(environment.apiUrl + 'aluno/create', body, {
+    return this.http.post(environment.apiUrl + 'donation/create', body, {
       headers: header,
     });
   }
