@@ -19,6 +19,25 @@ def get_donation(donation_id):
     donation = Doacao.query.filter_by(id=donation_id).first()
     return jsonify(donation), 200
 
+@doacao_bp.route("/<donation_id>/confirm", methods=["POST"])
+def confirm_donation(donation_id):
+    """
+    Parameters: o id da donation desejado (number)
+    Returns: objeto com a donation
+    """
+    auth_header = request.headers.get('Authorization')
+    token_or_error, status = Colaborador.parse_token(auth_header)
+    if status != 200:
+        return token_or_error, status
+    user_id = Colaborador.decode_auth_token(token_or_error)
+    #verifica admin
+    colaborador = Colaborador.query.get(user_id)
+    if not colaborador.admin:
+        return {"status": "fail", "message": "Restricted to admin only."},403
+    donation = Doacao.query.filter_by(id=donation_id).first()
+    donation.confirmado = not donation.confirmado
+    db.session.commit()
+    return jsonify(donation), 200
 
 @doacao_bp.route("/list", methods=["GET"])
 def list_donation():
@@ -60,9 +79,11 @@ def create_donation():
             data=post_data.get("data"),
             aluno_id=post_data.get("aluno_id"),
             observacao=post_data.get("observacao"),
-            pontuacao=post_data.get("pontuacao")
+            pontuacao=post_data.get("pontuacao"),
+            confirmado=False
         )
-        equipe.pontuacao += post_data.get("pontuacao")
+        pontos = post_data.get("pontuacao")
+        equipe.pontuacao += pontos if pontos else 0
         db.session.add(donate)
         db.session.add(equipe)
         db.session.commit()

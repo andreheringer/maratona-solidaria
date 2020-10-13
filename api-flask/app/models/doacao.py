@@ -15,6 +15,7 @@ class Doacao(db.Model):
     data: datetime
     observacao: str
     pontuacao: int
+    confirmado: bool
 
     __tablename__ = "Doacoes"
 
@@ -30,6 +31,7 @@ class Doacao(db.Model):
     data = db.Column(db.DateTime, default=datetime.utcnow)
     observacao = db.Column(db.Text)
     pontuacao = db.Column(db.Integer)
+    confirmado = db.Column(db.Boolean, nullable=False, default=False)
 
     aluno = db.relationship("Aluno", backref=db.backref("doacoes", lazy=True))
     representante = db.relationship(
