@@ -47,7 +47,11 @@ def create_equipe():
     token_or_error, status = Colaborador.parse_token(auth_header)
     if status != 200:
         return token_or_error, status
-    resp = Colaborador.decode_auth_token(token_or_error)
+    user_id = Colaborador.decode_auth_token(token_or_error)
+    #verifica admin
+    colaborador = Colaborador.query.get(user_id)
+    if not colaborador.admin:
+        return {"status": "fail", "message": "Restricted to admin only."},403
     post_data = request.get_json()
     try:
         equipe = Equipe(
@@ -56,7 +60,6 @@ def create_equipe():
         )
 
         db.session.add(equipe)
-        return()
         db.session.commit()
         responseObject = {
             "status": "success",
