@@ -6,10 +6,10 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class EquipesRepository {
+export class TeamsRepository {
   constructor(private http: HttpClient) {}
 
-  public getEquipes() {
+  public getEquipes(): any {
     return this.http.get(environment.apiUrl + 'public/equipes');
   }
 

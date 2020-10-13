@@ -42,7 +42,7 @@ class Colaborador(db.Model):
         try:
             payload = {
                 "exp": datetime.datetime.utcnow()
-                + datetime.timedelta(days=0, seconds=5),
+                + datetime.timedelta(days=0, seconds=3600),
                 "iat": datetime.datetime.utcnow(),
                 "sub": user_id,
             }

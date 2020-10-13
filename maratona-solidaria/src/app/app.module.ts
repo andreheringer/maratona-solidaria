@@ -3,7 +3,7 @@ import { StudentState } from './shared/stores/students/students.state';
 import { AddStudentState } from './shared/stores/add-student/add-student.state';
 import { PDFState } from "./shared/stores/pdf/pdf.state";
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
@@ -21,6 +21,13 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 import { SimpleDonationState } from "./shared/stores/simple-donation/simple-donation.state";
 import { DonationState } from "./shared/stores/donations/donations.state";
+import { StartupService } from './core/startup.service';
+import { TeamService } from './shared/stores/teams/teams.service';
+import { StudentService } from './shared/stores/students/students.service';
+
+export function startupFactory( startup: StartupService){
+  return () => startup.preloadStores()
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,7 +51,14 @@ import { DonationState } from "./shared/stores/donations/donations.state";
     NgbModule,
     NgxsFormPluginModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: startupFactory,
+      deps: [StartupService, TeamService, StudentService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

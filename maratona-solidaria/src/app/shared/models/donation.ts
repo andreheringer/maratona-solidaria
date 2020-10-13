@@ -1,6 +1,7 @@
 import { Student } from './student';
 
 export interface Donation {
+  id: number;
   doacao: string;
   tipo: number;
   quantidade: number;

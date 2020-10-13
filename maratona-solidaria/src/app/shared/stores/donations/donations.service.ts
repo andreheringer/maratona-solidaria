@@ -1,3 +1,4 @@
+import { DonationsRepository } from './../../../core/repositories/donations.repository';
 import { Injectable } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { DonationStateModel, DonationState } from './donations.state';
@@ -19,7 +20,7 @@ import { TeamService } from '../teams/teams.service';
   providedIn: 'root',
 })
 export class DonationService {
-  constructor(private store: Store, private teamService: TeamService) {}
+  constructor(private store: Store, private teamService: TeamService, private donationsRepo: DonationsRepository) {}
 
   private getStore() {
     return this.store.snapshot().user as DonationStateModel;
@@ -58,10 +59,21 @@ export class DonationService {
 
   public donate(donation: SimpleDonation) {
     //post donation
-    this.appendDonationsState(donation);
+    const donationObs = this.donationsRepo.createDonation(donation);
+    donationObs.subscribe((response) => {
+      donation.id = response.id;
+      this.appendDonationsState(donation);
+    })
+
     this.teamService.addTeamScore(
       donation.representante.curso.id,
       donation.quantidade * donation.pontuacao
     );
+  }
+
+  public synchDonations(){
+    this.donationsRepo.getDonations().subscribe((donations) => {
+      debugger
+    })
   }
 }

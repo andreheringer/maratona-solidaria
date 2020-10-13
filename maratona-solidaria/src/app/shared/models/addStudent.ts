@@ -1,6 +1,7 @@
 import { Student } from './student';
 import { Team, TEAMS } from './team';
 export class AddStudent implements Student {
+  public id: number;
   public nome: string;
   public matricula: number;
   public curso: Team;

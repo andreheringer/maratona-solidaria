@@ -1,4 +1,4 @@
-import { EquipesRepository } from './../../../core/repositories/equipes.repository';
+import { TeamsRepository } from '../../../core/repositories/teams.repository';
 import { Injectable } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { TeamStateModel, TeamState } from './teams.state';
@@ -10,10 +10,7 @@ import {
   IncreaseTeamSocre,
 } from './teams.actions';
 import { Observable } from 'rxjs';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { Team } from '../../models/team';
-import { Permission } from '../../enums/permission';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +18,7 @@ import { Permission } from '../../enums/permission';
 export class TeamService {
   constructor(
     private store: Store,
-    private http: HttpClient,
-    private equipesRepo: EquipesRepository
+    private teamsRepo: TeamsRepository
   ) {}
 
   private getStore() {
@@ -52,9 +48,15 @@ export class TeamService {
   public allTeams$: Observable<Team[]>;
 
   public syncTeams() {
-    const equipesObs = this.equipesRepo.getEquipes();
+    const equipesObs = this.teamsRepo.getEquipes();
     equipesObs.subscribe((equipes) => {
-      // this.updateAllTeams()
+      this.updateAllTeams(equipes.map(equipe => {
+        return {
+          id: equipe.id,
+          name: equipe.nome,
+          points: equipe.pontuacao,
+        }
+      }));
     });
   }
 
@@ -64,6 +66,7 @@ export class TeamService {
 
   public addTeam(team: Team) {
     //post team
+
     this.appendTeamsState(team);
   }
 
