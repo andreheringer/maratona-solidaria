@@ -9,10 +9,8 @@ import {
   AppendDonationsState,
 } from './donations.actions';
 import { Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Donation } from '../../models/donation';
-import { Permission } from '../../enums/permission';
 import { SimpleDonation } from '../../models/simpleDonation';
 import { TeamService } from '../teams/teams.service';
 
