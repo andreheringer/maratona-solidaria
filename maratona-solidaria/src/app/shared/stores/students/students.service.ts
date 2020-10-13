@@ -10,17 +10,15 @@ import {
   AppendStudentsState,
 } from './students.actions';
 import { Observable } from 'rxjs';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Student } from '../../models/student';
-import { Permission } from '../../enums/permission';
 import { AddStudent } from '../../models/addStudent';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudentService {
-  constructor(private store: Store, private http: HttpClient, private studentsRepo: StudentsRepository, private teamService: TeamService) {}
+  constructor(private store: Store, private studentsRepo: StudentsRepository, private teamService: TeamService) {}
 
   private getStore() {
     return this.store.snapshot().students as StudentStateModel;

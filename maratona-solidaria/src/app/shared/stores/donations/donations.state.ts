@@ -8,8 +8,8 @@ import {
 import { SimpleDonation } from '../../models/simpleDonation';
 
 const INITIAL_STATE = {
-  allDonations: [SimpleDonation.getMockItem(), SimpleDonation.getMockItem()],
-  teamDonations: [SimpleDonation.getMockItem(), SimpleDonation.getMockItem()],
+  allDonations: [],
+  teamDonations: [],
 };
 
 export class DonationStateModel {
