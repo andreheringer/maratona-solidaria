@@ -10,10 +10,7 @@ import {
   IncreaseTeamSocre,
 } from './teams.actions';
 import { Observable } from 'rxjs';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { Team } from '../../models/team';
-import { Permission } from '../../enums/permission';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +18,6 @@ import { Permission } from '../../enums/permission';
 export class TeamService {
   constructor(
     private store: Store,
-    private http: HttpClient,
     private teamsRepo: TeamsRepository
   ) {}
 
