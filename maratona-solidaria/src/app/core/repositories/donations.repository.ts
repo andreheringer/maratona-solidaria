@@ -32,7 +32,6 @@ export class DonationsRepository {
       pontuacao: donation.pontuacao,
       observacao: donation.observacao,
     });
-    console.log(body);
 
     const token = localStorage.getItem('token');
     const header = new HttpHeaders({
