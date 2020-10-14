@@ -15,12 +15,12 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
 ## Arquitetura
 ![Arquitetura](https://user-images.githubusercontent.com/23155300/76664704-fd0ee180-6563-11ea-8197-517efe49a226.jpg)
 
-## Sprint Planning
+## Sprint 1
 
 - Eu como visitante, colaborador ou admin gostaria de acessar a página inicial
   - [X] Criar uma página inicial (Herinque)
   - [X] Criar modelo do admin (Ingrid)
-  - [ ] Adicionar admin (Ingrid)
+  - [X] Adicionar admin (Ingrid)
   - [X] Criar tela inicial para usuários autenticados (Henrique)
  
  
@@ -29,10 +29,10 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
   - [X] Design da tela (Lucas)
 
 - Eu como visitante, colaborador ou admin gostaria de ver a classificação
-  - [ ] Criar leaderboard (frontend) (Lucas)
-  - [ ] Criar leaderboard (backend) (Yasmin)
-  - [ ] Calcular pontuação da equipe (Yasmin)
-  - [ ] Criar tabela das equipes (Yasmin)
+  - [X] Criar leaderboard (frontend) (Lucas)
+  - [X] Criar leaderboard (backend) (Yasmin)
+  - [X] Calcular pontuação da equipe (Yasmin)
+  - [X] Criar tabela das equipes (Yasmin)
  
 - Eu como colaborador gostaria de fazer uma doação
   - [X] Criar tela de fazer doação (Lucas)
@@ -48,11 +48,53 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
   - [X] Design da tela (Henrique)
   
 - Eu como administrador gostaria de ter acesso a gerenciação dos alunos, equipes e doações
-  - [ ] Desenvolver a restrição no back-end (Ingrid)
-  - [ ] Desenvolver a restrição no front-end (Lucas)
+  - [X] Desenvolver a restrição no back-end (Ingrid)
+  - [X] Desenvolver a restrição no front-end (Lucas)
   - [ ] Design da tela (Lucas)
   
-- Eu como colaborador gostaria de ter acesso a gerenciação da minha equipe e doações
+- Eu como colaborador gostaria de ter acesso a dados da minha equipe e doações
   - [X] Desenvolver a restrição no back-end (André)
   - [X] Desenvolver a restrição no front-end (Henrique)
   - [X] Design da tela (Henrique)
+
+
+## Sprint 2
+
+- Eu como visitante, colaborador ou admin gostaria de acessar a página inicial
+  - [ ] Testes de unidade dos endpoint (Ingrid)
+  - [ ] Testes de unidade das restrições (Ingrid)
+  - [ ] Testes de unidade de redirecionamento (Henrique)
+  - [X] Redesign da tela (Lucas)
+  - [X] Reestruturação dos estilos (Henrique)
+
+- Eu como visitante, colaborador ou admin gostaria de ver a classificação
+  - [ ] Testes de unidade dos endpoint (Yasmin)
+  - [ ] Testes de unidade das restrições (Yasmin)
+  - [ ] Testes de unidade de redirecionamento (Lucas)
+  - [ ] Integração para classificação das equipes
+ 
+- Eu como administrador gostaria de ter acesso a gerenciação dos alunos, equipes e doações
+  - [X] Refatorar banco de dados (André)
+  - [X] Desenvolver a restrição no back-end (Ingrid)
+  - [ ] Testes de unidade dos endpoint (Ingrid)
+  - [ ] Testes de unidade das restrições (Ingrid)
+  - [ ] Design da tela (Lucas)
+  
+- Eu como colaborador gostaria de logar
+  - [X] Redesign da tela (Lucas)
+  - [X] Reestruturação dos estilos (Henrique)
+  - [ ] Testes de unidade dos endpoint (André)
+  - [ ] Testes de unidade das restrições (André)
+  - [ ] Testes de unidade de redirecionamento (Henrique)
+  
+- Eu como visitante, colaborador ou admin gostaria de acessar a página sobre
+  - [X] Redesign da tela (Lucas)
+  - [X] Reestruturação dos estilos (Henrique)
+
+- Eu como colaborador gostaria de fazer uma doação
+  - [ ] Testes de unidade dos endpoint (Yasmin)
+  - [ ] Testes de unidade das restrições (Yasmin)
+  - [ ] Testes de unidade de redirecionamento (Lucas)
+  - [X] Redesign da tela (Lucas)
+  - [X] Reestruturação dos estilos (Henrique)
+
