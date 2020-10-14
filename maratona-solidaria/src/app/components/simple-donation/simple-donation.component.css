@@ -9,14 +9,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(255,255,255,0.8);
 }
 .form-item {
   margin: 4px 0px 4px 0px;
+  height: 40px;
   width: 80%;
-  height: 38px;
+  box-sizing: border-box;
+  width: 480px;
+  border: 1px solid #FF968A;
+  border-radius: 4px;
+  background-color: #FFFFFF;
 }
 .submit-button {
   width: 21%;
   align-self: flex-end;
   margin-right: 10%;
+}
+
+.form-input{
+  box-sizing: border-box;
+  height: 40px;
+  width: 304px;
+  border: 1px solid #FF968A;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  padding-left: 8px;
 }
