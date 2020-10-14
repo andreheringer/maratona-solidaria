@@ -58,9 +58,17 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private checkLogin() {
     let token = localStorage.getItem('token');
-    if (token && !this.helper.isTokenExpired(token)) {
-      this.userService.syncUser(token);
-      this.router.navigateByUrl(this.returnUrl);
+    if (token) {
+      this.spinner.show();
+      this.userService.refreshUser(token).subscribe( (response) => {
+        this.startupService.preloadStores()
+        this.spinner.hide();
+        this.router.navigateByUrl('/leaderboard');
+      },
+      (error) => {
+        this.spinner.hide();
+      }
+      )
     }
   }
 }

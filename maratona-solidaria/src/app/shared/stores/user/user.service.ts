@@ -44,6 +44,14 @@ export class UserService {
     return obs;
   }
 
+  public refreshUser(token: string): Observable<any> {
+    const obs = this.authRepo.refresh(token);
+    obs.subscribe((user) => {
+      this.syncUser(user.auth_token);
+    });
+    return obs;
+  }
+
   public getAuth(): boolean {
     return this.getStore().auth;
   }

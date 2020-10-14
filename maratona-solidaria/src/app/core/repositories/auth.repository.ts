@@ -21,4 +21,13 @@ export class AuthRepository {
       headers: header,
     });
   }
+
+  public refresh(token: string): Observable<any> {
+    const header = new HttpHeaders({
+      'Authorization': 'Bearer: ' + token,
+    });
+    return this.http.post(environment.apiUrl + 'auth/me',{}, {
+      headers: header,
+    });
+  }
 }

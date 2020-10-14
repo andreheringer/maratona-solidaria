@@ -15,6 +15,7 @@
       class="form-item"
       (change)="onDonationChange()"
       formControlName="tipo"
+      ngModel="Tipo"
     >
       <option [disabled]="donation" selected value="Tipo">Tipo</option>
       <option *ngFor="let prod of products" [ngValue]="prod.id">

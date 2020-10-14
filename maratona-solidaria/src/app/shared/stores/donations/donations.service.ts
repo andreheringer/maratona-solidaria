@@ -71,7 +71,8 @@ export class DonationService {
 
   public synchDonations(){
     this.donationsRepo.getDonations().subscribe((donations) => {
-      debugger
+
+      
     })
   }
 }
