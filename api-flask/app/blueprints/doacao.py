@@ -84,10 +84,7 @@ def create_donation():
             pontuacao=post_data.get("pontuacao"),
             confirmado=False,
         )
-        pontos = post_data.get("pontuacao")
-        equipe.pontuacao += pontos if pontos else 0
         db.session.add(donate)
-        db.session.add(equipe)
         db.session.commit()
         responseObject = {
             "status": "success",
