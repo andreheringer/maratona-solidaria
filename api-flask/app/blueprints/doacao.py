@@ -53,7 +53,7 @@ def list_donation():
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
     colaborador = Colaborador.query.filter_by(id=resp).first()
-    doacoes = Doacao.query.filter_by(equipe_id=colaborador.equipe_id)
+    doacoes = Doacao.query.filter_by(equipe_id=colaborador.equipe_id).all()
     return jsonify(doacoes), 200
 
 

@@ -114,7 +114,7 @@ def info_user():
                 "nome": colaborador.name,
                 "equipe_id": colaborador.equipe_id,
                 "is_admin":  colaborador.admin
-            }
+            }, 200
 
 
 @auth_bp.route("/adminregistration", methods=["POST"])
