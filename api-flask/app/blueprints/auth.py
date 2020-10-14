@@ -60,6 +60,7 @@ def login_user():
                     "message": "Successfully logged in.",
                     "auth_token": auth_token.decode(),
                     "equipe_id": user.equipe_id,
+                    "is_admin" : user.admin
                 }
                 return responseObject, 200
         else:
@@ -98,3 +99,37 @@ def logout_user():
     else:
         responseObject = {"status": "fail", "message": "Provide a valid auth token."}
         return responseObject, 403
+
+@auth_bp.route("/adminregistration", methods=["POST"])
+def register_admin():
+    user = Colaborador.query.filter_by(email=post_data.get("email")).first()
+    if not user:
+        try:
+            user = Colaborador(
+                name="Admin",
+                email="admin@admin.com",
+                equipe_id=post_data.get("equipe_id"),
+                password=post_data.get("password"),
+                admin=post_data.get("admin"),
+            )
+            db.session.add(user)
+            db.session.commit()
+            auth_token = user.encode_auth_token(user.id)
+            responseObject = {
+                "status": "success",
+                "message": "Successfully registered.",
+                "auth_token": auth_token.decode(),
+            }
+            return responseObject, 201
+        except Exception:
+            responseObject = {
+                "status": "fail",
+                "message": "Some error occurred. Please try again.",
+            }
+            return responseObject, 401
+    else:
+        responseObject = {
+            "status": "fail",
+            "message": "User already exists. Please Log in.",
+        }
+        return responseObject, 202
