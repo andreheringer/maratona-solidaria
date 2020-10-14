@@ -1,5 +1,5 @@
 import logging
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 
 from app.extentions import db, bcrypt
 from app.models.colaborador import Colaborador
@@ -99,6 +99,17 @@ def logout_user():
     else:
         responseObject = {"status": "fail", "message": "Provide a valid auth token."}
         return responseObject, 403
+
+
+@auth_bp.route("/me", methods=["POTS"])
+def info_user():
+    auth_header = request.headers.get("Authorization")
+    token_or_error, status = Colaborador.parse_token(auth_header)
+    if status != 200:
+        return token_or_error, status
+    resp = Colaborador.decode_auth_token(token_or_error)
+    colaborador = Colaborador.query.filter_by(id=resp).first()
+    return jsonify(colaborador), 200
 
 
 @auth_bp.route("/adminregistration", methods=["POST"])
