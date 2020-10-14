@@ -27,7 +27,7 @@ export class UserService {
   }
 
   @Dispatch()
-  public clearUserStore() {
+  private clearUserStore() {
     return new ClearUserStore();
   }
 
@@ -50,6 +50,15 @@ export class UserService {
       this.syncUser(user.auth_token);
     });
     return obs;
+  }
+
+  public logout(){
+    const token = localStorage.getItem('token');
+    this.clearUserStore()
+    const obs = this.authRepo.logout(token);
+    obs.subscribe((resp) => {
+      localStorage.removeItem('token');
+    });
   }
 
   public getAuth(): boolean {

@@ -6,7 +6,7 @@
   <section class="buttons">
     <div *ngFor="let opt of options; let i = index">
       <button
-        *ngIf="opt.minPerm <= userPerm.valueOf()"
+        *ngIf="opt.minPerm <= userPerm.valueOf() && logOption(opt.path)"
         [disabled]="i === current"
         (click)="onClickOption(opt.path)"
         [ngClass]="i === current ? 'header-menu-button-selected' : ''"
@@ -15,5 +15,12 @@
         {{ opt.name }}
       </button>
     </div>
+    <button
+      *ngIf="logout"
+      (click)="logof()"
+      class="header-menu-button"
+    >
+      Logout
+    </button>
   </section>
 </main>

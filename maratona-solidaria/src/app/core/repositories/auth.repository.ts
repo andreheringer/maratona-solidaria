@@ -30,4 +30,13 @@ export class AuthRepository {
       headers: header,
     });
   }
+
+  public logout(token: string): Observable<any> {
+    const header = new HttpHeaders({
+      'Authorization': 'Bearer: ' + token,
+    });
+    return this.http.post(environment.apiUrl + 'auth/logout',{}, {
+      headers: header,
+    });
+  }
 }
