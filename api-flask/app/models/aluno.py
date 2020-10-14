@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from app.extentions import db
 
+
 @dataclass
 class Aluno(db.Model):
     id: int
@@ -23,6 +24,7 @@ class Aluno(db.Model):
     telefone = db.Column(db.Text, default=None)
     observacao = db.Column(db.Text, default=None)
 
-    equipe = db.relationship("Equipe", backref=db.backref('alunos', lazy=True))
-    colaborador = db.relationship("Colaborador", backref=db.backref('alunos', lazy=True))
-
+    equipe = db.relationship("Equipe", backref=db.backref("alunos", lazy=True))
+    colaborador = db.relationship(
+        "Colaborador", backref=db.backref("alunos", lazy=True)
+    )

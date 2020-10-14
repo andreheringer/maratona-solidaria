@@ -23,7 +23,6 @@ class Colaborador(db.Model):
     admin = db.Column(db.Boolean, nullable=False, default=False)
     registered_on = db.Column(db.DateTime, nullable=False)
 
-
     def __init__(self, name, email, equipe_id, password, admin):
         self.name = name
         self.email = email
@@ -68,7 +67,7 @@ class Colaborador(db.Model):
             return "Signature expired. Please log in again."
         except jwt.InvalidTokenError:
             return "Invalid token. Please log in again."
-    
+
     @staticmethod
     def parse_token(auth_header):
         if auth_header:
@@ -76,24 +75,21 @@ class Colaborador(db.Model):
                 auth_token = auth_header.split(" ")[1]
             except IndexError:
                 responseObject = {
-                    'status': 'fail',
-                    'message': 'Bearer token malformed.'
+                    "status": "fail",
+                    "message": "Bearer token malformed.",
                 }
                 return responseObject, 401
         else:
-            auth_token = ''
+            auth_token = ""
         if not auth_token:
             responseObject = {
-                'status': 'fail',
-                'message': 'Provide a valid auth token.'
+                "status": "fail",
+                "message": "Provide a valid auth token.",
             }
             return responseObject, 401
         resp = Colaborador.decode_auth_token(auth_token)
         if isinstance(resp, str):
-            responseObject = {
-                'status': 'fail',
-                'message': resp
-            }
+            responseObject = {"status": "fail", "message": resp}
             return responseObject, 401
         return auth_token, 200
 

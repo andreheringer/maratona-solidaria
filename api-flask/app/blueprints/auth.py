@@ -60,7 +60,7 @@ def login_user():
                     "message": "Successfully logged in.",
                     "auth_token": auth_token.decode(),
                     "equipe_id": user.equipe_id,
-                    "is_admin" : user.admin
+                    "is_admin": user.admin,
                 }
                 return responseObject, 200
         else:
@@ -99,6 +99,7 @@ def logout_user():
     else:
         responseObject = {"status": "fail", "message": "Provide a valid auth token."}
         return responseObject, 403
+
 
 @auth_bp.route("/adminregistration", methods=["POST"])
 def register_admin():

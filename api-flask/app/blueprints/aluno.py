@@ -14,7 +14,7 @@ aluno_bp = Blueprint("aluno", __name__, url_prefix="/aluno")
 def get_aluno(aluno_id):
     """
     Parameters: o id do aluno desejado (number)
-    Returns: o aluno do id pesquisado 
+    Returns: o aluno do id pesquisado
     """
     aluno = Aluno.query.filter_by(id=aluno_id).first()
     return jsonify(aluno), 200
@@ -26,7 +26,7 @@ def list_aluno():
     Parameters: none
     Returns: uma lista dos alunos cadastrados
     """
-    auth_header = request.headers.get('Authorization')
+    auth_header = request.headers.get("Authorization")
     token_or_error, status = Colaborador.parse_token(auth_header)
     if status != 200:
         return token_or_error, status
@@ -40,9 +40,9 @@ def list_aluno():
 def create_aluno():
     """
     Parameters: nome do aluno a ser cadastrado
-    Returns: o aluno do id pesquisado 
+    Returns: o aluno do id pesquisado
     """
-    auth_header = request.headers.get('Authorization')
+    auth_header = request.headers.get("Authorization")
     token_or_error, status = Colaborador.parse_token(auth_header)
     if status != 200:
         return token_or_error, status
@@ -54,7 +54,7 @@ def create_aluno():
             colaborador_id=resp,
             matricula=post_data.get("matricula"),
             email=post_data.get("email"),
-            equipe_id=post_data.get("equipe_id")
+            equipe_id=post_data.get("equipe_id"),
         )
 
         db.session.add(aluno)

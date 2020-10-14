@@ -17,15 +17,16 @@ def index():
 def list_donation():
     """
     retorna a lista publica de equipes
-    """    
+    """
     equipes = Equipe.query.all()
     return jsonify(equipes), 200
 
-@public_bp.route("/classificacao", methods=['GET'])
+
+@public_bp.route("/classificacao", methods=["GET"])
 def list_classification():
     """
     retorna a lista de equipes ordenada pela pontuacao
-    """    
+    """
     equipes = Equipe.query.order_by(Equipe.pontuacao.desc()).all()
     return jsonify(equipes), 200
 

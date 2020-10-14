@@ -6,7 +6,6 @@ from app.models.equipe import Equipe
 from app.models.colaborador import Colaborador
 
 
-
 logger = logging.getLogger(__name__)
 equipe_bp = Blueprint("equipe", __name__, url_prefix="/equipe")
 
@@ -15,7 +14,7 @@ equipe_bp = Blueprint("equipe", __name__, url_prefix="/equipe")
 def get_equipe(equipe_id):
     """
     Parameters: o id do equipe desejado (number)
-    Returns: o equipe do id pesquisado 
+    Returns: o equipe do id pesquisado
     """
     equipe = Equipe.query.filter_by(id=equipe_id).first()
     return jsonify(equipe), 200
@@ -27,7 +26,7 @@ def list_equipes():
     Parameters: none
     Returns: uma lista dos equipes cadastrados
     """
-    auth_header = request.headers.get('Authorization')
+    auth_header = request.headers.get("Authorization")
     token_or_error, status = Colaborador.parse_token(auth_header)
     if status != 200:
         return token_or_error, status
@@ -41,23 +40,20 @@ def list_equipes():
 def create_equipe():
     """
     Parameters: nome do equipe a ser cadastrado
-    Returns: o equipe do id pesquisado 
+    Returns: o equipe do id pesquisado
     """
-    auth_header = request.headers.get('Authorization')
+    auth_header = request.headers.get("Authorization")
     token_or_error, status = Colaborador.parse_token(auth_header)
     if status != 200:
         return token_or_error, status
     user_id = Colaborador.decode_auth_token(token_or_error)
-    #verifica admin
+    # verifica admin
     colaborador = Colaborador.query.get(user_id)
     if not colaborador.admin:
-        return {"status": "fail", "message": "Restricted to admin only."},403
+        return {"status": "fail", "message": "Restricted to admin only."}, 403
     post_data = request.get_json()
     try:
-        equipe = Equipe(
-            nome=post_data.get("nome"),
-            pontuacao=0
-        )
+        equipe = Equipe(nome=post_data.get("nome"), pontuacao=0)
 
         db.session.add(equipe)
         db.session.commit()
