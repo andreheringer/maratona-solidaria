@@ -101,7 +101,7 @@ def logout_user():
         return responseObject, 403
 
 
-@auth_bp.route("/me", methods=["POTS"])
+@auth_bp.route("/me", methods=["POST"])
 def info_user():
     auth_header = request.headers.get("Authorization")
     token_or_error, status = Colaborador.parse_token(auth_header)
