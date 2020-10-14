@@ -16,7 +16,7 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
 ![Arquitetura](https://user-images.githubusercontent.com/23155300/76664704-fd0ee180-6563-11ea-8197-517efe49a226.jpg)
 
 
-## Sprint 2
+## [Sprint 2](https://github.com/andreheringer/api-maratona-solidaria/milestone/2)
 
 - Eu como visitante, colaborador ou admin gostaria de acessar a página inicial
   - [ ] Testes de unidade dos endpoint (Ingrid)
