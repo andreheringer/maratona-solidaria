@@ -15,10 +15,12 @@ export class HeaderComponent implements OnInit {
   public options: Option[];
   public userPerm: Permission;
   public current: number;
+  public logoff: boolean = false;
   constructor(private router: Router, private userService: UserService) {
     this.authenticated = userService.getAuth();
     if (this.authenticated) {
       this.userPerm = userService.getUserPermission();
+      this.logoff = true;
     } else {
       this.userPerm = Permission.visitor;
     }
@@ -33,5 +35,13 @@ export class HeaderComponent implements OnInit {
 
   public onClickOption(path) {
     this.router.navigateByUrl(path);
+  }
+
+  logof(){
+    this.userService.logoff();
+  }
+
+  logOption(path){
+    return !this.logoff || path !== '/login';
   }
 }
