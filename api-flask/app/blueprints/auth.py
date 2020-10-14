@@ -1,5 +1,5 @@
 import logging
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 
 from app.extentions import db, bcrypt
 from app.models.colaborador import Colaborador
@@ -109,7 +109,12 @@ def info_user():
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
     colaborador = Colaborador.query.filter_by(id=resp).first()
-    return jsonify(colaborador), 200
+    return  {
+                "id": colaborador.id,
+                "nome": colaborador.name,
+                "equipe_id": colaborador.equipe_id,
+                "is_admin":  colaborador.admin
+            }
 
 
 @auth_bp.route("/adminregistration", methods=["POST"])
