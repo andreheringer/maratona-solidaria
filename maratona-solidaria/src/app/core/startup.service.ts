@@ -13,6 +13,6 @@ export class StartupService {
   public async preloadStores(): Promise<void>{
     this.teamService.syncTeams();
     this.studentService.syncStudents();
-    this.donationService.synchDonations();
+    this.donationService.syncDonations();
   }
 }

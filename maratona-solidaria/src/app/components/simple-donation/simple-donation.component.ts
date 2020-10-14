@@ -61,7 +61,7 @@ export class SimpleDonationComponent implements OnInit {
     const newSub = this.newSimpleDonationForm.controls[
       'tipo'
     ].valueChanges.subscribe((tipo) => {
-      if (tipo != null) {
+      if (tipo != null && tipo !== "Tipo") {
         const pts = this.products.find((prod) => prod.id === tipo).points;
         const qts = this.newSimpleDonationForm.get('quantidade').value;
         this.newSimpleDonationForm.controls['pontuacao'].setValue(pts * (qts != null ? qts : 0));

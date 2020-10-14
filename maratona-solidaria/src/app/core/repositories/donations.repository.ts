@@ -27,7 +27,7 @@ export class DonationsRepository {
       doacao: donation.doacao,
       tipo: donation.tipo,
       quantidade: donation.quantidade,
-      data: donation.data,
+      data: null,//donation.data,
       aluno_id: donation.representante.id,
       pontuacao: donation.pontuacao,
       observacao: donation.observacao,

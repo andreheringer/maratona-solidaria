@@ -1,3 +1,4 @@
+import { StudentService } from './../students/students.service';
 import { DonationsRepository } from './../../../core/repositories/donations.repository';
 import { Injectable } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
@@ -18,7 +19,7 @@ import { TeamService } from '../teams/teams.service';
   providedIn: 'root',
 })
 export class DonationService {
-  constructor(private store: Store, private teamService: TeamService, private donationsRepo: DonationsRepository) {}
+  constructor(private store: Store, private teamService: TeamService, private studentService: StudentService, private donationsRepo: DonationsRepository) {}
 
   private getStore() {
     return this.store.snapshot().user as DonationStateModel;
@@ -59,8 +60,10 @@ export class DonationService {
     //post donation
     const donationObs = this.donationsRepo.createDonation(donation);
     donationObs.subscribe((response) => {
-      donation.id = response.id;
-      this.appendDonationsState(donation);
+      this.appendDonationsState({
+        ...donation,
+        id: response.donate_id
+      });
     })
 
     this.teamService.addTeamScore(
@@ -69,10 +72,32 @@ export class DonationService {
     );
   }
 
-  public synchDonations(){
+  public syncDonations(){
     this.donationsRepo.getDonations().subscribe((donations) => {
+      let currentStudents = [];
+      this.studentService.teamStudents$.subscribe((students) => currentStudents = students);
 
-      
+      donations = donations.map(donation => {
+        return {
+          id: donation.id,
+          doacao: donation.doacao,
+          tipo: Number.parseInt(donation.tipo),
+          quantidade: donation.quantidade,
+          representante: currentStudents.find(student => student.id === donation.aluno_id),
+          data: donation.data,
+          pontuacao: donation.pontuacao,
+          observacao: donation.observacao
+        }
+      });
+
+      this.updateAllDonations(donations);
+
+      donations.forEach(donation => {
+        this.teamService.addTeamScore(
+          donation.representante.curso.id,
+          donation.quantidade * donation.pontuacao
+        );
+      });
     })
   }
 }
