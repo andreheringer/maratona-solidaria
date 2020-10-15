@@ -48,3 +48,14 @@
   color: var(--blood);
   margin: 2px 10px 2px 10px;
 }
+.btn-link .btn-link:hover {
+  color: black !important;
+}
+
+.painel{
+  color: #000000 !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  letter-spacing: 0 !important;
+  line-height: 32px !important;
+}
