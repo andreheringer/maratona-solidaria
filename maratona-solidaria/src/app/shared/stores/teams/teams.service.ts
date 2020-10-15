@@ -54,7 +54,7 @@ export class TeamService {
         return {
           id: equipe.id,
           name: equipe.nome,
-          points: equipe.pontuacao,
+          points: equipe.pontuacao
         }
       }));
     });
