@@ -22,7 +22,6 @@ export class SimpleDonationComponent implements OnInit {
     tipo: new FormControl(),
     quantidade: new FormControl(),
     representante: new FormControl(),
-    data: new FormControl(),
     pontuacao: new FormControl(),
     observacao: new FormControl(),
   });

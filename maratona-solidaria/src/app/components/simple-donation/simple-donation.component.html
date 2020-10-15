@@ -33,39 +33,21 @@
       class="form-item"
       (change)="onStudentChange()"
       ngModel="Representante(Aluno)"
+      [ngClass]="student ? 'selected' : ''"
     >
-      <option [disabled]="student" selected value="Representante(Aluno)">
+      <option disabled selected value="Representante(Aluno)">
         Reprensentante(Aluno)
       </option>
       <option *ngFor="let student of students" [ngValue]="student">
         {{ student.nome }}
       </option>
     </select>
-    <div class="form-item">
-      <div class="input-group">
-        <input
-          class="form-control"
-          placeholder="yyyy-mm-dd"
-          name="dp"
-          ngbDatepicker
-          #d="ngbDatepicker"
-          formControlName="data"
-        />
-        <div class="input-group-append">
-          <button
-            class="datepicker-button"
-            (click)="d.toggle()"
-            type="button"
-          ></button>
-        </div>
-      </div>
-    </div>
     <input
       type="text"
       placeholder="Observação"
       formControlName="observacao"
       class="form-item"
     />
-    <button class="submit-button">Submit</button>
+    <button class="submit-button">Doar</button>
   </form>
 </main>

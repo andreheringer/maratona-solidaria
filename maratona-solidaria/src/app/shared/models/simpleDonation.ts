@@ -7,7 +7,6 @@ export class SimpleDonation implements Donation {
   public tipo: number;
   public quantidade: number;
   public representante: Student;
-  public data: Date;
   public pontuacao: number;
   public observacao: string;
 
@@ -25,7 +24,6 @@ export class SimpleDonation implements Donation {
       telefone: '',
       observacao: '',
     };
-    this.data = null;
     this.observacao = '';
   }
 
@@ -35,7 +33,6 @@ export class SimpleDonation implements Donation {
     mock.tipo = 0;
     mock.quantidade = 1;
     mock.pontuacao = 100;
-    mock.data = new Date();
     mock.observacao = 'lalalalalalalalalalalala';
     mock.representante = AddStudent.getMockStudent();
     return mock;
