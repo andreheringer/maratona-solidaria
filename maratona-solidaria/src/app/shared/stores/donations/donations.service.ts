@@ -64,12 +64,7 @@ export class DonationService {
         ...donation,
         id: response.donate_id
       });
-    })
-
-    this.teamService.addTeamScore(
-      donation.representante.curso.id,
-      donation.quantidade * donation.pontuacao
-    );
+    });
   }
 
   public syncDonations(){
