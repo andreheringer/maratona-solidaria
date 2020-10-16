@@ -9,4 +9,5 @@ export interface Donation {
   data: Date;
   pontuacao: number;
   observacao: string;
+  confirmado: boolean;
 }
