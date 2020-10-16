@@ -14,7 +14,7 @@ def index():
 
 
 @public_bp.route("/equipes", methods=["GET"])
-def list_donation():
+def list_teams():
     """
     retorna a lista publica de equipes
     """
