@@ -4,7 +4,6 @@ import pytest
 from app.app import create_app
 from app.extentions import db
 from app.models.equipe import Equipe
-from app.models.colaborador import Colaborador
 
 @pytest.fixture
 def client():
@@ -17,16 +16,19 @@ def client():
         with test_app.app_context():
             db.create_all()
             equipe1 = Equipe(id=1, nome="Computacao", pontuacao=0)
-            colab1 = Colaborador("Gab", "gab@test.com", 1, "1234", False)
             db.session.add(equipe1)
-            db.session.add(colab1)
             db.session.commit()
         yield client
 
 
-def test_registration(client):
-    rv = client.post("/auth/registration", json={
-        'email': 'test@example.com', 'password': 'secret', 'name': 'Teta', 'equipe_id': 1
-    })
-    data = rv.get_json()
-    assert data['status'] == "success"
+def test_public_root(client):
+    rv = client.get("/public/")
+    assert rv.data == b'It works'
+
+
+def test_public_list_teams(client):
+    rv = client.get("/public/equipes")
+    data = json.loads(rv.data)
+    assert data[0]["id"] == 1
+    assert data[0]["nome"] == "Computacao"
+    assert data[0]["pontuacao"] == 0  
