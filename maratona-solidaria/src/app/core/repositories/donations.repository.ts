@@ -43,4 +43,18 @@ export class DonationsRepository {
       headers: header,
     });
   }
+  
+  public confirmDonation(id: number): any {
+    let body = JSON.stringify({});
+
+    const token = localStorage.getItem('token');
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer: ' + token,
+    });
+
+    return this.http.post(environment.apiUrl + `donation/${id}/confirm`, body, {
+      headers: header,
+    });
+  }
 }

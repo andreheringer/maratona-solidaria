@@ -36,6 +36,29 @@ const donationStub = {
   confirmado: false
 }
 
+const donationStub2 = {
+  doacao: "Doação Teste",
+  tipo: PRODUCTS[0].id,
+  quantidade: 3,
+  representante: {
+    id: 0,
+    nome: 'Henrique',
+    matricula: 2016100000,
+    curso: {
+      id: 0,
+      name: 'Ciência da Computação',
+      points: 0
+    },
+    email: 'henrique@mail.com',
+    telefone: null,
+    observacao: null,
+  },
+  data: null,
+  pontuacao: PRODUCTS[0].points,
+  observacao: null,
+  confirmado: false
+}
+
 const createTeamsRepositoryMock = (): any => {
   return {
     getEquipes: () => {
@@ -103,6 +126,22 @@ const createDonationsRepositoryMock = (): any => {
         });
         subscriber.complete();
       });
+    },
+    confirmDonation: (id) => {
+      return new Observable((subscriber) => {
+        subscriber.next({
+          id: 0,
+          doacao: "Doação Teste",
+          tipo: "0",
+          quantidade: 3,
+          aluno_id: 0,
+          data: null,
+          pontuacao: 100,
+          observacao: null,
+          confirmado: true
+        });
+        subscriber.complete();
+      });
     }
   }
 }
@@ -144,9 +183,13 @@ describe('DonationService', () => {
   });
 
 
-  it('should sync with mocked donations', () => {
+  it('should sync with mocked donations and add confirmed points', () => {
     let allDonations: any[];
+    let allTeams: any[];
 
+    teamService.allTeams$.subscribe((storeTeams) => {
+      allTeams = storeTeams;
+    });
     teamService.syncTeams();
     teamService.addTeamScore(0, 0); //setting acronime property
     studentService.syncStudents();
@@ -160,10 +203,16 @@ describe('DonationService', () => {
       id: 0,
       ...donationStub
     }]);
+    expect(allTeams).toEqual([{
+      id: 0,
+      name: 'Ciência da Computação',
+      points: 0,
+      acronime: undefined
+    }])
   });
 
 
-  it('should create a donation and add points to team', () => {
+  it('should create a donation', () => {
     //ARRANGE
     let allDonations: any[];
 
@@ -184,5 +233,34 @@ describe('DonationService', () => {
       ...donationStub
     }]);
   });
+
+
+  it('should confirm a donation', () => {
+    let allDonations: any[];
+    let allTeams: any[];
+    teamService.syncTeams();
+    studentService.syncStudents();
+
+    teamService.allTeams$.subscribe((storeTeams) => {
+      allTeams = storeTeams;
+    });
+    donationService.allDonations$.subscribe((storeDonations) => {
+      allDonations = storeDonations;
+    });
+    donationService.syncDonations();
+    donationService.confirmDonation(allDonations[0].id);
+
+    expect(allDonations).toEqual([{
+      id: 0,
+      ...donationStub2,
+      confirmado: true
+    }])
+    expect(allTeams).toEqual([{
+      id: 0,
+      name: 'Ciência da Computação',
+      points: PRODUCTS[0].points,
+      acronime: undefined
+    }])
+  })
 
 });

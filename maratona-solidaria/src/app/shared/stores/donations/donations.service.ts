@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { Donation } from '../../models/donation';
 import { SimpleDonation } from '../../models/simpleDonation';
 import { TeamService } from '../teams/teams.service';
+import { Student } from '../../models/student';
 
 @Injectable({
   providedIn: 'root',
@@ -70,7 +71,6 @@ export class DonationService {
 
   public syncDonations(){
     this.donationsRepo.getDonations().subscribe((donations) => {
-      console.log(donations);
       let currentStudents = [];
       this.studentService.teamStudents$.subscribe((students) => currentStudents = students);
 
@@ -94,10 +94,46 @@ export class DonationService {
         if (donation.confirmado){
           this.teamService.addTeamScore(
             donation.representante.curso.id,
-            donation.quantidade * donation.pontuacao
+            donation.pontuacao
           );
         }
       });
     })
+  }
+
+  public confirmDonation(id: number){
+    let currentDonations: Donation[];
+    let currentStudents: Student[];
+
+    this.allDonations$.subscribe((donations) => currentDonations = donations);
+    this.studentService.teamStudents$.subscribe((students) => currentStudents = students);
+
+    this.donationsRepo.confirmDonation(id).subscribe((fetchedDonation) =>{
+      const student = currentStudents.find(student => student.id === fetchedDonation.aluno_id);
+      this.updateAllDonations(currentDonations.map(donation => 
+        donation.id === fetchedDonation.id
+          ? {
+              id: fetchedDonation.id,
+              doacao: fetchedDonation.doacao,
+              tipo: Number.parseInt(fetchedDonation.tipo),
+              quantidade: fetchedDonation.quantidade,
+              representante: student,
+              data: fetchedDonation.data,
+              pontuacao: fetchedDonation.pontuacao,
+              observacao: fetchedDonation.observacao,
+              confirmado: fetchedDonation.confirmado
+            }
+          : donation
+      ));
+
+      const team_id = student.curso.id;
+      let points = fetchedDonation.pontuacao;
+
+      if (!fetchedDonation.confirmado){
+        points *= -1;
+      }
+
+      this.teamService.addTeamScore(team_id, points);
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DonationService } from 'src/app/shared/stores/donations/donations.service';
 import { Subscription } from 'rxjs';
 import { Donation } from 'src/app/shared/models/donation';
@@ -8,7 +8,7 @@ import { Donation } from 'src/app/shared/models/donation';
   templateUrl: './admin.page.html',
   styleUrls: ['./admin.page.css'],
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   public allDonations: Donation[];
   constructor(private donationService: DonationService) {}
@@ -27,5 +27,9 @@ export class AdminComponent implements OnInit {
 
   public isEven(i: number) {
     return i % 2 === 0 ? true : false;
+  }
+
+  public confirmDonation(id: number){
+    this.donationService.confirmDonation(id);
   }
 }
