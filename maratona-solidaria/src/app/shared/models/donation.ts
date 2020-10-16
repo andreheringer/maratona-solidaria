@@ -8,4 +8,5 @@ export interface Donation {
   representante: Student;
   pontuacao: number;
   observacao: string;
+  confirmado: boolean;
 }

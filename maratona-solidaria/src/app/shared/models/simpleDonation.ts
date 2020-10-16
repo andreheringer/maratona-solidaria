@@ -9,6 +9,7 @@ export class SimpleDonation implements Donation {
   public representante: Student;
   public pontuacao: number;
   public observacao: string;
+  public confirmado: boolean;
 
   constructor() {
     this.id = null;
@@ -25,6 +26,7 @@ export class SimpleDonation implements Donation {
       observacao: '',
     };
     this.observacao = '';
+    this.confirmado = false;
   }
 
   public static getMockItem(): Donation {

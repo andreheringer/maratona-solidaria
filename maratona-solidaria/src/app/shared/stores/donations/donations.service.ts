@@ -62,13 +62,15 @@ export class DonationService {
     donationObs.subscribe((response) => {
       this.appendDonationsState({
         ...donation,
-        id: response.donate_id
+        id: response.donate_id,
+        confirmado: false
       });
     });
   }
 
   public syncDonations(){
     this.donationsRepo.getDonations().subscribe((donations) => {
+      console.log(donations);
       let currentStudents = [];
       this.studentService.teamStudents$.subscribe((students) => currentStudents = students);
 
@@ -81,17 +83,20 @@ export class DonationService {
           representante: currentStudents.find(student => student.id === donation.aluno_id),
           data: donation.data,
           pontuacao: donation.pontuacao,
-          observacao: donation.observacao
+          observacao: donation.observacao,
+          confirmado: donation.confirmado
         }
       });
 
       this.updateAllDonations(donations);
 
       donations.forEach(donation => {
-        this.teamService.addTeamScore(
-          donation.representante.curso.id,
-          donation.quantidade * donation.pontuacao
-        );
+        if (donation.confirmado){
+          this.teamService.addTeamScore(
+            donation.representante.curso.id,
+            donation.quantidade * donation.pontuacao
+          );
+        }
       });
     })
   }
