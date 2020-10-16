@@ -33,6 +33,7 @@ const donationStub = {
   data: null,
   pontuacao: PRODUCTS[0].points,
   observacao: null,
+  confirmado: false
 }
 
 const createTeamsRepositoryMock = (): any => {
@@ -89,7 +90,8 @@ const createDonationsRepositoryMock = (): any => {
           aluno_id: 0,
           data: null,
           pontuacao: 100,
-          observacao: null
+          observacao: null,
+          confirmado: false
         }]);
         subscriber.complete();
       })
