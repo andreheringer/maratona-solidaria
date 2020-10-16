@@ -6,7 +6,6 @@ export interface Donation {
   tipo: number;
   quantidade: number;
   representante: Student;
-  data: Date;
   pontuacao: number;
   observacao: string;
   confirmado: boolean;
