@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { TeamService } from './../../shared/stores/teams/teams.service';
 import { AddStudentService } from "./../../shared/stores/add-student/add-student.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Team } from 'src/app/shared/models/team';
 
@@ -23,6 +23,8 @@ export class AddStudentComponent implements OnInit {
     observacao: new FormControl(),
   });
 
+  @Output('change') change = new EventEmitter();
+
   constructor(private addStudentService: AddStudentService, private teamService: TeamService) {}
 
   ngOnInit(): void {
@@ -42,5 +44,9 @@ export class AddStudentComponent implements OnInit {
 
   onSubmit() {
     this.addStudentService.submit();
+  }
+
+  changeForm(){
+    this.change.emit({});
   }
 }

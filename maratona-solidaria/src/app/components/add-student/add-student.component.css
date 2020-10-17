@@ -1,22 +1,132 @@
-.datepicker-button {
-  width: 2.75rem;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=") !important;
-  background-repeat: no-repeat;
-  background-size: 23px;
-  background-position: center;
-}
-.form {
+..form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  background-color:transparent
 }
 .form-item {
-  margin: 4px 0px 4px 0px;
-  width: 80%;
-  height: 38px;
+  margin: 0px 0px 16px 0px;
+  padding: 0 0 0 8px;
+  height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 3px solid #FF968A;
+  border-radius: 4px;
+  background-color: #FFFFFF;
 }
 .submit-button {
-  width: 21%;
-  align-self: flex-end;
-  margin-right: 10%;
+  height: 40px;
+  width: 232px;
+  border-radius: 4px;
+  background-color: #FF968A;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 16px;
+  text-align: center;
+}
+
+.donation-button {
+  height: 40px;
+  width: 232px;
+  border-radius: 4px;
+  border: 3px solid #FF968A;
+  background-color: transparent;
+  border-radius: 4px;
+  color: #FF968A;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 16px;
+  text-align: center;
+}
+
+.form-input{
+  box-sizing: border-box;
+  height: 40px;
+  width: 304px;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  padding-left: 8px;
+}
+
+select {
+  margin: 0;      
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: rgba(0,0,0,0.7);
+  
+}
+
+select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+select:focus {
+  background-image:
+    linear-gradient(45deg, gray 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%,  gray 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+  outline: 0;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+textarea:focus, input:focus {
+  color: rgba(0,0,0,0.7);
+}
+
+input, select, textarea{
+  color: rgba(0,0,0,0.7);
+}
+
+::placeholder {
+  color: rgba(0,0,0,0.7) !important;
+  opacity: 1 !important;
+}
+.student-buttons{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 16px;
 }
