@@ -8,34 +8,39 @@
 <main class="main">
   <app-header></app-header>
   <div class="columns">
-      <section class="form">
-        <section>
-          <div class="form-title">Já é colaborador?</div>
-          <div class="form-title">Faça seu login aqui!</div>
-        </section>
-        <section>
-          <div class="form-field">
-            <input
-              class="form-input"
-              id="username"
-              type="text"
-              [(ngModel)]="userName"
-              placeholder="Username"
-            />
-          </div>
-          <div class="form-field">
-            <input
-              class="form-input"
-              id="password"
-              type="password"
-              [(ngModel)]="userPassw"
-              placeholder="Password"
-            />
-          </div>
-        </section>
-        <button type="button" class="btn btn-primary" type="submit" (click)="login()">
-          Entrar
-        </button>
+    <section class="form">
+      <section>
+        <div class="form-title">Já é colaborador?</div>
+        <div class="form-title">Faça seu login aqui!</div>
       </section>
+      <section>
+        <div class="form-field">
+          <input
+            class="form-input"
+            id="username"
+            type="text"
+            [(ngModel)]="userName"
+            placeholder="Email"
+          />
+        </div>
+        <div class="form-field">
+          <input
+            class="form-input"
+            id="password"
+            type="password"
+            [(ngModel)]="userPassw"
+            placeholder="Senha"
+          />
+        </div>
+      </section>
+      <button
+        type="button"
+        class="btn btn-primary"
+        type="submit"
+        (click)="login()"
+      >
+        Entrar
+      </button>
+    </section>
   </div>
 </main>
