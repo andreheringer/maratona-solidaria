@@ -38,8 +38,13 @@ export class HeaderComponent implements OnInit {
   }
 
   logof(){
-    this.userService.logout();
-    this.router.navigateByUrl('/login');
+    this.userService.logout().subscribe((resp) => {
+      debugger
+      this.router.navigateByUrl('/login');
+    }, (error) => {
+      debugger
+      this.router.navigateByUrl('/login');
+    });
   }
 
   logOption(path){

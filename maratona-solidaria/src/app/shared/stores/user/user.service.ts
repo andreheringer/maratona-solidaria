@@ -53,13 +53,15 @@ export class UserService {
     return obs;
   }
 
-  public logout(){
+  public logout(): Observable<any>{
     const token = localStorage.getItem('token');
     this.clearUserStore()
     const obs = this.authRepo.logout(token);
     obs.subscribe((resp) => {
+      debugger
       localStorage.removeItem('token');
     });
+    return obs;
   }
 
   public getAuth(): boolean {
