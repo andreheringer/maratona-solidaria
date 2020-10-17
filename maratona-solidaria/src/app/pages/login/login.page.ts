@@ -46,29 +46,33 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public async login() {
     this.spinner.show();
-    this.userService
-      .authenticate(this.userName, this.userPassw)
-      .subscribe((response) => {
+    this.userService.authenticate(this.userName, this.userPassw).subscribe(
+      (response) => {
         localStorage.setItem('token', response.auth_token);
-        this.startupService.preloadStores()
-        this.spinner.hide();
-        this.router.navigateByUrl('/leaderboard');
-      });
-  }
-
-  private checkLogin() {
-    let token = localStorage.getItem('token');
-    if (token) {
-      this.spinner.show();
-      this.userService.refreshUser(token).subscribe( (response) => {
-        this.startupService.preloadStores()
+        this.startupService.preloadStores();
         this.spinner.hide();
         this.router.navigateByUrl('/leaderboard');
       },
       (error) => {
         this.spinner.hide();
       }
-      )
+    );
+  }
+
+  private checkLogin() {
+    let token = localStorage.getItem('token');
+    if (token) {
+      this.spinner.show();
+      this.userService.refreshUser(token).subscribe(
+        (response) => {
+          this.startupService.preloadStores();
+          this.spinner.hide();
+          this.router.navigateByUrl('/leaderboard');
+        },
+        (error) => {
+          this.spinner.hide();
+        }
+      );
     }
   }
 }
