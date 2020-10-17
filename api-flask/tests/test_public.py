@@ -31,4 +31,11 @@ def test_public_list_teams(client):
     data = json.loads(rv.data)
     assert data[0]["id"] == 1
     assert data[0]["nome"] == "Computacao"
-    assert data[0]["pontuacao"] == 0  
+    assert data[0]["pontuacao"] == 0 
+
+def test_public_teams_classification(client):
+    rv = client.get("/public/classificacao")
+    data = json.loads(rv.data)
+    assert data[0]["id"] == 1
+    assert data[0]["nome"] == "Computacao"
+    assert data[0]["pontuacao"] == 0 
