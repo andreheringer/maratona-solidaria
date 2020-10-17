@@ -45,7 +45,7 @@ export class TeamService {
   public allTeams$: Observable<Team[]>;
 
   public syncTeams() {
-    const equipesObs = this.teamsRepo.getClassificacao();
+    const equipesObs = this.teamsRepo.getEquipes();
     equipesObs.subscribe((equipes) => {
       this.updateAllTeams(
         equipes.map((equipe) => {
