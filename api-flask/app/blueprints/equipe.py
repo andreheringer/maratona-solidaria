@@ -17,7 +17,9 @@ def get_equipe(equipe_id):
     Returns: o equipe do id pesquisado
     """
     equipe = Equipe.query.filter_by(id=equipe_id).first()
-    return jsonify(equipe), 200
+    tamanhoEquipe = Colaborador.query.filter_by(id=equipe_id).count()
+
+    return jsonify(id=equipe.id, nome = equipe.nome, pontuacao = equipe.pontuacao, tamanho=tamanhoEquipe), 200
 
 
 @equipe_bp.route("/list", methods=["POST"])
@@ -53,7 +55,7 @@ def create_equipe():
         return {"status": "fail", "message": "Restricted to admin only."}, 403
     post_data = request.get_json()
     try:
-        equipe = Equipe(nome=post_data.get("nome"), pontuacao=0)
+        equipe = Equipe(nome=post_data.get("nome"), pontuacao=200)
 
         db.session.add(equipe)
         db.session.commit()
