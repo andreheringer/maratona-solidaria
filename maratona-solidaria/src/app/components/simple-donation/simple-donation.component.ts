@@ -1,7 +1,7 @@
 import { StudentService } from './../../shared/stores/students/students.service';
 import { Student } from './../../shared/models/student';
 import { SimpleDonationService } from './../../shared/stores/simple-donation/simple-donation.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PRODUCTS, Product } from 'src/app/shared/models/product';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -25,6 +25,8 @@ export class SimpleDonationComponent implements OnInit {
     pontuacao: new FormControl(),
     observacao: new FormControl(),
   });
+
+  @Output('change') change = new EventEmitter();
 
   constructor(
     private simpleDonationService: SimpleDonationService,
@@ -51,6 +53,7 @@ export class SimpleDonationComponent implements OnInit {
 
   onSubmit() {
     this.simpleDonationService.submit();
+    this.donation = false;
   }
   onDonationChange() {
     this.donation = true;
@@ -84,5 +87,9 @@ export class SimpleDonationComponent implements OnInit {
 
   onStudentChange() {
     this.student = true;
+  }
+
+  changeForm(){
+    this.change.emit({});
   }
 }

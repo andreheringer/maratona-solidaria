@@ -2,7 +2,6 @@
   <form
     [formGroup]="newSimpleDonationForm"
     ngxsForm="simpleDonation.form"
-    (ngSubmit)="onSubmit()"
     class="form"
   >
     <input
@@ -48,6 +47,9 @@
       formControlName="observacao"
       class="form-item"
     />
-    <button class="submit-button">Doar</button>
+    <section class="botoes-donate">
+      <button (click)="changeForm()" class="student-button">Adicionar Aluno</button>
+      <button (click)="onSubmit()" class="submit-button">Doar</button>
+    </section>
   </form>
 </main>
