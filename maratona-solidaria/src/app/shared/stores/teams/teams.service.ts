@@ -16,10 +16,7 @@ import { Team } from '../../models/team';
   providedIn: 'root',
 })
 export class TeamService {
-  constructor(
-    private store: Store,
-    private teamsRepo: TeamsRepository
-  ) {}
+  constructor(private store: Store, private teamsRepo: TeamsRepository) {}
 
   private getStore() {
     return this.store.snapshot().teams as TeamStateModel;
@@ -48,15 +45,18 @@ export class TeamService {
   public allTeams$: Observable<Team[]>;
 
   public syncTeams() {
-    const equipesObs = this.teamsRepo.getEquipes();
+    const equipesObs = this.teamsRepo.getClassificacao();
     equipesObs.subscribe((equipes) => {
-      this.updateAllTeams(equipes.map(equipe => {
-        return {
-          id: equipe.id,
-          name: equipe.nome,
-          points: equipe.pontuacao
-        }
-      }));
+      this.updateAllTeams(
+        equipes.map((equipe) => {
+          return {
+            id: equipe.id,
+            name: equipe.nome,
+            points: equipe.pontuacao,
+            size: equipe.tamanho,
+          };
+        })
+      );
     });
   }
 
