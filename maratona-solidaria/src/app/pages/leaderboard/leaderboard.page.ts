@@ -4,6 +4,7 @@ import { TeamService } from './../../shared/stores/teams/teams.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TEAMS } from 'src/app/shared/models/team';
+import { TeamsRepository } from 'src/app/core/repositories/teams.repository';
 
 @Component({
   selector: 'app-leaderboard',
@@ -20,7 +21,8 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private teamsRepo: TeamsRepository
   ) {
     this.routeSub = this.route.queryParams.subscribe((params) => {
       if (params.returnUrl) {
@@ -40,10 +42,11 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
     this.leaderPoints = this.teams.reduce((max, team) =>
       max.points > team.points ? max : team
     ).points;
+
     // this.teams = this.teams.sort((t1, t2) => {
-    //   if (t1.points < t2.points){
+    //   if (t1.points < t2.points) {
     //     return 1;
-    //   } else if (t1.points === t2.points){
+    //   } else if (t1.points === t2.points) {
     //     return 0;
     //   } else {
     //     return -1;
@@ -58,11 +61,5 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
 
   public getRandomColor() {
     return 'warning';
-  }
-
-  public orderByStudentQuantity() {
-    this.teams.forEach((team) => {
-      team.points = team.points / team.size;
-    });
   }
 }
