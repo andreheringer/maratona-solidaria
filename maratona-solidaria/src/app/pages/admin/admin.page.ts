@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { DonationService } from 'src/app/shared/stores/donations/donations.service';
 import { Subscription } from 'rxjs';
 import { Donation } from 'src/app/shared/models/donation';
@@ -11,7 +11,9 @@ import { Donation } from 'src/app/shared/models/donation';
 export class AdminComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   public allDonations: Donation[];
-  constructor(private donationService: DonationService) {}
+  @ViewChild('tooltip') tooltip: ElementRef;
+  
+  constructor(private donationService: DonationService, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.sub = this.donationService.allDonations$.subscribe((donations) => {
@@ -32,4 +34,6 @@ export class AdminComponent implements OnInit, OnDestroy {
   public confirmDonation(id: number){
     this.donationService.confirmDonation(id);
   }
+
+
 }
