@@ -15,6 +15,9 @@ export class TeamsRepository {
   public getClassificacao(): any {
     return this.http.get(environment.apiUrl + 'public/classificacao');
   }
+  public getEquipeById(id: number): any {
+    return this.http.get(environment.apiUrl + 'equipe/' + id);
+  }
 
   public createEquipe(team: Team) {
     let body = JSON.stringify({});
