@@ -1,19 +1,11 @@
 <main class="main">
   <app-header></app-header>
   <div class="content">
-    <ngb-accordion class="accordion" [closeOthers]="true" activeIds="static-1">
-      <ngb-panel id="static-1">
-        <ng-template ngbPanelHeader class="painel btn btn-link p-0">Doação</ng-template>
-        <ng-template ngbPanelContent>
-          <app-simple-donation></app-simple-donation>
-        </ng-template>
-      </ngb-panel>
-      <ngb-panel id="static-2">
-        <ng-template ngbPanelHeader class="painel btn btn-link p-1">Alunos</ng-template>
-        <ng-template ngbPanelContent>
-          <app-add-student></app-add-student>
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
+    <div *ngIf="donation; else elseBlock">
+      <app-simple-donation (change)="changeform()"></app-simple-donation>
+    </div>
+    <ng-template #elseBlock>
+      <app-add-student (change)="changeform()"></app-add-student>
+    </ng-template>
   </div>
 </main>

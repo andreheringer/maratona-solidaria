@@ -11,6 +11,7 @@ import { Subscription } from "rxjs";
 export class ColaborateComponent implements OnInit, OnDestroy {
   public returnUrl = "";
   private sub: Subscription;
+  public donation = true;
   constructor(private router: Router, private route: ActivatedRoute) {
     this.sub = this.route.queryParams.subscribe((params) => {
       if (params.returnUrl) {
@@ -28,5 +29,9 @@ export class ColaborateComponent implements OnInit, OnDestroy {
   }
   public isEven(i: number) {
     return i % 2 === 0 ? true : false;
+  }
+
+  changeform(){
+    this.donation = !this.donation;
   }
 }
