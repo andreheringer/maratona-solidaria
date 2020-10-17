@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.spinner.show();
     this.userService.authenticate(this.userName, this.userPassw).subscribe(
       (response) => {
-        localStorage.setItem('token', response.auth_token);
+        
         this.startupService.preloadStores();
         this.spinner.hide();
         this.router.navigateByUrl('/leaderboard');
@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private checkLogin() {
+    debugger
     let token = localStorage.getItem('token');
     if (token) {
       this.spinner.show();

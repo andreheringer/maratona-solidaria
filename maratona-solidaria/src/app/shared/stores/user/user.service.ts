@@ -38,16 +38,17 @@ export class UserService {
 
   public authenticate(email: string, password: string): Observable<any> {
     const obs = this.authRepo.login(email, password);
-    obs.subscribe((user) => {
-      this.syncUser(user.auth_token);
+    obs.subscribe((response) => {
+      localStorage.setItem('token', response.auth_token);
+      this.syncUser(response);
     });
     return obs;
   }
 
   public refreshUser(token: string): Observable<any> {
     const obs = this.authRepo.refresh(token);
-    obs.subscribe((user) => {
-      this.syncUser(user.auth_token);
+    obs.subscribe((response) => {
+      this.syncUser(response);
     });
     return obs;
   }
@@ -77,12 +78,13 @@ export class UserService {
     this.updateUserState({ user });
   }
 
-  public syncUser(token) {
-    const tokenDaata = this.helper.decodeToken(token);
+  public syncUser(response) {
     this.updateUserState({
       user: {
-        data: tokenDaata,
-        permission: Permission.admin,
+        data: {
+          teamId: response.equipe_id,
+        },
+        permission:response.is_admin ? Permission.admin : Permission.user,
       },
     });
   }
