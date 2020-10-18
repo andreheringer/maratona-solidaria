@@ -5,9 +5,6 @@ import { UserStateModel } from './user.state';
 import { ClearUserStore, UpdateUserState } from './user.actions';
 import { Permission } from '../../enums/permission';
 import { User } from '../../models/user';
-import { HttpHeaders, HttpHandler, HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { AuthRepository } from 'src/app/core/repositories/auth.repository';
 
@@ -15,12 +12,7 @@ import { AuthRepository } from 'src/app/core/repositories/auth.repository';
   providedIn: 'root',
 })
 export class UserService {
-  private helper = new JwtHelperService();
-  constructor(
-    private store: Store,
-    private http: HttpClient,
-    private authRepo: AuthRepository
-  ) {}
+  constructor(private store: Store, private authRepo: AuthRepository) {}
 
   private getStore() {
     return this.store.snapshot().user as UserStateModel;
@@ -53,12 +45,12 @@ export class UserService {
     return obs;
   }
 
-  public logout(): Observable<any>{
+  public logout(): Observable<any> {
     const token = localStorage.getItem('token');
-    this.clearUserStore()
+    this.clearUserStore();
     const obs = this.authRepo.logout(token);
     obs.subscribe((resp) => {
-      debugger
+      debugger;
       localStorage.removeItem('token');
     });
     return obs;
@@ -86,7 +78,7 @@ export class UserService {
         data: {
           teamId: response.equipe_id,
         },
-        permission:response.is_admin ? Permission.admin : Permission.user,
+        permission: response.is_admin ? Permission.admin : Permission.user,
       },
     });
   }

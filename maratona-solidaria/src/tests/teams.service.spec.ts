@@ -9,18 +9,21 @@ import { TestBed } from '@angular/core/testing';
 
 const createTeamsRepositoryMock = (): any => {
   return {
-    getEquipes: () => {
-      return new Observable(subscriber => {
-        subscriber.next([{
-          id: 0,
-          nome: 'Ciência da Computação',
-          pontuacao: 0
-        }]);
+    getClassificacao: () => {
+      return new Observable((subscriber) => {
+        subscriber.next([
+          {
+            id: 0,
+            nome: 'Ciência da Computação',
+            pontuacao: 0,
+            tamanho: 1,
+          },
+        ]);
         subscriber.complete();
-      })
-    }
-  }
-}
+      });
+    },
+  };
+};
 
 describe('TeamService', () => {
   let store: Store;
@@ -29,13 +32,12 @@ describe('TeamService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([TeamState]), NgxsDispatchPluginModule]
+      imports: [NgxsModule.forRoot([TeamState]), NgxsDispatchPluginModule],
     });
 
     store = TestBed.inject(Store);
     teamService = new TeamService(store, teamsRepo);
   });
-
 
   it('should start empty', () => {
     let teams: Team[];
@@ -47,38 +49,40 @@ describe('TeamService', () => {
     expect(teams).toEqual([]);
   });
 
-
   it('should sync with mocked teams', () => {
     let teams: any[];
-    
+
     teamService.allTeams$.subscribe((storeTeams) => {
       teams = storeTeams;
     });
     teamService.syncTeams();
 
-    expect(teams).toEqual([{
-      id: 0,
-      name: 'Ciência da Computação',
-      points: 0
-    }]);
+    expect(teams).toEqual([
+      {
+        id: 0,
+        name: 'Ciência da Computação',
+        points: 0,
+        size: 1,
+      },
+    ]);
   });
 
-
-  it('should add score to id\'d team', () => {
+  it("should add score to id'd team", () => {
     let teams: any[];
-    
+
     teamService.allTeams$.subscribe((storeTeams) => {
       teams = storeTeams;
     });
     teamService.syncTeams();
     teamService.addTeamScore(teams[0].id, 8);
 
-    expect(teams).toEqual([{
-      id: 0,
-      name: 'Ciência da Computação',
-      points: 8,
-      acronime: undefined
-    }]);
+    expect(teams).toEqual([
+      {
+        id: 0,
+        name: 'Ciência da Computação',
+        points: 8,
+        acronime: undefined,
+      },
+    ]);
   });
-
 });

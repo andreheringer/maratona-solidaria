@@ -11,45 +11,50 @@ import { TestBed } from '@angular/core/testing';
 
 const createTeamsRepositoryMock = (): any => {
   return {
-    getEquipes: () => {
-      return new Observable(subscriber => {
-        subscriber.next([{
-          id: 0,
-          nome: 'Ciência da Computação',
-          pontuacao: 0
-        }]);
+    getClassificacao: () => {
+      return new Observable((subscriber) => {
+        subscriber.next([
+          {
+            id: 0,
+            nome: 'Ciência da Computação',
+            pontuacao: 0,
+            tamanho: 1,
+          },
+        ]);
         subscriber.complete();
-      })
-    }
-  }
-}
+      });
+    },
+  };
+};
 
 const createStudentsRepositoryMock = (): any => {
   return {
     getStudents: () => {
-      return new Observable(subscriber => {
-        subscriber.next([{
-          id: 0,
-          nome: 'Henrique',
-          matricula: 2016100000,
-          equipe_id: 0,
-          email: 'henrique@mail.com',
-          telefone: null,
-          observacao: null,
-        }]);
+      return new Observable((subscriber) => {
+        subscriber.next([
+          {
+            id: 0,
+            nome: 'Henrique',
+            matricula: 2016100000,
+            equipe_id: 0,
+            email: 'henrique@mail.com',
+            telefone: null,
+            observacao: null,
+          },
+        ]);
         subscriber.complete();
-      })
+      });
     },
     createStudent: (student) => {
       return new Observable((subscriber) => {
         subscriber.next({
-          id: 0
+          id: 0,
         });
         subscriber.complete();
       });
-    }
-  }
-}
+    },
+  };
+};
 
 describe('StudentService', () => {
   let store: Store;
@@ -60,14 +65,17 @@ describe('StudentService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([StudentState, TeamState]), NgxsDispatchPluginModule, HttpClientModule]
+      imports: [
+        NgxsModule.forRoot([StudentState, TeamState]),
+        NgxsDispatchPluginModule,
+        HttpClientModule,
+      ],
     });
 
     store = TestBed.inject(Store);
     teamService = new TeamService(store, teamsRepo);
     studentService = new StudentService(store, studentsRepo, teamService);
   });
-
 
   it('should start empty', () => {
     let allStudents: any[];
@@ -84,7 +92,6 @@ describe('StudentService', () => {
     expect(teamStudents).toEqual([]);
   });
 
-
   it('should sync with mocked students', () => {
     let teamStudents: any[];
 
@@ -94,21 +101,23 @@ describe('StudentService', () => {
     });
     studentService.syncStudents();
 
-    expect(teamStudents).toEqual([{
-      id: 0,
-      nome: 'Henrique',
-      matricula: 2016100000,
-      curso: {
+    expect(teamStudents).toEqual([
+      {
         id: 0,
-        name: 'Ciência da Computação',
-        points: 0
+        nome: 'Henrique',
+        matricula: 2016100000,
+        curso: {
+          id: 0,
+          name: 'Ciência da Computação',
+          points: 0,
+          size: 1,
+        },
+        email: 'henrique@mail.com',
+        telefone: null,
+        observacao: null,
       },
-      email: 'henrique@mail.com',
-      telefone: null,
-      observacao: null,
-    }]);
+    ]);
   });
-
 
   it('should create a student', () => {
     let teamStudents: any[];
@@ -125,27 +134,28 @@ describe('StudentService', () => {
         id: 0,
         name: 'Ciência da Computação',
         points: 0,
-        acronime: 'CC'
+        acronime: 'CC',
       },
       email: 'henrique@mail.com',
       telefone: null,
       observacao: null,
     });
 
-    expect(teamStudents).toEqual([{
-      id: 0,
-      nome: 'Henrique',
-      matricula: 2016100000,
-      curso: {
+    expect(teamStudents).toEqual([
+      {
         id: 0,
-        name: 'Ciência da Computação',
-        points: 0,
-        acronime: 'CC'
+        nome: 'Henrique',
+        matricula: 2016100000,
+        curso: {
+          id: 0,
+          name: 'Ciência da Computação',
+          points: 0,
+          acronime: 'CC',
+        },
+        email: 'henrique@mail.com',
+        telefone: null,
+        observacao: null,
       },
-      email: 'henrique@mail.com',
-      telefone: null,
-      observacao: null,
-    }]);
-  })
-
+    ]);
+  });
 });
