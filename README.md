@@ -26,17 +26,17 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
   - [X] Reestruturação dos estilos (Henrique)
 
 - Eu como visitante, colaborador ou admin gostaria de ver a classificação
-  - [ ] Testes de unidade dos endpoint (Yasmin)
+  - [X] Testes de unidade dos endpoint (Yasmin)
   - [ ] Testes de unidade das restrições (Yasmin)
   - [ ] Testes de unidade de redirecionamento (Lucas)
-  - [ ] Integração para classificação das equipes
+  - [X] Integração para classificação das equipes
  
 - Eu como administrador gostaria de ter acesso a gerenciação dos alunos, equipes e doações
   - [X] Refatorar banco de dados (André)
   - [X] Desenvolver a restrição no back-end (Ingrid)
   - [ ] Testes de unidade dos endpoint (Ingrid)
   - [ ] Testes de unidade das restrições (Ingrid)
-  - [ ] Design da tela (Lucas)
+  - [X] Design da tela (Lucas)
   
 - Eu como colaborador gostaria de logar
   - [X] Redesign da tela (Lucas)
@@ -91,7 +91,7 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
 - Eu como administrador gostaria de ter acesso a gerenciação dos alunos, equipes e doações
   - [X] Desenvolver a restrição no back-end (Ingrid)
   - [X] Desenvolver a restrição no front-end (Lucas)
-  - [ ] Design da tela (Lucas)
+  - [X] Design da tela (Lucas)
   
 - Eu como colaborador gostaria de ter acesso a dados da minha equipe e doações
   - [X] Desenvolver a restrição no back-end (André)
