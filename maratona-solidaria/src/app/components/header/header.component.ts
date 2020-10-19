@@ -39,10 +39,10 @@ export class HeaderComponent implements OnInit {
 
   logof(){
     this.userService.logout().subscribe((resp) => {
-      debugger
+      
       this.router.navigateByUrl('/login');
     }, (error) => {
-      debugger
+      
       this.router.navigateByUrl('/login');
     });
   }

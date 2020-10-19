@@ -50,7 +50,6 @@ export class UserService {
     this.clearUserStore();
     const obs = this.authRepo.logout(token);
     obs.subscribe((resp) => {
-      debugger;
       localStorage.removeItem('token');
     });
     return obs;
