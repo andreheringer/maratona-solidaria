@@ -2,10 +2,10 @@
   <app-header></app-header>
   <div class="content">
     <div *ngIf="donation; else elseBlock">
-      <app-simple-donation (change)="changeform()"></app-simple-donation>
+      <app-simple-donation (changeForm)="changeform($event)"></app-simple-donation>
     </div>
     <ng-template #elseBlock>
-      <app-add-student (change)="changeform()"></app-add-student>
+      <app-add-student (changeForm)="changeform($event)"></app-add-student>
     </ng-template>
   </div>
 </main>

@@ -39,15 +39,19 @@ export class HeaderComponent implements OnInit {
 
   logof(){
     this.userService.logout().subscribe((resp) => {
-      debugger
+      
       this.router.navigateByUrl('/login');
     }, (error) => {
-      debugger
+      
       this.router.navigateByUrl('/login');
     });
   }
 
   logOption(path){
     return !this.logout || path !== '/login';
+  }
+
+  donateOpt(path){
+    return  !(path ===  '/colaborate' && this.userPerm === Permission.admin)
   }
 }

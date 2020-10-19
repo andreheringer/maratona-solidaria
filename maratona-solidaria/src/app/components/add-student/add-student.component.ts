@@ -23,7 +23,7 @@ export class AddStudentComponent implements OnInit {
     observacao: new FormControl(),
   });
 
-  @Output('change') change = new EventEmitter();
+  @Output('changeForm') changeForm = new EventEmitter();
 
   constructor(private addStudentService: AddStudentService, private teamService: TeamService) {}
 
@@ -46,7 +46,8 @@ export class AddStudentComponent implements OnInit {
     this.addStudentService.submit();
   }
 
-  changeForm(){
-    this.change.emit({});
+  onChangeForm(){
+    
+    this.changeForm.emit({});
   }
 }

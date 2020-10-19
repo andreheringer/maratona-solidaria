@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private checkLogin() {
-    debugger
+    
     let token = localStorage.getItem('token');
     if (token) {
       this.spinner.show();

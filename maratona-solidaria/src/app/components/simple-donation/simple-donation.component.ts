@@ -26,7 +26,7 @@ export class SimpleDonationComponent implements OnInit {
     observacao: new FormControl(),
   });
 
-  @Output('change') change = new EventEmitter();
+  @Output('changeForm') changeForm = new EventEmitter();
 
   constructor(
     private simpleDonationService: SimpleDonationService,
@@ -89,7 +89,8 @@ export class SimpleDonationComponent implements OnInit {
     this.student = true;
   }
 
-  changeForm(){
-    this.change.emit({});
+  onChangeForm(){
+    
+    this.changeForm.emit({});
   }
 }
