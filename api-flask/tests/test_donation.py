@@ -26,19 +26,20 @@ def client():
 
             db.drop_all()
 
-
-def test_registration(client):
-    rv = client.post("/auth/registration", json={
-        'email': 'test@example.com', 'password': 'secret', 'name': 'Teta', 'equipe_id': 1
-    })
-    data = rv.get_json()
-    assert data['status'] == "success"
-
-def test_login(client):
+def test_donation(client):
     rv = client.post("/auth/login", json={
         'email': 'gab@test.com',
         'password': '1234'
     })
 
     data = rv.get_json()
+    token = data["auth_token"]
+
+    rv = client.post("/donation/create", json={"doacao": "3Arroz", "tipo":"Arroz", "quantidade": 2, "aluno_id": 1 , "pontuacao": 30}, 
+    headers={
+        'Authorization': 'Bearer %s' % token
+    })
+
+    data = rv.get_json()
+
     assert data['status'] == "success"
