@@ -20,13 +20,13 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
 
 - Eu como visitante, colaborador ou admin gostaria de acessar a página inicial
   - [X] Testes de unidade dos endpoint (Yasmin)
-  - [ ] Testes de unidade de redirecionamento (Henrique)
+  - [X] Testes de serviços (Henrique)
   - [X] Redesign da tela (Lucas)
   - [X] Reestruturação dos estilos (Henrique)
 
 - Eu como visitante, colaborador ou admin gostaria de ver a classificação
   - [X] Testes de unidade dos endpoint (Yasmin)
-  - [ ] Testes de unidade de redirecionamento (Lucas)
+  - [X] Testes de serviços (Henrique)
   - [X] Integração para classificação das equipes
  
 - Eu como administrador gostaria de ter acesso a gerenciação dos alunos, equipes e doações
@@ -41,7 +41,7 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
   - [X] Reestruturação dos estilos (Henrique)
   - [X] Testes de unidade dos endpoint (Ingrid)
   - [X] Testes de unidade das restrições (Ingrid)
-  - [ ] Testes de unidade de redirecionamento (Henrique)
+  - [X] Testes de serviços (Henrique)
   
 - Eu como visitante, colaborador ou admin gostaria de acessar a página sobre
   - [X] Redesign da tela (Lucas)
@@ -50,7 +50,7 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
 - Eu como colaborador gostaria de fazer uma doação
   - [X] Testes de unidade dos endpoint (Ingrid)
   - [X] Testes de unidade das restrições (Ingrid)
-  - [ ] Testes de unidade de redirecionamento (Lucas)
+  - [X] Testes de serviços (Henrique)
   - [X] Redesign da tela (Lucas)
   - [X] Reestruturação dos estilos (Henrique)
 
