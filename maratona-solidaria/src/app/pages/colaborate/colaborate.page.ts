@@ -31,7 +31,8 @@ export class ColaborateComponent implements OnInit, OnDestroy {
     return i % 2 === 0 ? true : false;
   }
 
-  changeform(){
+  changeform(event){
+    
     this.donation = !this.donation;
   }
 }
