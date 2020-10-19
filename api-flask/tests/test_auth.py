@@ -34,6 +34,13 @@ def test_registration(client):
     data = rv.get_json()
     assert data['status'] == "success"
 
+def test_invalid_registration(client):
+    rv = client.post("/auth/registration", json={
+        'email': 'gab@test.com', 'password': 'secret', 'name': 'Teta', 'equipe_id': 1
+    })
+    data = rv.get_json()
+    assert data['status'] == "fail"
+
 def test_login(client):
     rv = client.post("/auth/login", json={
         'email': 'gab@test.com',
@@ -42,3 +49,14 @@ def test_login(client):
 
     data = rv.get_json()
     assert data['status'] == "success"
+
+def test_logout(client):
+    rv = client.post("/auth/login", json={
+        'email': 'gab@test.com',
+        'password': '1234'
+    })
+    data = rv.get_json()
+    token = data["auth_token"]
+    rv =  client.get('/auth/logout',     headers={
+        'Authorization': 'Bearer %s' % token
+    })
