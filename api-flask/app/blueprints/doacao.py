@@ -53,7 +53,10 @@ def list_donation():
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
     colaborador = Colaborador.query.filter_by(id=resp).first()
-    doacoes = Doacao.query.filter_by(equipe_id=colaborador.equipe_id).all()
+    if colaborador.admin:
+        doacoes = Doacao.query.all()    
+    else:
+        doacoes = Doacao.query.filter_by(equipe_id=colaborador.equipe_id).all()
     return jsonify(doacoes), 200
 
 
@@ -69,7 +72,6 @@ def create_donation():
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
     colaborador = Colaborador.query.filter_by(id=resp).first()
-    equipe = Equipe.query.filter_by(id=colaborador.equipe_id).first()
     post_data = request.get_json()
     try:
         donate = Doacao(
