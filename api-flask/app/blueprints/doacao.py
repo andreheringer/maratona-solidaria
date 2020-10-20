@@ -56,6 +56,20 @@ def list_donation():
     doacoes = Doacao.query.filter_by(equipe_id=colaborador.equipe_id).all()
     return jsonify(doacoes), 200
 
+@doacao_bp.route("/admin/list", methods=["GET"])
+def list_donation_admin():
+    """
+    Parameters: none
+    Returns: lista de todas as doações realizadas
+    """
+    auth_header = request.headers.get("Authorization")
+    token_or_error, status = Colaborador.parse_token(auth_header)
+    if status != 200:
+        return token_or_error, status
+    resp = Colaborador.decode_auth_token(token_or_error)
+    colaborador = Colaborador.query.filter_by(id=resp).first()
+    doacoes = Doacao.query.all()
+    return jsonify(doacoes), 200
 
 @doacao_bp.route("/create", methods=["POST"])
 def create_donation():
