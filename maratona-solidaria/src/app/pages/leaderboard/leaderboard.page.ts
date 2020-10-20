@@ -38,6 +38,7 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
+    // this.teamService.syncTeams();
     const a = this.router.url;
     this.leaderPoints = this.teams.reduce((max, team) =>
       max.points > team.points ? max : team

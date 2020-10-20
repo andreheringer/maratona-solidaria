@@ -15,6 +15,7 @@
 .content {
   background-color: rgba(255,255,255,0.8);
   width: 30%;
+  height: auto;
   min-width: 650px;
   padding: 80px 72px;
   box-shadow: 0px 0px 8px rgb(0, 0, 0, 0.4);

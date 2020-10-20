@@ -1,4 +1,4 @@
-..form {
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,4 +129,14 @@ input, select, textarea{
   justify-content: space-between;
   width: 100%;
   margin-top: 16px;
+}
+.form-title{
+  align-self: flex-start;
+    height: 32px;
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 32px;
+    margin: 0 0 32px 0;
 }

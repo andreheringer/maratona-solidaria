@@ -6,7 +6,7 @@
   <section class="buttons">
     <div *ngFor="let opt of options; let i = index">
       <button
-        *ngIf="opt.minPerm <= userPerm.valueOf() && logOption(opt.path)"
+        *ngIf="opt.minPerm <= userPerm.valueOf() && logOption(opt.path) && donateOpt(opt.path)"
         [disabled]="i === current"
         (click)="onClickOption(opt.path)"
         [ngClass]="i === current ? 'header-menu-button-selected' : ''"

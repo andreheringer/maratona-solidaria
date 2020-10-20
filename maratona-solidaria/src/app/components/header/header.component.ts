@@ -50,4 +50,8 @@ export class HeaderComponent implements OnInit {
   logOption(path){
     return !this.logout || path !== '/login';
   }
+
+  donateOpt(path){
+    return  !(path ===  '/colaborate' && this.userPerm === Permission.admin)
+  }
 }
