@@ -19,7 +19,7 @@ def get_equipe(equipe_id):
     equipe = Equipe.query.filter_by(id=equipe_id).first()
     tamanhoEquipe = Colaborador.query.filter_by(equipe_id=equipe_id).count()
 
-    return jsonify(id=equipe.id, nome = equipe.nome, pontuacao = equipe.pontuacao, tamanho=tamanhoEquipe), 200
+    return jsonify(id=equipe.id, nome = equipe.nome, sigla= equipe.sigla, pontuacao = equipe.pontuacao, tamanho=tamanhoEquipe), 200
 
 
 @equipe_bp.route("/list", methods=["POST"])
