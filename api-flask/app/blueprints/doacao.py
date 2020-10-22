@@ -31,13 +31,19 @@ def confirm_donation(donation_id):
     if status != 200:
         return token_or_error, status
     user_id = Colaborador.decode_auth_token(token_or_error)
-    # verifica admin
     colaborador = Colaborador.query.get(user_id)
     if not colaborador.admin:
         return {"status": "fail", "message": "Restricted to admin only."}, 403
     donation = Doacao.query.filter_by(id=donation_id).first()
-    donation.confirmado = not donation.confirmado
-    db.session.commit()
+    try:
+        donation.confirmado = not donation.confirmado
+        equipe = Equipe.query.filter_by(id=donation.equipe_id).first()
+        equipe.pontuacao += donation.pontuacao
+        db.session.add(equipe)
+        db.session.add(donation)
+        db.session.commit()
+    except Exception as e:
+        return 500
     return jsonify(donation), 200
 
 
