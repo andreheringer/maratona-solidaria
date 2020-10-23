@@ -36,9 +36,14 @@ def confirm_donation(donation_id):
         return {"status": "fail", "message": "Restricted to admin only."}, 403
     donation = Doacao.query.filter_by(id=donation_id).first()
     try:
-        donation.confirmado = not donation.confirmado
-        equipe = Equipe.query.filter_by(id=donation.equipe_id).first()
-        equipe.pontuacao += donation.pontuacao
+        if donation.confirmado:
+            donation.confirmado = not donation.confirmado
+            equipe = Equipe.query.filter_by(id=donation.equipe_id).first()
+            equipe.pontuacao -= donation.pontuacao
+        else:
+            donation.confirmado = not donation.confirmado
+            equipe = Equipe.query.filter_by(id=donation.equipe_id).first()
+            equipe.pontuacao += donation.pontuacao
         db.session.add(equipe)
         db.session.add(donation)
         db.session.commit()
