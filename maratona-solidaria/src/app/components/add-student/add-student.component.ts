@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/shared/stores/user/user.service';
 import { Subscription } from 'rxjs';
 import { TeamService } from './../../shared/stores/teams/teams.service';
 import { AddStudentService } from "./../../shared/stores/add-student/add-student.service";
@@ -14,6 +15,7 @@ export class AddStudentComponent implements OnInit {
   private sub: Subscription;
   teams: Team[];
   defaultTeamDisabled: boolean = false;
+  teamName: string;
   addStudentForm = new FormGroup({
     nome: new FormControl(),
     matricula: new FormControl(),
@@ -25,13 +27,17 @@ export class AddStudentComponent implements OnInit {
 
   @Output('changeForm') changeForm = new EventEmitter();
 
-  constructor(private addStudentService: AddStudentService, private teamService: TeamService) {}
+  constructor(private addStudentService: AddStudentService, private teamService: TeamService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.teamService.syncTeams();
     this.sub = this.teamService.allTeams$.subscribe((teams) => {
       this.teams = teams;
     });
+
+    const user = this.userService.getUser();
+    console.log(this.teams);
+    this.teamName = this.teams.find(team => team.id === user.data.teamId).name;
   }
 
   onTeamChange() {

@@ -21,14 +21,17 @@
       formControlName="curso"
       class="form-item"
       (change)="onTeamChange()"
-      ngModel="Curso"
+      ngModel="teamName"
     >
-      <option [disabled]="defaultTeamDisabled" selected value="Curso">
+      <option [disabled]="true" [selected]="true">
+        {{teamName}}
+      </option>
+      <!-- <option [disabled]="defaultTeamDisabled" selected value="Curso">
         Curso
-      </option>
-      <option *ngFor="let team of teams" [ngValue]="team">
+      </option> -->
+      <!-- <option *ngFor="let team of teams" [ngValue]="team">
         {{ team.name }}
-      </option>
+      </option> -->
     </select>
     <input
       type="text"

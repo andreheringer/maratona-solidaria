@@ -54,6 +54,7 @@ export class TeamService {
             name: equipe.nome,
             points: equipe.pontuacao,
             size: equipe.tamanho,
+            acronime: equipe.sigla,
           };
         })
       );
