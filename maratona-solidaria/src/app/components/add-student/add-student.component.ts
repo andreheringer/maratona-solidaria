@@ -30,18 +30,14 @@ export class AddStudentComponent implements OnInit {
   constructor(private addStudentService: AddStudentService, private teamService: TeamService, private userService: UserService) {}
 
   ngOnInit(): void {
-    debugger
     this.teamService.syncTeams();
     this.sub = this.teamService.allTeams$.subscribe((teams) => {
       this.teams = teams;
     });
 
     const user = this.userService.getUser();
-    console.log(this.teams);
-    this.teamName = this.teams.find(team => team.id === user.data.teamId);
-    this.addStudentForm.controls['curso'].setValue(this.teamName);
-    console.log(this.addStudentForm.controls['curso'])
-
+    this.team = this.teams.find(team => team.id === user.data.teamId);
+    this.addStudentService.setTeam(this.team);
   }
 
   onTeamChange() {

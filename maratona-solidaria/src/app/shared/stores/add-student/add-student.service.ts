@@ -1,3 +1,5 @@
+import { UpdateFormValue } from '@ngxs/form-plugin';
+import { Team } from 'src/app/shared/models/team';
 import { Store } from "@ngxs/store";
 import { Injectable } from "@angular/core";
 import { Dispatch } from "@ngxs-labs/dispatch-decorator";
@@ -22,6 +24,10 @@ export class AddStudentService {
 
   public clearForm() {
     this.clearFormStore();
+  }
+
+  public setTeam(team: Team) {
+    this.store.dispatch(new UpdateFormValue({value: team, path: "addStudent.form", propertyPath: "curso"}));
   }
 
   public submit() {
