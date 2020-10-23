@@ -15,7 +15,7 @@ export class AddStudentComponent implements OnInit {
   private sub: Subscription;
   teams: Team[];
   defaultTeamDisabled: boolean = false;
-  teamName: string;
+  team: Team;
   addStudentForm = new FormGroup({
     nome: new FormControl(),
     matricula: new FormControl(),
@@ -30,6 +30,7 @@ export class AddStudentComponent implements OnInit {
   constructor(private addStudentService: AddStudentService, private teamService: TeamService, private userService: UserService) {}
 
   ngOnInit(): void {
+    debugger
     this.teamService.syncTeams();
     this.sub = this.teamService.allTeams$.subscribe((teams) => {
       this.teams = teams;
@@ -37,7 +38,10 @@ export class AddStudentComponent implements OnInit {
 
     const user = this.userService.getUser();
     console.log(this.teams);
-    this.teamName = this.teams.find(team => team.id === user.data.teamId).name;
+    this.teamName = this.teams.find(team => team.id === user.data.teamId);
+    this.addStudentForm.controls['curso'].setValue(this.teamName);
+    console.log(this.addStudentForm.controls['curso'])
+
   }
 
   onTeamChange() {

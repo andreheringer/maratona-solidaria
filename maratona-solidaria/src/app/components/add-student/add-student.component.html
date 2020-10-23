@@ -17,22 +17,6 @@
       formControlName="matricula"
       class="form-item"
     />
-    <select
-      formControlName="curso"
-      class="form-item"
-      (change)="onTeamChange()"
-      ngModel="teamName"
-    >
-      <option [disabled]="true" [selected]="true">
-        {{teamName}}
-      </option>
-      <!-- <option [disabled]="defaultTeamDisabled" selected value="Curso">
-        Curso
-      </option> -->
-      <!-- <option *ngFor="let team of teams" [ngValue]="team">
-        {{ team.name }}
-      </option> -->
-    </select>
     <input
       type="text"
       placeholder="Email"
