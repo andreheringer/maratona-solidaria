@@ -22,22 +22,6 @@ def get_equipe(equipe_id):
     return jsonify(id=equipe.id, nome = equipe.nome, sigla= equipe.sigla, pontuacao = equipe.pontuacao, tamanho=tamanhoEquipe), 200
 
 
-@equipe_bp.route("/list", methods=["POST"])
-def list_equipes():
-    """
-    Parameters: none
-    Returns: uma lista dos equipes cadastrados
-    """
-    auth_header = request.headers.get("Authorization")
-    token_or_error, status = Colaborador.parse_token(auth_header)
-    if status != 200:
-        return token_or_error, status
-    resp = Colaborador.decode_auth_token(token_or_error)
-    colaborador = Colaborador.query.filter_by(id=resp).first()
-    equipes = Equipe.query.all()
-    return jsonify(equipes), 200
-
-
 @equipe_bp.route("/create", methods=["POST"])
 def create_equipe():
     """
