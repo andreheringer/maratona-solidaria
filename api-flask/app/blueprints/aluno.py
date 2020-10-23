@@ -32,7 +32,10 @@ def list_aluno():
         return token_or_error, status
     resp = Colaborador.decode_auth_token(token_or_error)
     colaborador = Colaborador.query.filter_by(id=resp).first()
-    alunos = Aluno.query.filter_by(equipe_id=colaborador.equipe_id).all()
+    if colaborador.admin:
+        alunos = Aluno.query.all()
+    else:
+        alunos = Aluno.query.filter_by(equipe_id=colaborador.equipe_id).all()
     return jsonify(alunos), 200
 
 
