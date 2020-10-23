@@ -89,15 +89,6 @@ export class DonationService {
       });
 
       this.updateAllDonations(donations);
-
-      donations.forEach(donation => {
-        if (donation.confirmado){
-          this.teamService.addTeamScore(
-            donation.representante.curso.id,
-            donation.pontuacao
-          );
-        }
-      });
     })
   }
 
@@ -125,7 +116,6 @@ export class DonationService {
             }
           : donation
       ));
-
       const team_id = student.curso.id;
       let points = fetchedDonation.pontuacao;
 
