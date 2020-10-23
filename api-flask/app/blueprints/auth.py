@@ -94,7 +94,7 @@ def logout_user():
                 responseObject = {"status": "fail", "message": e}
                 return responseObject, 200
         else:
-            responseObject = {"status": "fail", "message": resp}
+            responseObject = {"status": "fail", "message": "Token not validated"}
             return responseObject, 401
     else:
         responseObject = {"status": "fail", "message": "Provide a valid auth token."}
