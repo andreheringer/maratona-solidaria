@@ -1,29 +1,11 @@
 import { Team } from './../app/shared/models/team';
-import { Observable } from 'rxjs';
 import { TeamService } from './../app/shared/stores/teams/teams.service';
 import { TeamState } from './../app/shared/stores/teams/teams.state';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { NgxsModule } from '@ngxs/store';
 import { TestBed } from '@angular/core/testing';
-
-const createTeamsRepositoryMock = (): any => {
-  return {
-    getClassificacao: () => {
-      return new Observable((subscriber) => {
-        subscriber.next([
-          {
-            id: 0,
-            nome: 'Ciência da Computação',
-            pontuacao: 0,
-            tamanho: 1,
-          },
-        ]);
-        subscriber.complete();
-      });
-    },
-  };
-};
+import { createTeamsRepositoryMock } from './mocks';
 
 describe('TeamService', () => {
   let store: Store;
@@ -63,6 +45,7 @@ describe('TeamService', () => {
         name: 'Ciência da Computação',
         points: 0,
         size: 1,
+        acronime: 'CC',
       },
     ]);
   });
@@ -81,7 +64,7 @@ describe('TeamService', () => {
         id: 0,
         name: 'Ciência da Computação',
         points: 8,
-        acronime: undefined,
+        acronime: 'CC',
       },
     ]);
   });

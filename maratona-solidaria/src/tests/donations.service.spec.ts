@@ -6,153 +6,16 @@ import { DonationService } from './../app/shared/stores/donations/donations.serv
 import { TeamState } from './../app/shared/stores/teams/teams.state';
 import { HttpClientModule } from '@angular/common/http';
 import { TeamService } from './../app/shared/stores/teams/teams.service';
-import { Observable } from 'rxjs';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { NgxsModule } from '@ngxs/store';
 import { TestBed } from '@angular/core/testing';
-
-const donationStub = {
-  doacao: 'Doação Teste',
-  tipo: PRODUCTS[0].id,
-  quantidade: 3,
-  representante: {
-    id: 0,
-    nome: 'Henrique',
-    matricula: 2016100000,
-    curso: {
-      id: 0,
-      name: 'Ciência da Computação',
-      points: 0,
-      acronime: undefined,
-    },
-    email: 'henrique@mail.com',
-    telefone: null,
-    observacao: null,
-  },
-  data: null,
-  pontuacao: PRODUCTS[0].points,
-  observacao: null,
-  confirmado: false,
-};
-
-const donationStub2 = {
-  doacao: 'Doação Teste',
-  tipo: PRODUCTS[0].id,
-  quantidade: 3,
-  representante: {
-    id: 0,
-    nome: 'Henrique',
-    matricula: 2016100000,
-    curso: {
-      id: 0,
-      name: 'Ciência da Computação',
-      points: 0,
-      size: 1,
-    },
-    email: 'henrique@mail.com',
-    telefone: null,
-    observacao: null,
-  },
-  data: null,
-  pontuacao: PRODUCTS[0].points,
-  observacao: null,
-  confirmado: false,
-};
-
-const createTeamsRepositoryMock = (): any => {
-  return {
-    getClassificacao: () => {
-      return new Observable((subscriber) => {
-        subscriber.next([
-          {
-            id: 0,
-            nome: 'Ciência da Computação',
-            pontuacao: 0,
-            tamanho: 1,
-          },
-        ]);
-        subscriber.complete();
-      });
-    },
-  };
-};
-
-const createStudentsRepositoryMock = (): any => {
-  return {
-    getStudents: () => {
-      return new Observable((subscriber) => {
-        subscriber.next([
-          {
-            id: 0,
-            nome: 'Henrique',
-            matricula: 2016100000,
-            equipe_id: 0,
-            email: 'henrique@mail.com',
-            telefone: null,
-            observacao: null,
-          },
-        ]);
-        subscriber.complete();
-      });
-    },
-    createStudent: (student) => {
-      return new Observable((subscriber) => {
-        subscriber.next({
-          id: 0,
-        });
-        subscriber.complete();
-      });
-    },
-  };
-};
-
-const createDonationsRepositoryMock = (): any => {
-  return {
-    getDonations: () => {
-      return new Observable((subscriber) => {
-        subscriber.next([
-          {
-            id: 0,
-            doacao: 'Doação Teste',
-            tipo: '0',
-            quantidade: 3,
-            aluno_id: 0,
-            data: null,
-            pontuacao: 100,
-            observacao: null,
-            confirmado: false,
-          },
-        ]);
-        subscriber.complete();
-      });
-    },
-    createDonation: (donation) => {
-      return new Observable((subscriber) => {
-        subscriber.next({
-          donate_id: 0,
-        });
-        subscriber.complete();
-      });
-    },
-    confirmDonation: (id) => {
-      return new Observable((subscriber) => {
-        subscriber.next({
-          id: 0,
-          doacao: 'Doação Teste',
-          tipo: '0',
-          quantidade: 3,
-          aluno_id: 0,
-          data: null,
-          pontuacao: 100,
-          observacao: null,
-          confirmado: true,
-        });
-        subscriber.complete();
-      });
-    },
-  };
-};
+import {
+  createTeamsRepositoryMock,
+  createStudentsRepositoryMock,
+  createDonationsRepositoryMock,
+  donationStub,
+} from './mocks';
 
 describe('DonationService', () => {
   let store: Store;
@@ -206,7 +69,6 @@ describe('DonationService', () => {
       allTeams = storeTeams;
     });
     teamService.syncTeams();
-    teamService.addTeamScore(0, 0); //setting acronime property
     studentService.syncStudents();
 
     donationService.syncDonations();
@@ -225,7 +87,8 @@ describe('DonationService', () => {
         id: 0,
         name: 'Ciência da Computação',
         points: 0,
-        acronime: undefined,
+        acronime: 'CC',
+        size: 1,
       },
     ]);
   });
@@ -272,7 +135,7 @@ describe('DonationService', () => {
     expect(allDonations).toEqual([
       {
         id: 0,
-        ...donationStub2,
+        ...donationStub,
         confirmado: true,
       },
     ]);
@@ -281,7 +144,7 @@ describe('DonationService', () => {
         id: 0,
         name: 'Ciência da Computação',
         points: PRODUCTS[0].points,
-        acronime: undefined,
+        acronime: 'CC',
       },
     ]);
   });

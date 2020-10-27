@@ -3,58 +3,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { TeamService } from './../app/shared/stores/teams/teams.service';
 import { StudentState } from './../app/shared/stores/students/students.state';
 import { StudentService } from './../app/shared/stores/students/students.service';
-import { Observable, Subscriber } from 'rxjs';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { Store } from '@ngxs/store';
 import { NgxsModule } from '@ngxs/store';
 import { TestBed } from '@angular/core/testing';
-
-const createTeamsRepositoryMock = (): any => {
-  return {
-    getClassificacao: () => {
-      return new Observable((subscriber) => {
-        subscriber.next([
-          {
-            id: 0,
-            nome: 'Ciência da Computação',
-            pontuacao: 0,
-            tamanho: 1,
-          },
-        ]);
-        subscriber.complete();
-      });
-    },
-  };
-};
-
-const createStudentsRepositoryMock = (): any => {
-  return {
-    getStudents: () => {
-      return new Observable((subscriber) => {
-        subscriber.next([
-          {
-            id: 0,
-            nome: 'Henrique',
-            matricula: 2016100000,
-            equipe_id: 0,
-            email: 'henrique@mail.com',
-            telefone: null,
-            observacao: null,
-          },
-        ]);
-        subscriber.complete();
-      });
-    },
-    createStudent: (student) => {
-      return new Observable((subscriber) => {
-        subscriber.next({
-          id: 0,
-        });
-        subscriber.complete();
-      });
-    },
-  };
-};
+import {
+  createTeamsRepositoryMock,
+  createStudentsRepositoryMock,
+} from './mocks';
 
 describe('StudentService', () => {
   let store: Store;
@@ -111,6 +67,7 @@ describe('StudentService', () => {
           name: 'Ciência da Computação',
           points: 0,
           size: 1,
+          acronime: 'CC',
         },
         email: 'henrique@mail.com',
         telefone: null,
