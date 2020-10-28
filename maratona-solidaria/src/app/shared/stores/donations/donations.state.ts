@@ -4,6 +4,8 @@ import {
   ClearDonationStore,
   AppendDonationsState,
   UpdateDonationsState,
+  ClearDonationFilter,
+  FilterDonationState,
 } from './donations.actions';
 import { SimpleDonation } from '../../models/simpleDonation';
 
@@ -43,7 +45,28 @@ export class DonationState {
     const state = ctx.getState();
     ctx.patchState({
       allDonations: [...state.allDonations, action.newDonation],
-      teamDonations: [...state.teamDonations, action.newDonation],
+      teamDonations: [...state.allDonations, action.newDonation],
+    });
+  }
+
+  @Action(ClearDonationFilter)
+  public clearDonationFilter(
+    ctx: StateContext<DonationStateModel>,
+  ) {
+    const state = ctx.getState();
+    ctx.patchState({
+      teamDonations: [...state.allDonations],
+    });
+  }
+
+  @Action(FilterDonationState)
+  public filterDonationState(
+    ctx: StateContext<DonationStateModel>,
+    action: FilterDonationState
+  ) {
+    const state = ctx.getState();
+    ctx.patchState({
+      teamDonations: [...state.allDonations.filter( (donation) => donation.representante.curso.id === action.teamId)],
     });
   }
 

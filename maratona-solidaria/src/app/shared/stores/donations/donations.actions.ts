@@ -14,3 +14,12 @@ export class AppendDonationsState {
   public static readonly type = "[DONATIONS] AppendDonationsState";
   constructor(public newDonation: Donation) {}
 }
+
+export class ClearDonationFilter{
+  public static readonly type = "[DONATIONS] ClearDonationFilter";
+}
+
+export class FilterDonationState{
+  public static readonly type = "[DONATIONS] FilterDonationState";
+  constructor(public teamId: number) {}
+}

@@ -8,6 +8,8 @@ import {
   ClearDonationStore,
   UpdateDonationsState,
   AppendDonationsState,
+  FilterDonationState,
+  ClearDonationFilter,
 } from './donations.actions';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -43,6 +45,16 @@ export class DonationService {
     return new AppendDonationsState(donation);
   }
 
+  @Dispatch()
+  public filterDonationsState(teamId: number){
+    return new FilterDonationState(teamId);
+  }
+
+  @Dispatch()
+  public clearDonationsFilter(){
+    return new ClearDonationFilter();
+  }
+
   @Select(DonationState.allDonations)
   public allDonations$: Observable<Donation[]>;
 
@@ -50,7 +62,7 @@ export class DonationService {
   public teamDonations$: Observable<Donation[]>;
 
   public updateAllDonations(donations: Donation[]) {
-    this.updateDonationsState({ allDonations: donations });
+    this.updateDonationsState({ allDonations: donations, teamDonations: donations });
   }
 
   public updateTeamDonations(donations: Donation[]) {
