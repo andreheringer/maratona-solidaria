@@ -91,7 +91,7 @@ export class StudentService {
         alert('Aluno adicionado com sucesso!');
       },
       (error) => {
-        alert('Erro ao criar aluno!');
+        alert('Erro ao adicionar aluno!');
       }
     );
   }
