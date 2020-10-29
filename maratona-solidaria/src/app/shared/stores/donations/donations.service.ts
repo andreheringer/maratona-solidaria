@@ -90,7 +90,7 @@ export class DonationService {
         alert('Doação feita com sucesso!');
       },
       (error) => {
-        alert('Erro ao adicionar aluno!');
+        alert('Erro ao realizar doação.');
       }
     );
   }
