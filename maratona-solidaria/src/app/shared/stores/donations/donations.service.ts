@@ -130,6 +130,7 @@ export class DonationService {
       ));
       const team_id = student.curso.id;
       let points = fetchedDonation.pontuacao;
+      points = student.curso.size ? points / student.curso.size : points;
 
       if (!fetchedDonation.confirmado){
         points *= -1;
