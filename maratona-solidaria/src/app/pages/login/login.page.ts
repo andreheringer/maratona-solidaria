@@ -48,19 +48,20 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.spinner.show();
     this.userService.authenticate(this.userName, this.userPassw).subscribe(
       (response) => {
-        
         this.startupService.preloadStores();
         this.spinner.hide();
         this.router.navigateByUrl('/leaderboard');
       },
       (error) => {
         this.spinner.hide();
+        alert(
+          'Não foi possível realizar o login. Verifique se suas credenciais estão corretas.'
+        );
       }
     );
   }
 
   private checkLogin() {
-    
     let token = localStorage.getItem('token');
     if (token) {
       this.spinner.show();
