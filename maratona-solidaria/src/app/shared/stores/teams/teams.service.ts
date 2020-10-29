@@ -49,10 +49,14 @@ export class TeamService {
     equipesObs.subscribe((equipes) => {
       this.updateAllTeams(
         equipes.map((equipe) => {
+          const points = equipe.tamanho
+            ? equipe.pontuacao / equipe.tamanho
+            : equipe.pontuacao;
+
           return {
             id: equipe.id,
             name: equipe.nome,
-            points: equipe.pontuacao,
+            points: points,
             size: equipe.tamanho,
             acronime: equipe.sigla,
           };
