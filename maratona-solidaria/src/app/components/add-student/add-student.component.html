@@ -1,19 +1,15 @@
 <main>
-  <form
-    [formGroup]="addStudentForm"
-    ngxsForm="addStudent.form"
-    class="form"
-  >
-  <span class="form-title"> Adicionar um aluno! </span>
+  <form [formGroup]="addStudentForm" ngxsForm="addStudent.form" class="form">
+    <span class="form-title"> Adicionar um aluno! </span>
     <input
       type="text"
-      placeholder="Nome"
+      placeholder="Nome * "
       formControlName="nome"
       class="form-item"
     />
     <input
       type="text"
-      placeholder="Matrícula"
+      placeholder="Matrícula *"
       formControlName="matricula"
       class="form-item"
     />
@@ -25,7 +21,7 @@
     />
     <input
       type="text"
-      placeholder="Telefone"
+      placeholder="Telefone *"
       formControlName="telefone"
       class="form-item"
     />
@@ -36,7 +32,9 @@
       class="form-item"
     />
     <section class="student-buttons">
-      <button (click)="onChangeForm()" class="donation-button">Fazer Doação</button>
+      <button (click)="onChangeForm()" class="donation-button">
+        Fazer Doação
+      </button>
       <button (click)="onSubmit()" class="submit-button">Adicionar</button>
     </section>
   </form>

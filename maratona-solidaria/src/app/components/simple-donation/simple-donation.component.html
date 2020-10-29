@@ -4,10 +4,10 @@
     ngxsForm="simpleDonation.form"
     class="form"
   >
-  <span class="form-title"> Faça sua doação aqui! </span>
+    <span class="form-title"> Faça sua doação aqui! </span>
     <input
       type="text"
-      placeholder="Doação"
+      placeholder="Doação *"
       formControlName="doacao"
       class="form-item"
     />
@@ -17,14 +17,14 @@
       formControlName="tipo"
       ngModel="Tipo"
     >
-      <option [disabled]="donation" selected value="Tipo">Tipo</option>
+      <option [disabled]="donation" selected value="Tipo">Tipo *</option>
       <option *ngFor="let prod of products" [ngValue]="prod.id">
         {{ prod.name }}
       </option>
     </select>
     <input
       type="number"
-      placeholder="Quantidade"
+      placeholder="Quantidade *"
       formControlName="quantidade"
       class="form-item"
     />
@@ -36,7 +36,7 @@
       [ngClass]="student ? 'selected' : ''"
     >
       <option disabled selected value="Representante(Aluno)">
-        Reprensentante(Aluno)
+        Reprensentante(Aluno) *
       </option>
       <option *ngFor="let student of students" [ngValue]="student">
         {{ student.nome }}
@@ -49,7 +49,9 @@
       class="form-item"
     />
     <section class="botoes-donate">
-      <button (click)="onChangeForm()" class="student-button">Adicionar Aluno</button>
+      <button (click)="onChangeForm()" class="student-button">
+        Adicionar Aluno
+      </button>
       <button (click)="onSubmit()" class="submit-button">Doar</button>
     </section>
   </form>
