@@ -88,6 +88,7 @@ export class StudentService {
       (response) => {
         student.id = response.id;
         this.appendStudentsState(student);
+        alert('Aluno adicionado com sucesso!');
       },
       (error) => {
         alert('Erro ao criar aluno!');
