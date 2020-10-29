@@ -18,7 +18,11 @@ import { AddStudent } from '../../models/addStudent';
   providedIn: 'root',
 })
 export class StudentService {
-  constructor(private store: Store, private studentsRepo: StudentsRepository, private teamService: TeamService) {}
+  constructor(
+    private store: Store,
+    private studentsRepo: StudentsRepository,
+    private teamService: TeamService
+  ) {}
 
   private getStore() {
     return this.store.snapshot().students as StudentStateModel;
@@ -59,28 +63,35 @@ export class StudentService {
     const studentsObs = this.studentsRepo.getStudents();
     studentsObs.subscribe((students) => {
       let currentTeams = [];
-      this.teamService.allTeams$.subscribe((teams) => currentTeams = teams);
+      this.teamService.allTeams$.subscribe((teams) => (currentTeams = teams));
 
-      this.updateTeamStudents(students.map(student => {
-        return {
-          id: student.id,
-          nome: student.nome,
-          matricula: student.matricula,
-          curso: currentTeams.find(team => team.id === student.equipe_id),
-          email: student.email,
-          telefone: student.telefone,
-          observacao: student.observacao,
-        }
-      }));
+      this.updateTeamStudents(
+        students.map((student) => {
+          return {
+            id: student.id,
+            nome: student.nome,
+            matricula: student.matricula,
+            curso: currentTeams.find((team) => team.id === student.equipe_id),
+            email: student.email,
+            telefone: student.telefone,
+            observacao: student.observacao,
+          };
+        })
+      );
     });
   }
 
   public addStudent(student: AddStudent) {
     //post student
     const studentObs = this.studentsRepo.createStudent(student);
-    studentObs.subscribe((response) => {
-      student.id = response.id;
-      this.appendStudentsState(student);
-    });
+    studentObs.subscribe(
+      (response) => {
+        student.id = response.id;
+        this.appendStudentsState(student);
+      },
+      (error) => {
+        alert('Erro ao criar aluno!');
+      }
+    );
   }
 }
