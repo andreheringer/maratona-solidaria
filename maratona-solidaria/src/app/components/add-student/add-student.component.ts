@@ -53,7 +53,9 @@ export class AddStudentComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.addStudentForm.valid) this.addStudentService.submit();
+    this.addStudentForm.valid
+      ? this.addStudentService.submit()
+      : alert("Preencha todos os campos obrigatórios indicados por '*");
   }
 
   onChangeForm() {
