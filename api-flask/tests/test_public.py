@@ -5,6 +5,7 @@ from app.app import create_app
 from app.extentions import db
 from app.models.equipe import Equipe
 
+
 @pytest.fixture
 def client():
     os.environ["DATABASE_URL"] = "sqlite://"
@@ -33,9 +34,20 @@ def test_public_list_teams(client):
     assert data[0]["nome"] == "Computacao"
     assert data[0]["pontuacao"] == 0 
 
+
 def test_public_teams_classification(client):
     rv = client.get("/public/classificacao")
     data = json.loads(rv.data)
     assert data[0]["id"] == 1
     assert data[0]["nome"] == "Computacao"
     assert data[0]["pontuacao"] == 0 
+
+
+def test_public_error(client):
+    error = False
+    try:
+        client.get("/public/error")
+    except ValueError:
+        error = True
+
+    assert error
