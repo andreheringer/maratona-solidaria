@@ -149,6 +149,30 @@ def test_cancel_donation(client):
 
     assert 'confirmado' in data and not data['confirmado']
 
+def test_invalid_user_confirm_donation(client):
+    rv = client.post("/auth/login", json={
+        'email': 'gab@test.com',
+        'password': '1234'
+    })
+    data = rv.get_json()
+    token = data["auth_token"]
+
+    rv = client.post("/donation/create", json={"doacao": "3Arroz", "tipo":"Arroz", "quantidade": 2, "aluno_id": 1 , "pontuacao": 30}, 
+    headers={
+        'Authorization': 'Bearer %s' % token
+    })
+    data = rv.get_json()
+    donation_id = data['donate_id']
+
+    rv = client.post("/donation/%d/confirm" % donation_id, 
+    headers={
+        'Authorization': 'Bearer %s' % token
+    })
+    data = rv.get_json()
+
+    assert data['status'] == "fail"
+
+
 def test_invalid_user_donation(client):
     rv = client.post("/auth/login", json={
         'email': 'hacker@test.com',
