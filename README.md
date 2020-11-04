@@ -15,6 +15,32 @@ Aplicação para a [Maratona Solidária do ICEX](http://maratonasolidaria.dcc.uf
 ## Arquitetura
 ![Arquitetura](https://user-images.githubusercontent.com/23155300/76664704-fd0ee180-6563-11ea-8197-517efe49a226.jpg)
 
+## [Sprint 3](https://github.com/andreheringer/api-maratona-solidaria/milestone/3)
+
+- Eu como visitante, colaborador ou admin gostaria de ser notificado sobre conclusão de açoẽs
+  - [X] Testes de unidade dos endpoint (Yasmin)
+  - [X] Testes de serviços (Henrique)
+  - [X] Desenvolvimento dos avisos (Yasmin)
+
+- Eu como visitante, colaborador ou admin gostaria de ver a classificação
+  - [X] Testes de unidade dos endpoint (Yasmin)
+  - [X] Testes de serviços (Henrique)
+  - [X] Integração para classificação das equipes
+  
+- Eu como administrador gostaria de filtrar doações por equipe.
+  - [X] Redesign da tela (Lucas)
+  - [X] Desenvolvimento da funcionalidade (Lucas)
+  - [X] Adequação do backend (André) (Ingrid)
+  
+-  [Tarefa técnica] Correção de bugs
+  - [X] Bugs frontend (Lucas) (Henrique) (Yasmim)
+  - [X] Reestruturação dos estilos (André) (Ingrid)
+  
+-  [Tarefa técnica] Aumento de qualidade e cobertura de testes
+  - [X] Testes frontend (Henrique) (Yasmim)
+  - [X] Testes backend (André) (Ingrid)
+
+
 
 ## [Sprint 2](https://github.com/andreheringer/api-maratona-solidaria/milestone/2)
 
