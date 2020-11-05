@@ -1,0 +1,35 @@
+{
+    "python.pythonPath": ".env/bin/python",
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": ["--max-line-lengh=100"],
+    "python.linting.enabled": true,
+    "python.autoComplete.extraPaths": [
+        "api-flask"
+    ],
+    "python.analysis.extraPaths": [
+        "api-flask"
+    ],
+    "python.formatting.provider": "black",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "maratona",
+            "database": "maratona",
+            "username": "user"
+        }
+    ],
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.testing.pytestArgs": [
+        "api-flask/tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
+}

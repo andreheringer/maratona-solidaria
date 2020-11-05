@@ -2,7 +2,7 @@ version: "3.5"
 services:
   backend:
     build:
-      context: ./api-flask
+      context: ./maratona-solidaria-api
       args:
         username: "nonroot"
     links:
@@ -16,7 +16,7 @@ services:
       - db
     entrypoint: ./app/entrypoint.sh
     volumes:
-      - ./api-flask:/app
+      - ./maratona-solidaria-api:/app
     networks:
       - dishes
   frontend:
